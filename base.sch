@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:robot_pcb0-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -1133,8 +1133,6 @@ Wire Wire Line
 	3400 4600 3200 4600
 Wire Wire Line
 	3400 4700 3200 4700
-Text Notes 2650 4500 3    50   ~ 0
-Temporary!!
 Text GLabel 3200 4400 0    50   Output ~ 0
 DRV_AIN1_2
 Text GLabel 3200 4500 0    50   Output ~ 0

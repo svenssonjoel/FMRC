@@ -1,5 +1,5 @@
 (sym_lib_table
-  (lib (name robot_pcb0-rescue)(type Legacy)(uri ${KIPRJMOD}/robot_pcb0-rescue.lib)(options "")(descr ""))
-  (lib (name drv8833_hack)(type Legacy)(uri ${KIPRJMOD}/robot_pcb0/drv8833_hack.lib)(options "")(descr ""))
-  (lib (name IMU)(type Legacy)(uri ${KIPRJMOD}/robot_pcb0/Lib/crf_1.lib)(options "")(descr ""))
+  (lib (name robot_pcb0-rescue)(type Legacy)(uri ${KIPRJMOD}/robot_pcb0-rescue.lib)(options "")(descr "")(disabled))
+  (lib (name drv8833_hack)(type Legacy)(uri ${KIPRJMOD}/drv8833_hack.lib)(options "")(descr ""))
+  (lib (name IMU)(type Legacy)(uri ${KIPRJMOD}/Lib/crf_1.lib)(options "")(descr ""))
 )

@@ -1,4 +1,4 @@
 (fp_lib_table
-  (lib (name IMU)(type KiCad)(uri ${KIPRJMOD}/Lib/crf1.pretty)(options "")(descr "")(disabled))
+  (lib (name IMU)(type KiCad)(uri ${KIPRJMOD}/Lib/crf1.pretty)(options "")(descr ""))
   (lib (name crf1)(type KiCad)(uri "$(KIPRJMOD)/Lib/crf1.pretty")(options "")(descr ""))
 )

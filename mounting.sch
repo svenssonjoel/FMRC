@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:robot_pcb0-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Mechanical:Mounting_Hole MK4
+L robot_pcb0-rescue:Mounting_Hole-Mechanical MK4
 U 1 1 5B441261
 P 5550 2950
 F 0 "MK4" H 5650 2996 50  0000 L CNN
@@ -26,7 +26,7 @@ F 3 "" H 5550 2950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Mechanical:Mounting_Hole MK2
+L robot_pcb0-rescue:Mounting_Hole-Mechanical MK2
 U 1 1 5B441268
 P 3600 2900
 F 0 "MK2" H 3700 2946 50  0000 L CNN
@@ -37,7 +37,7 @@ F 3 "" H 3600 2900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Mechanical:Mounting_Hole MK3
+L robot_pcb0-rescue:Mounting_Hole-Mechanical MK3
 U 1 1 5B44126F
 P 5550 2200
 F 0 "MK3" H 5650 2246 50  0000 L CNN
@@ -48,7 +48,7 @@ F 3 "" H 5550 2200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Mechanical:Mounting_Hole MK1
+L robot_pcb0-rescue:Mounting_Hole-Mechanical MK1
 U 1 1 5B441276
 P 3600 2200
 F 0 "MK1" H 3700 2246 50  0000 L CNN
