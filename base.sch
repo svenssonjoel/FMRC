@@ -685,6 +685,8 @@ $Comp
 L robot_pcb0-rescue:C-RESCUE-RCCAR_IF_Board_GPS-RCCAR_IF_Board_GPS-rescue-uwb_pcb-rescue C1
 U 1 1 5AF962C0
 P 5850 6700
+AR Path="/5AF962C0" Ref="C1"  Part="1" 
+AR Path="/5AF92F5C/5AF962C0" Ref="C1"  Part="1" 
 F 0 "C1" H 5875 6800 50  0000 L CNN
 F 1 "2.2u" H 5875 6600 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric" H 5888 6550 30  0001 C CNN
@@ -696,6 +698,8 @@ $Comp
 L robot_pcb0-rescue:C-RESCUE-RCCAR_IF_Board_GPS-RCCAR_IF_Board_GPS-rescue-uwb_pcb-rescue C2
 U 1 1 5AF9636C
 P 6150 6700
+AR Path="/5AF9636C" Ref="C2"  Part="1" 
+AR Path="/5AF92F5C/5AF9636C" Ref="C2"  Part="1" 
 F 0 "C2" H 6175 6800 50  0000 L CNN
 F 1 "2.2u" H 6175 6600 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric" H 6188 6550 30  0001 C CNN
@@ -876,198 +880,47 @@ Connection ~ 5150 6500
 Wire Wire Line
 	5150 6500 5300 6500
 $Comp
-L robot_pcb0-rescue:MPU9250-crf_1 U3
-U 1 1 5B08F0D3
-P 8850 3450
-F 0 "U3" H 8850 4437 60  0000 C CNN
-F 1 "MPU9250" H 8850 4331 60  0000 C CNN
-F 2 "crf1:QFN-24-1EP_3x3mm_P0.4mm_nopp" H 9050 3100 60  0001 C CNN
-F 3 "" H 9050 3100 60  0000 C CNN
-	1    8850 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L robot_pcb0-rescue:C-device-vesc_hp_v1-rescue-uwb_pcb-rescue C14
-U 1 1 5B090107
-P 9500 3750
-F 0 "C14" H 9525 3850 50  0000 L CNN
-F 1 "100n" H 9525 3650 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 9538 3600 30  0001 C CNN
-F 3 "" H 9500 3750 60  0000 C CNN
-	1    9500 3750
-	1    0    0    -1  
-$EndComp
-$Comp
-L robot_pcb0-rescue:C-device-vesc_hp_v1-rescue-uwb_pcb-rescue C15
-U 1 1 5B09F49D
-P 9750 3750
-F 0 "C15" H 9775 3850 50  0000 L CNN
-F 1 "2.2u" H 9775 3650 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 9788 3600 30  0001 C CNN
-F 3 "" H 9750 3750 60  0000 C CNN
-	1    9750 3750
-	1    0    0    -1  
-$EndComp
-$Comp
-L robot_pcb0-rescue:C-device-vesc_hp_v1-rescue-uwb_pcb-rescue C16
-U 1 1 5B09F850
-P 10000 3750
-F 0 "C16" H 10025 3850 50  0000 L CNN
-F 1 "2.2u" H 10025 3650 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 10038 3600 30  0001 C CNN
-F 3 "" H 10000 3750 60  0000 C CNN
-	1    10000 3750
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR021
-U 1 1 5B0D9FB5
-P 9500 4300
-F 0 "#PWR021" H 9500 4050 50  0001 C CNN
-F 1 "GND" H 9505 4127 50  0000 C CNN
-F 2 "" H 9500 4300 50  0001 C CNN
-F 3 "" H 9500 4300 50  0001 C CNN
-	1    9500 4300
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	10000 3900 10000 4150
-Wire Wire Line
-	10000 4150 9750 4150
-Wire Wire Line
-	9750 3900 9750 4150
-Connection ~ 9750 4150
-Wire Wire Line
-	9750 4150 9500 4150
-Wire Wire Line
-	9500 3900 9500 4050
-Connection ~ 9500 4150
-Wire Wire Line
-	9500 4150 9400 4150
-Wire Wire Line
-	9400 4050 9500 4050
-Connection ~ 9500 4050
-Wire Wire Line
-	9500 4050 9500 4150
-Wire Wire Line
-	9500 3600 9500 3450
-Wire Wire Line
-	9500 3450 9400 3450
-Wire Wire Line
-	9750 3600 9750 2950
-Wire Wire Line
-	9750 2950 9400 2950
-Wire Wire Line
-	10000 3600 10000 2950
-Wire Wire Line
-	10000 2950 9750 2950
-Connection ~ 9750 2950
-Wire Wire Line
-	9400 2850 9750 2850
-Wire Wire Line
-	9750 2850 9750 2950
-Wire Wire Line
-	9400 2750 9750 2750
-Wire Wire Line
-	9750 2750 9750 2850
-Connection ~ 9750 2850
-$Comp
-L power:VCC #PWR022
-U 1 1 5B165B83
-P 9750 2600
-F 0 "#PWR022" H 9750 2700 30  0001 C CNN
-F 1 "VCC" H 9750 2700 30  0000 C CNN
-F 2 "" H 9750 2600 60  0001 C CNN
-F 3 "" H 9750 2600 60  0001 C CNN
-	1    9750 2600
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9750 2600 9750 2750
-Connection ~ 9750 2750
-Wire Wire Line
-	9500 4150 9500 4300
-$Comp
-L power:GND #PWR019
-U 1 1 5B187447
-P 8050 4300
-F 0 "#PWR019" H 8050 4050 50  0001 C CNN
-F 1 "GND" H 8055 4127 50  0000 C CNN
-F 2 "" H 8050 4300 50  0001 C CNN
-F 3 "" H 8050 4300 50  0001 C CNN
-	1    8050 4300
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8300 3850 8050 3850
-Wire Wire Line
-	8050 3850 8050 4300
-$Comp
-L power:VCC #PWR018
-U 1 1 5B19831C
-P 7900 3800
-F 0 "#PWR018" H 7900 3900 30  0001 C CNN
-F 1 "VCC" H 7900 3900 30  0000 C CNN
-F 2 "" H 7900 3800 60  0001 C CNN
-F 3 "" H 7900 3800 60  0001 C CNN
-	1    7900 3800
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8300 3450 8050 3450
-Wire Wire Line
-	8050 3450 8050 3850
-Connection ~ 8050 3850
-Wire Wire Line
-	8300 3950 7900 3950
-Wire Wire Line
-	7900 3950 7900 3800
-NoConn ~ 8300 2750
-NoConn ~ 8300 2850
-NoConn ~ 8300 3050
-NoConn ~ 8300 3550
-$Comp
 L Device:R R4
 U 1 1 5B29FB41
-P 8650 4600
-F 0 "R4" V 8750 4500 50  0000 C CNN
-F 1 "1k" V 8750 4650 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 8580 4600 50  0001 C CNN
-F 3 "~" H 8650 4600 50  0001 C CNN
-	1    8650 4600
-	0    -1   -1   0   
+P 9450 2850
+F 0 "R4" V 9550 2750 50  0000 C CNN
+F 1 "1k" V 9550 2900 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9380 2850 50  0001 C CNN
+F 3 "~" H 9450 2850 50  0001 C CNN
+	1    9450 2850
+	-1   0    0    1   
 $EndComp
 $Comp
 L Device:R R5
 U 1 1 5B2A024D
-P 8650 4750
-F 0 "R5" V 8550 4650 50  0000 C CNN
-F 1 "1k" V 8550 4800 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 8580 4750 50  0001 C CNN
-F 3 "~" H 8650 4750 50  0001 C CNN
-	1    8650 4750
-	0    -1   -1   0   
+P 9300 2850
+F 0 "R5" V 9200 2750 50  0000 C CNN
+F 1 "1k" V 9200 2900 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9230 2850 50  0001 C CNN
+F 3 "~" H 9300 2850 50  0001 C CNN
+	1    9300 2850
+	-1   0    0    1   
 $EndComp
 $Comp
 L power:VCC #PWR020
 U 1 1 5B2A0461
-P 9000 4600
-F 0 "#PWR020" H 9000 4700 30  0001 C CNN
-F 1 "VCC" H 9000 4700 30  0000 C CNN
-F 2 "" H 9000 4600 60  0001 C CNN
-F 3 "" H 9000 4600 60  0001 C CNN
-	1    9000 4600
-	0    1    1    0   
+P 9300 2500
+F 0 "#PWR020" H 9300 2600 30  0001 C CNN
+F 1 "VCC" H 9300 2600 30  0000 C CNN
+F 2 "" H 9300 2500 60  0001 C CNN
+F 3 "" H 9300 2500 60  0001 C CNN
+	1    9300 2500
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9000 4600 8900 4600
+	9300 2500 9300 2600
 Wire Wire Line
-	8900 4600 8900 4750
+	9300 2600 9450 2600
 Wire Wire Line
-	8900 4750 8800 4750
-Connection ~ 8900 4600
+	9450 2600 9450 2700
+Connection ~ 9300 2600
 Wire Wire Line
-	8900 4600 8800 4600
+	9300 2600 9300 2700
 Text GLabel 6150 6400 1    60   Input ~ 0
 5V
 $Comp
@@ -1096,35 +949,14 @@ Wire Wire Line
 Connection ~ 1350 2650
 Text Notes 1700 5700 1    50   ~ 0
 meta information\n
-Wire Wire Line
-	8300 4050 8200 4050
-Wire Wire Line
-	8200 4050 8200 4600
-Wire Wire Line
-	8200 4600 8500 4600
-Wire Wire Line
-	8300 4150 8300 4750
-Wire Wire Line
-	8300 4750 8500 4750
-Wire Wire Line
-	8200 4600 8200 4850
-Wire Wire Line
-	8200 4850 8100 4850
-Connection ~ 8200 4600
-Wire Wire Line
-	8300 4750 8300 4950
-Wire Wire Line
-	8300 4950 8100 4950
-Connection ~ 8300 4750
 Text GLabel 3400 2700 0    50   Input ~ 0
 SCL
 Text GLabel 3400 2800 0    50   Input ~ 0
 SDA
-Text GLabel 8100 4950 0    50   Output ~ 0
+Text GLabel 9750 3200 2    50   Output ~ 0
 SCL
-Text GLabel 8100 4850 0    50   Output ~ 0
+Text GLabel 9750 3300 2    50   Output ~ 0
 SDA
-NoConn ~ 3400 2600
 Wire Wire Line
 	3400 4400 3200 4400
 Wire Wire Line
@@ -1133,6 +965,8 @@ Wire Wire Line
 	3400 4600 3200 4600
 Wire Wire Line
 	3400 4700 3200 4700
+Text Notes 2650 4500 3    50   ~ 0
+Temporary!!
 Text GLabel 3200 4400 0    50   Output ~ 0
 DRV_AIN1_2
 Text GLabel 3200 4500 0    50   Output ~ 0
@@ -1153,8 +987,6 @@ Text GLabel 3200 4300 0    50   Input ~ 0
 DRV_nFAULT
 Wire Wire Line
 	3400 4300 3200 4300
-Text GLabel 3050 3800 0    50   Input ~ 0
-V_METER
 Wire Wire Line
 	3400 3800 3050 3800
 Text Notes 500  2700 0    50   ~ 0
@@ -1267,4 +1099,148 @@ Text GLabel 3400 1700 0    50   Input ~ 0
 GPIO3
 NoConn ~ 3400 4100
 NoConn ~ 3400 4200
+Text GLabel 3050 3800 0    50   Input ~ 0
+V_METER
+$Comp
+L bmi160:BMI160 U3
+U 1 1 5CF27D04
+P 8700 3650
+F 0 "U3" H 8700 4365 50  0000 C CNN
+F 1 "BMI160" H 8700 4274 50  0000 C CNN
+F 2 "Package_LGA:Bosch_LGA-14_3x2.5mm_P0.5mm" H 9000 4150 50  0001 C CNN
+F 3 "" H 9000 4150 50  0001 C CNN
+	1    8700 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L robot_pcb0-rescue:C-device-vesc_hp_v1-rescue-uwb_pcb-rescue C16
+U 1 1 5B09F850
+P 7850 3350
+F 0 "C16" H 7875 3450 50  0000 L CNN
+F 1 "2.2u" H 7875 3250 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 7888 3200 30  0001 C CNN
+F 3 "" H 7850 3350 60  0000 C CNN
+	1    7850 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L robot_pcb0-rescue:C-device-vesc_hp_v1-rescue-uwb_pcb-rescue C15
+U 1 1 5B09F49D
+P 7600 3350
+F 0 "C15" H 7625 3450 50  0000 L CNN
+F 1 "2.2u" H 7625 3250 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 7638 3200 30  0001 C CNN
+F 3 "" H 7600 3350 60  0000 C CNN
+	1    7600 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9750 3200 9300 3200
+Wire Wire Line
+	9200 3300 9450 3300
+Wire Wire Line
+	9300 3000 9300 3200
+Connection ~ 9300 3200
+Wire Wire Line
+	9300 3200 9200 3200
+Wire Wire Line
+	9450 3000 9450 3300
+Connection ~ 9450 3300
+Wire Wire Line
+	9450 3300 9750 3300
+Wire Wire Line
+	8200 3500 8050 3500
+Wire Wire Line
+	8050 3500 8050 3650
+Wire Wire Line
+	8050 3650 7850 3650
+Wire Wire Line
+	7850 3650 7850 3500
+Wire Wire Line
+	7850 3650 7600 3650
+Wire Wire Line
+	7600 3650 7600 3500
+Connection ~ 7850 3650
+Wire Wire Line
+	8200 3200 8050 3200
+Wire Wire Line
+	8050 3200 8050 3050
+Wire Wire Line
+	8050 3050 7850 3050
+Wire Wire Line
+	7600 3050 7600 3200
+Wire Wire Line
+	7850 3200 7850 3050
+Connection ~ 7850 3050
+Wire Wire Line
+	7850 3050 7600 3050
+Wire Wire Line
+	8200 3300 8050 3300
+Wire Wire Line
+	8050 3300 8050 3200
+Connection ~ 8050 3200
+Wire Wire Line
+	8200 3400 8050 3400
+Wire Wire Line
+	8050 3400 8050 3500
+Connection ~ 8050 3500
+Text GLabel 3400 2600 0    50   Input ~ 0
+IMU_INT2
+Text GLabel 9200 4100 2    50   Input ~ 0
+IMU_INT2
+Wire Wire Line
+	9200 3500 9600 3500
+Wire Wire Line
+	9600 3500 9600 2600
+Wire Wire Line
+	9600 2600 9450 2600
+Connection ~ 9450 2600
+$Comp
+L power:GND #PWR021
+U 1 1 5D073145
+P 9300 3600
+F 0 "#PWR021" H 9300 3350 50  0001 C CNN
+F 1 "GND" H 9300 3450 50  0000 C CNN
+F 2 "" H 9300 3600 60  0000 C CNN
+F 3 "" H 9300 3600 60  0000 C CNN
+	1    9300 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9200 3400 9300 3400
+Wire Wire Line
+	9300 3400 9300 3600
+NoConn ~ 9200 4000
+NoConn ~ 8200 3800
+NoConn ~ 8200 3900
+NoConn ~ 8200 4000
+NoConn ~ 8200 4100
+$Comp
+L power:VCC #PWR018
+U 1 1 5D0A4038
+P 7600 2900
+F 0 "#PWR018" H 7600 3000 30  0001 C CNN
+F 1 "VCC" H 7600 3000 30  0000 C CNN
+F 2 "" H 7600 2900 60  0001 C CNN
+F 3 "" H 7600 2900 60  0001 C CNN
+	1    7600 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR019
+U 1 1 5D0A45B2
+P 7600 3750
+F 0 "#PWR019" H 7600 3500 50  0001 C CNN
+F 1 "GND" H 7600 3600 50  0000 C CNN
+F 2 "" H 7600 3750 60  0000 C CNN
+F 3 "" H 7600 3750 60  0000 C CNN
+	1    7600 3750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7600 2900 7600 3050
+Connection ~ 7600 3050
+Wire Wire Line
+	7600 3650 7600 3750
+Connection ~ 7600 3650
 $EndSCHEMATC
