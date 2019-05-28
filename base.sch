@@ -1,4 +1,4 @@
-EESchema Schematic File Version 4
+EESchema Schematic File Version 5
 LIBS:robot_pcb0-cache
 EELAYER 29 0
 EELAYER END
@@ -949,10 +949,6 @@ Wire Wire Line
 Connection ~ 1350 2650
 Text Notes 1700 5700 1    50   ~ 0
 meta information\n
-Text GLabel 3400 2700 0    50   Input ~ 0
-SCL
-Text GLabel 3400 2800 0    50   Input ~ 0
-SDA
 Text GLabel 9750 3200 2    50   Output ~ 0
 SCL
 Text GLabel 9750 3300 2    50   Output ~ 0
@@ -1243,4 +1239,8 @@ Connection ~ 7600 3050
 Wire Wire Line
 	7600 3650 7600 3750
 Connection ~ 7600 3650
+Text GLabel 3400 2800 0    50   Input ~ 0
+SDA
+Text GLabel 3400 2700 0    50   Input ~ 0
+SCL
 $EndSCHEMATC
