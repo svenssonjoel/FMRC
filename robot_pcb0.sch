@@ -4,7 +4,7 @@ EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 5
+Sheet 1 6
 Title "Four DC-Motor Controller"
 Date ""
 Rev ""
@@ -46,4 +46,10 @@ F1 "motor_control.sch" 50
 $EndSheet
 Text Notes 3200 900  0    50   ~ 0
 DRV8833
+$Sheet
+S 2850 2450 1700 1400
+U 5CF66F52
+F0 "nrf52" 50
+F1 "nrf52.sch" 50
+$EndSheet
 $EndSCHEMATC

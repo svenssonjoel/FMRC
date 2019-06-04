@@ -4,7 +4,7 @@ EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 5
+Sheet 2 6
 Title ""
 Date ""
 Rev ""
@@ -129,8 +129,6 @@ Wire Wire Line
 	5900 5300 6050 5300
 Wire Wire Line
 	6150 5350 6200 5350
-Wire Wire Line
-	6150 5200 6150 5350
 Wire Wire Line
 	5900 5200 6150 5200
 Connection ~ 6550 5350
@@ -818,10 +816,6 @@ Wire Wire Line
 Wire Wire Line
 	1350 2650 1350 2850
 NoConn ~ 3400 1800
-NoConn ~ 3400 1900
-NoConn ~ 3400 2000
-NoConn ~ 3400 3500
-NoConn ~ 3400 3600
 $Comp
 L power:PWR_FLAG #FLG01
 U 1 1 5AEBFE23
@@ -1232,6 +1226,8 @@ Wire Wire Line
 	3400 2500 2500 2500
 Wire Wire Line
 	2300 2400 3400 2400
+Wire Wire Line
+	6150 5200 6150 5350
 $Comp
 L robot_pcb0-rescue:STM32F40X_LQFP64-crf_1 U2
 U 1 1 5A4BDE49
@@ -1243,4 +1239,12 @@ F 3 "" H 4650 3150 60  0000 C CNN
 	1    4650 3150
 	1    0    0    -1  
 $EndComp
+Text GLabel 3400 2000 0    50   Input ~ 0
+NRFTX
+Text GLabel 3400 1900 0    50   Input ~ 0
+NRFRX
+Text GLabel 3400 3500 0    50   Input ~ 0
+NRFSWDIO
+Text GLabel 3400 3600 0    50   Input ~ 0
+NRFSWDCLK
 $EndSCHEMATC
