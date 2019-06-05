@@ -14,22 +14,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L BMD-340:BMD-340-A-R U8
-U 1 1 5CF677C5
-P 5850 3200
-F 0 "U8" H 5900 5067 50  0000 C CNN
-F 1 "BMD-340-A-R" H 5900 4976 50  0000 C CNN
-F 2 "crf1:RIGADO_BMD-340-A-R" H 5850 3200 50  0001 L BNN
-F 3 "Rigado, Inc." H 5850 3200 50  0001 L BNN
-F 4 "https://www.digikey.com/product-detail/en/rigado-inc/BMD-340-A-R/1604-1026-1-ND/8638940?utm_source=snapeda&utm_medium=aggregator&utm_campaign=symbol" H 5850 3200 50  0001 L BNN "Field4"
-F 5 "1604-1026-1-ND" H 5850 3200 50  0001 L BNN "Field5"
-F 6 "Bluetooth Low Energy 5.0 Module" H 5850 3200 50  0001 L BNN "Field6"
-F 7 "BMD-340-A-R" H 5850 3200 50  0001 L BNN "Field7"
-F 8 "Module Rigado" H 5850 3200 50  0001 L BNN "Field8"
-	1    5850 3200
-	1    0    0    -1  
-$EndComp
 Text GLabel 6850 1150 1    50   Input ~ 0
 5V
 Text Notes 5750 1850 0    50   ~ 0
@@ -179,76 +163,61 @@ NRFSWDCLK
 $Comp
 L Connector:Conn_01x01_Male J11
 U 1 1 5CF97ACE
-P 4200 2100
-F 0 "J11" H 4350 2250 50  0000 C CNN
-F 1 "NRFSWDCLK" H 3950 2100 50  0000 C CNN
-F 2 "TestPoint:TestPoint_Pad_2.5x2.5mm" H 4200 2100 50  0001 C CNN
-F 3 "~" H 4200 2100 50  0001 C CNN
-	1    4200 2100
+P 3350 1900
+F 0 "J11" H 3500 2050 50  0000 C CNN
+F 1 "NRFSWDCLK" H 3100 1900 50  0000 C CNN
+F 2 "TestPoint:TestPoint_Pad_1.5x1.5mm" H 3350 1900 50  0001 C CNN
+F 3 "~" H 3350 1900 50  0001 C CNN
+	1    3350 1900
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:Conn_01x01_Male J12
 U 1 1 5CF986AE
-P 4200 2450
-F 0 "J12" H 4350 2600 50  0000 C CNN
-F 1 "NRFSWDIO" H 3950 2450 50  0000 C CNN
-F 2 "TestPoint:TestPoint_Pad_2.5x2.5mm" H 4200 2450 50  0001 C CNN
-F 3 "~" H 4200 2450 50  0001 C CNN
-	1    4200 2450
+P 3350 2250
+F 0 "J12" H 3500 2400 50  0000 C CNN
+F 1 "NRFSWDIO" H 3100 2250 50  0000 C CNN
+F 2 "TestPoint:TestPoint_Pad_1.5x1.5mm" H 3350 2250 50  0001 C CNN
+F 3 "~" H 3350 2250 50  0001 C CNN
+	1    3350 2250
 	1    0    0    -1  
 $EndComp
-Text GLabel 4400 2450 2    50   Input ~ 0
+Text GLabel 3550 2250 2    50   Input ~ 0
 NRFSWDIO
-Text GLabel 4400 2100 2    50   Input ~ 0
+Text GLabel 3550 1900 2    50   Input ~ 0
 NRFSWDCLK
 $Comp
 L Connector:Conn_01x01_Male J13
 U 1 1 5CFADE50
-P 4200 2800
-F 0 "J13" H 4308 2981 50  0000 C CNN
-F 1 "GND" H 4000 2800 50  0000 C CNN
-F 2 "TestPoint:TestPoint_Pad_2.5x2.5mm" H 4200 2800 50  0001 C CNN
-F 3 "~" H 4200 2800 50  0001 C CNN
-	1    4200 2800
+P 3350 2600
+F 0 "J13" H 3458 2781 50  0000 C CNN
+F 1 "GND" H 3150 2600 50  0000 C CNN
+F 2 "TestPoint:TestPoint_Pad_1.5x1.5mm" H 3350 2600 50  0001 C CNN
+F 3 "~" H 3350 2600 50  0001 C CNN
+	1    3350 2600
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR022
 U 1 1 5CFB0C7F
-P 4400 2800
-F 0 "#PWR022" H 4400 2550 50  0001 C CNN
-F 1 "GND" H 4405 2627 50  0000 C CNN
-F 2 "" H 4400 2800 50  0001 C CNN
-F 3 "" H 4400 2800 50  0001 C CNN
-	1    4400 2800
+P 3550 2600
+F 0 "#PWR022" H 3550 2350 50  0001 C CNN
+F 1 "GND" H 3555 2427 50  0000 C CNN
+F 2 "" H 3550 2600 50  0001 C CNN
+F 3 "" H 3550 2600 50  0001 C CNN
+	1    3550 2600
 	1    0    0    -1  
 $EndComp
 NoConn ~ 6450 4600
 NoConn ~ 6450 4500
 NoConn ~ 6450 4400
-NoConn ~ 5350 4700
-NoConn ~ 5350 4600
 NoConn ~ 5350 4500
 NoConn ~ 5350 4400
 NoConn ~ 5350 4300
-NoConn ~ 5350 4200
-NoConn ~ 5350 4100
-NoConn ~ 5350 4000
-NoConn ~ 5350 3900
-NoConn ~ 5350 3800
-NoConn ~ 5350 3700
-NoConn ~ 5350 3600
 NoConn ~ 5350 3500
 NoConn ~ 5350 3300
 NoConn ~ 5350 3200
-NoConn ~ 5350 3100
-NoConn ~ 5350 3000
-NoConn ~ 5350 2900
-NoConn ~ 5350 2800
 NoConn ~ 5350 2700
-NoConn ~ 5350 2400
-NoConn ~ 5350 2300
 Wire Wire Line
 	6450 1800 6850 1800
 Wire Wire Line
@@ -269,15 +238,200 @@ NoConn ~ 6450 2800
 NoConn ~ 6450 2900
 NoConn ~ 6450 3000
 NoConn ~ 6450 3100
-NoConn ~ 6450 3200
-NoConn ~ 6450 3300
 NoConn ~ 6450 3400
 NoConn ~ 6450 3500
 NoConn ~ 6450 3700
-NoConn ~ 6450 3800
-NoConn ~ 6450 3900
-NoConn ~ 6450 4000
 NoConn ~ 6450 4100
 Wire Wire Line
 	6450 1600 6750 1600
+$Comp
+L Connector:Conn_01x08_Female J14
+U 1 1 5D01CDD8
+P 3050 3700
+F 0 "J14" H 2942 3075 50  0000 C CNN
+F 1 "NRFGPIO" H 2942 3166 50  0000 C CNN
+F 2 "Connector_JST:JST_PH_B8B-PH-K_1x08_P2.00mm_Vertical" H 3050 3700 50  0001 C CNN
+F 3 "~" H 3050 3700 50  0001 C CNN
+	1    3050 3700
+	-1   0    0    1   
+$EndComp
+$Comp
+L BMD-340:BMD-340-A-R U8
+U 1 1 5CF677C5
+P 5850 3200
+F 0 "U8" H 5900 5067 50  0000 C CNN
+F 1 "BMD-340-A-R" H 5900 4976 50  0000 C CNN
+F 2 "crf1:RIGADO_BMD-340-A-R" H 5850 3200 50  0001 L BNN
+F 3 "Rigado, Inc." H 5850 3200 50  0001 L BNN
+F 4 "https://www.digikey.com/product-detail/en/rigado-inc/BMD-340-A-R/1604-1026-1-ND/8638940?utm_source=snapeda&utm_medium=aggregator&utm_campaign=symbol" H 5850 3200 50  0001 L BNN "Field4"
+F 5 "1604-1026-1-ND" H 5850 3200 50  0001 L BNN "Field5"
+F 6 "Bluetooth Low Energy 5.0 Module" H 5850 3200 50  0001 L BNN "Field6"
+F 7 "BMD-340-A-R" H 5850 3200 50  0001 L BNN "Field7"
+F 8 "Module Rigado" H 5850 3200 50  0001 L BNN "Field8"
+	1    5850 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R16
+U 1 1 5D035F2C
+P 4250 4650
+F 0 "R16" V 4350 4650 50  0000 C CNN
+F 1 "1k" V 4134 4650 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4180 4650 50  0001 C CNN
+F 3 "~" H 4250 4650 50  0001 C CNN
+	1    4250 4650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3450 4650 3450 4850
+Wire Wire Line
+	3600 4400 3450 4400
+Wire Wire Line
+	4100 4650 3900 4650
+Wire Wire Line
+	3450 4400 3450 4650
+Wire Wire Line
+	3600 4650 3450 4650
+$Comp
+L Device:LED D4
+U 1 1 5D035F2D
+P 3750 4650
+F 0 "D4" H 3750 4500 50  0000 C CNN
+F 1 "GREEN" H 3741 4775 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 3750 4650 50  0001 C CNN
+F 3 "~" H 3750 4650 50  0001 C CNN
+	1    3750 4650
+	1    0    0    -1  
+$EndComp
+Connection ~ 3450 4650
+$Comp
+L Device:R R15
+U 1 1 5D035F2E
+P 4250 4400
+F 0 "R15" V 4043 4400 50  0000 C CNN
+F 1 "1k" V 4134 4400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4180 4400 50  0001 C CNN
+F 3 "~" H 4250 4400 50  0001 C CNN
+	1    4250 4400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4100 4400 3900 4400
+$Comp
+L Device:LED D3
+U 1 1 5D035F2F
+P 3750 4400
+F 0 "D3" H 3741 4616 50  0000 C CNN
+F 1 "RED" H 3741 4525 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 3750 4400 50  0001 C CNN
+F 3 "~" H 3750 4400 50  0001 C CNN
+	1    3750 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 4600 5150 4600
+Wire Wire Line
+	5150 4600 5150 4400
+Wire Wire Line
+	5150 4400 4400 4400
+Wire Wire Line
+	5350 4700 4850 4700
+Wire Wire Line
+	4850 4700 4850 4650
+Wire Wire Line
+	4850 4650 4400 4650
+$Comp
+L power:GND #PWR0103
+U 1 1 5D03AEF1
+P 3450 4850
+F 0 "#PWR0103" H 3450 4600 50  0001 C CNN
+F 1 "GND" H 3455 4677 50  0000 C CNN
+F 2 "" H 3450 4850 50  0001 C CNN
+F 3 "" H 3450 4850 50  0001 C CNN
+	1    3450 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0104
+U 1 1 5CF8CCC8
+P 8050 4100
+F 0 "#PWR0104" H 8050 3850 50  0001 C CNN
+F 1 "GND" H 8055 3927 50  0000 C CNN
+F 2 "" H 8050 4100 50  0001 C CNN
+F 3 "" H 8050 4100 50  0001 C CNN
+	1    8050 4100
+	1    0    0    -1  
+$EndComp
+Text GLabel 7650 3450 0    50   Input ~ 0
+5V
+Wire Wire Line
+	8050 4050 8050 4100
+NoConn ~ 7650 3850
+Wire Wire Line
+	7950 4050 7950 4100
+Wire Wire Line
+	7950 4100 8050 4100
+$Comp
+L Connector:USB_B_Mini J15
+U 1 1 5CF8CCC9
+P 7950 3650
+F 0 "J15" H 7721 3641 50  0000 R CNN
+F 1 "USB_B_Mini" H 8150 4000 50  0000 R CNN
+F 2 "Connector_USB:USB_Mini-B_Lumberg_2486_01_Horizontal" H 8100 3600 50  0001 C CNN
+F 3 "~" H 8100 3600 50  0001 C CNN
+	1    7950 3650
+	-1   0    0    -1  
+$EndComp
+Text GLabel 7650 3750 0    50   BiDi ~ 0
+NRFUSBD-
+Text GLabel 7650 3650 0    50   BiDi ~ 0
+NRFUSBD+
+Text GLabel 5350 2300 0    50   BiDi ~ 0
+NRFUSBD+
+Text GLabel 5350 2400 0    50   BiDi ~ 0
+NRFUSBD-
+Text GLabel 3250 3300 2    50   Input ~ 0
+NRFGPIO8
+Text GLabel 3250 3400 2    50   Input ~ 0
+NRFGPIO7
+Text GLabel 3250 3500 2    50   Input ~ 0
+NRFGPIO6
+Text GLabel 3250 3600 2    50   Input ~ 0
+NRFGPIO5
+Text GLabel 3250 3700 2    50   Input ~ 0
+NRFGPIO4
+Text GLabel 3250 3800 2    50   Input ~ 0
+NRFGPIO3
+Text GLabel 3250 3900 2    50   Input ~ 0
+NRFGPIO2
+Text GLabel 3250 4000 2    50   Input ~ 0
+NRFGPIO1
+Text GLabel 5350 4200 0    50   Input ~ 0
+NRFGPIO8
+Text GLabel 5350 3100 0    50   Input ~ 0
+NRFGPIO4
+Text GLabel 5350 4000 0    50   Input ~ 0
+NRFGPIO6
+Text GLabel 5350 3000 0    50   Input ~ 0
+NRFGPIO3
+Text GLabel 5350 2800 0    50   Input ~ 0
+NRFGPIO1
+Text GLabel 5350 3900 0    50   Input ~ 0
+NRFGPIO5
+Text GLabel 5350 4100 0    50   Input ~ 0
+NRFGPIO7
+Text GLabel 5350 2900 0    50   Input ~ 0
+NRFGPIO2
+Text GLabel 6450 4000 2    50   Input ~ 0
+SDA
+Text GLabel 6450 3800 2    50   Input ~ 0
+IMU_INT2
+NoConn ~ 6450 3200
+NoConn ~ 6450 3300
+NoConn ~ 5350 3600
+NoConn ~ 5350 3700
+NoConn ~ 5350 3800
+Text GLabel 6450 3900 2    50   Input ~ 0
+SCL
+Connection ~ 8050 4100
 $EndSCHEMATC
