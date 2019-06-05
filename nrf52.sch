@@ -30,12 +30,10 @@ F 8 "Module Rigado" H 5850 3200 50  0001 L BNN "Field8"
 	1    5850 3200
 	1    0    0    -1  
 $EndComp
-Text GLabel 7050 1800 2    50   Input ~ 0
+Text GLabel 6850 1150 1    50   Input ~ 0
 5V
-Text Notes 7250 1850 0    50   ~ 0
+Text Notes 5750 1850 0    50   ~ 0
 USB power\n
-Wire Wire Line
-	6450 1800 7050 1800
 $Comp
 L power:VCC #PWR048
 U 1 1 5CF719A2
@@ -48,7 +46,7 @@ F 3 "" H 6750 1200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6450 1600 6750 1600
+	6450 1600 6700 1600
 Wire Wire Line
 	6450 1700 6750 1700
 Wire Wire Line
@@ -80,8 +78,6 @@ F 3 "" H 6850 5650 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	6450 4800 6850 4800
-Wire Wire Line
-	6850 4800 6850 4900
 Wire Wire Line
 	6450 4900 6850 4900
 Connection ~ 6850 4900
@@ -246,36 +242,70 @@ NoConn ~ 5350 3800
 NoConn ~ 5350 3700
 NoConn ~ 5350 3600
 NoConn ~ 5350 3500
-NoConn ~ 5350 3400
 NoConn ~ 5350 3300
 NoConn ~ 5350 3200
 NoConn ~ 5350 3100
 NoConn ~ 5350 3000
-NoConn ~ 6450 4100
-NoConn ~ 6450 4000
-NoConn ~ 6450 3900
-NoConn ~ 6450 3800
-NoConn ~ 6450 3700
-NoConn ~ 6450 3500
-NoConn ~ 6450 3400
-NoConn ~ 6450 3300
-NoConn ~ 6450 3200
-NoConn ~ 6450 3100
-NoConn ~ 6450 3000
-NoConn ~ 6450 2900
-NoConn ~ 6450 2800
-NoConn ~ 6450 2700
 NoConn ~ 5350 2900
 NoConn ~ 5350 2800
 NoConn ~ 5350 2700
-NoConn ~ 5350 2600
-NoConn ~ 6450 2600
-NoConn ~ 6450 2500
-NoConn ~ 6450 2400
-NoConn ~ 6450 2300
-NoConn ~ 6450 2200
-NoConn ~ 6450 2100
 NoConn ~ 5350 2400
 NoConn ~ 5350 2300
+Wire Wire Line
+	6450 1800 6850 1800
+Wire Wire Line
+	6850 1800 6850 1150
+$Comp
+L power:GND #PWR0103
+U 1 1 5CF9CBA9
+P 7400 1950
+F 0 "#PWR0103" H 7400 1700 50  0001 C CNN
+F 1 "GND" H 7405 1777 50  0000 C CNN
+F 2 "" H 7400 1950 50  0001 C CNN
+F 3 "" H 7400 1950 50  0001 C CNN
+	1    7400 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6950 1800 6950 1650
+Wire Wire Line
+	6950 1650 7400 1650
+Wire Wire Line
+	7400 1650 7400 1950
+Wire Wire Line
+	6950 1900 6700 1900
+Wire Wire Line
+	6700 1900 6700 1600
+Wire Wire Line
+	6700 1600 6750 1600
+Connection ~ 6700 1600
 NoConn ~ 6450 2000
+NoConn ~ 6450 2100
+NoConn ~ 6450 2200
+NoConn ~ 6450 2300
+NoConn ~ 6450 2400
+NoConn ~ 5350 2600
+NoConn ~ 5350 3400
+Wire Wire Line
+	6850 4800 6850 4900
+Wire Wire Line
+	7200 2200 6950 2200
+Wire Wire Line
+	6950 2200 6950 1900
+NoConn ~ 6450 2500
+NoConn ~ 6450 2600
+NoConn ~ 6450 2700
+NoConn ~ 6450 2800
+NoConn ~ 6450 2900
+NoConn ~ 6450 3000
+NoConn ~ 6450 3100
+NoConn ~ 6450 3200
+NoConn ~ 6450 3300
+NoConn ~ 6450 3400
+NoConn ~ 6450 3500
+NoConn ~ 6450 3700
+NoConn ~ 6450 3800
+NoConn ~ 6450 3900
+NoConn ~ 6450 4000
+NoConn ~ 6450 4100
 $EndSCHEMATC
