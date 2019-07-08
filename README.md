@@ -7,3 +7,9 @@ Four Motor Robot Controller.
 ![Schematics of FMRC v1.0](https://raw.githubusercontent.com/svenssonjoel/FMRC/master/Pictures/schematics.pdf)
 
 ![whatgoeswhere FMRC v1.0](https://raw.githubusercontent.com/svenssonjoel/FMRC/master/Pictures/whatgoeswhere.pdf)
+
+## First PCBs arrived
+
+![Top view of FMRC v1.0](https://raw.githubusercontent.com/svenssonjoel/FMRC/master/Pictures/top.jpg)
+
+![Bottom view of FMRC v1.0](https://raw.githubusercontent.com/svenssonjoel/FMRC/master/Pictures/bot.jpg)
