@@ -8,7 +8,7 @@ Four Motor Robot Controller.
 
 ![whatgoeswhere FMRC v1.0](https://raw.githubusercontent.com/svenssonjoel/FMRC/master/Pictures/whatgoeswhere.pdf)
 
-## First PCBs arrived
+## PCBs arrived
 
 ![Top view of FMRC v1.0](https://raw.githubusercontent.com/svenssonjoel/FMRC/master/Pictures/top.jpg)
 
