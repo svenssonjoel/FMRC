@@ -13,3 +13,7 @@ Four Motor Robot Controller.
 ![Top view of FMRC v1.0](https://raw.githubusercontent.com/svenssonjoel/FMRC/master/Pictures/top.jpg)
 
 ![Bottom view of FMRC v1.0](https://raw.githubusercontent.com/svenssonjoel/FMRC/master/Pictures/bot.jpg)
+
+## Ready to start testing
+
+![Populated board FMRC v1.0](https://raw.githubusercontent.com/svenssonjoel/FMRC/master/Pictures/board_populated.jpg)
