@@ -96,7 +96,7 @@ VALUE ext_set_led(VALUE *args, int argn) {
   
   led_write(led_num, state);
 
-  return enc_i(led_num);
+  return enc_sym(symrepr_true());
 }
 
 
