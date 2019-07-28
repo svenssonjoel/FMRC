@@ -33,6 +33,31 @@
     limitations under the License.
  */
 
+
+/* Information 
+   
+   2x DRV8833 - four motors
+
+   DRV8833-1:  (TIM2)
+   AIN1 - PA0 
+   AIN2 - PA1
+   BIN1 - PA2
+   BIN2 - PA3 
+
+   DRV8833-2:  (TIM3) 
+   AIN1 - PC6
+   AIN2 - PC7
+   BIN1 - PC8 
+   BIN2 - PC9
+
+   xIN1    |  xIN2   |   Function
+   PWM     |   0     |   Forward PWM - fast decay
+    1      |  PWM    |   Forward PWM - slow decay
+    0      |  PWM    |   Backwards PWM - fast decay 
+   PWM     |   1     |   Backwards PWM - slow decay
+
+ */ 
+
 #include <stdio.h>
 #include <string.h>
 #include <string.h>
@@ -41,6 +66,8 @@
 
 #include "ch.h"
 #include "hal.h"
+#include "hal_pwm.h"
+#include "hal_pal.h"
 
 #include "shell.h"
 #include "chprintf.h"
@@ -58,6 +85,25 @@
 // Definitions
 #define LED_RED		0
 #define LED_GREEN	1
+
+
+#define GPIO_AF_TIM2          ((uint8_t)0x01) 
+#define GPIO_AF_TIM3          ((uint8_t)0x02)
+
+
+static PWMConfig pwmcfg = {
+  100000,
+  1024,
+  NULL,
+  { // per channel conf
+    {PWM_OUTPUT_ACTIVE_HIGH, NULL},
+    {PWM_OUTPUT_ACTIVE_HIGH, NULL},
+    {PWM_OUTPUT_ACTIVE_HIGH, NULL}, 
+    {PWM_OUTPUT_ACTIVE_HIGH, NULL}  
+  },
+  0,
+  0
+};
 
 void led_write(int num, int state) {
   switch (num) {
@@ -99,6 +145,44 @@ VALUE ext_set_led(VALUE *args, int argn) {
   return enc_sym(symrepr_true());
 }
 
+
+void drv_init(void) {
+  
+  palSetPadMode(GPIOA, 0,
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM2));
+  /*		PAL_STM32_OSPEED_HIGHEST |
+		PAL_STM32_PUPDR_FLOATING); */
+  palSetPadMode(GPIOA, 1,
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM2));
+		
+  palSetPadMode(GPIOA, 2,
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM2));
+  palSetPadMode(GPIOA, 3,
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM2));
+  pwmStart(&PWMD2, &pwmcfg);
+  
+  pwmEnableChannel(&PWMD2, 0, 512);
+  pwmEnableChannel(&PWMD2, 1, 0);
+  pwmEnableChannel(&PWMD2, 2, 0);
+  pwmEnableChannel(&PWMD2, 3, 0);
+}
+
+/* Everything locks up (freezes) on second call of pwmEnableChannel */
+VALUE ext_set_duty(VALUE *args, int argn) {
+  if (argn != 1) {
+    return enc_sym(symrepr_nil());
+  }
+
+  int duty = dec_i(args[0]); 
+
+  if (duty < 0 || duty > 1024) return enc_sym(symrepr_nil());
+
+  //pwmDisableChannel(&PWMD2, 0);
+  pwmEnableChannel(&PWMD2, 1, duty);
+
+  return enc_sym(symrepr_true());
+
+}
 
 /*===========================================================================*/
 /* Command line related.                                                     */
@@ -184,8 +268,9 @@ static void cmd_repl(BaseSequentialStream *chp, int argc, char *argv[]) {
     chprintf(chp,"Error initializing evaluator.\n\r");
   }
 
+  extensions_add("set-duty", ext_set_duty);
   extensions_add("set-led",  ext_set_led);
-
+  
   VALUE prelude = prelude_load();
   eval_cps_program(prelude);
 
@@ -248,6 +333,8 @@ int main(void) {
 	sduStart(&SDU1, &serusbcfg);
 
 	led_init();
+
+	drv_init();
 	/*
 	 * Activates the USB driver and then the USB bus pull-up on D+.
 	 * Note, a delay is inserted in order to not have to disconnect the cable
