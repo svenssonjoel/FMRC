@@ -177,8 +177,7 @@ VALUE ext_set_duty(VALUE *args, int argn) {
 
   if (duty < 0 || duty > 1024) return enc_sym(symrepr_nil());
 
-  //pwmDisableChannel(&PWMD2, 0);
-  pwmEnableChannel(&PWMD2, 1, duty);
+  pwmEnableChannel(&PWMD2, 0, duty); 
 
   return enc_sym(symrepr_true());
 
