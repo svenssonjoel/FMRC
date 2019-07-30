@@ -161,26 +161,27 @@ void drv_init(void) {
 		PAL_MODE_ALTERNATE(GPIO_AF_TIM2));
   pwmStart(&PWMD2, &pwmcfg);
   
-  pwmEnableChannel(&PWMD2, 0, 512);
+  pwmEnableChannel(&PWMD2, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD2, 1000));
   pwmEnableChannel(&PWMD2, 1, 0);
   pwmEnableChannel(&PWMD2, 2, 0);
   pwmEnableChannel(&PWMD2, 3, 0);
+
+
+  
 }
 
 /* Everything locks up (freezes) on second call of pwmEnableChannel */
 VALUE ext_set_duty(VALUE *args, int argn) {
-  if (argn != 1) {
-    return enc_sym(symrepr_nil());
-  }
+  if (argn != 1) return enc_sym(symrepr_nil());
 
   int duty = dec_i(args[0]); 
 
-  if (duty < 0 || duty > 1024) return enc_sym(symrepr_nil());
-
-  pwmEnableChannel(&PWMD2, 0, duty); 
-
-  return enc_sym(symrepr_true());
-
+  if (duty >= 0 && duty <= 10000) {
+    pwmEnableChannel(&PWMD2, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD2, duty));
+    return enc_sym(symrepr_true());
+  }
+  
+  return enc_sym(symrepr_nil());
 }
 
 /*===========================================================================*/
@@ -232,6 +233,18 @@ int inputline(BaseSequentialStream *chp, char *buffer, int size) {
   return 0; // Filled up buffer without reading a linebreak
 }
 
+static void cmd_duty(BaseSequentialStream *chp, int argc, char *argv[]) {
+  int duty = atoi(argv[0]); 
+
+  chprintf(chp,"args: %d\n\r", argc);
+  chprintf(chp,"setting duty: %d\n\r", duty);
+  
+  if (duty >= 0 && duty <= 10000) {
+    pwmEnableChannel(&PWMD2, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD2, duty));
+  }
+
+}
+
 static void cmd_repl(BaseSequentialStream *chp, int argc, char *argv[]) {
 
   (void) argc;
@@ -267,9 +280,18 @@ static void cmd_repl(BaseSequentialStream *chp, int argc, char *argv[]) {
     chprintf(chp,"Error initializing evaluator.\n\r");
   }
 
-  extensions_add("set-duty", ext_set_duty);
-  extensions_add("set-led",  ext_set_led);
+  if (extensions_add("set-duty", ext_set_duty)) {
+    chprintf(chp,"set-duty extension added.\n\r");
+  } else {
+    chprintf(chp,"set-duty extension failed!\n\r");
+  }
   
+  if(extensions_add("set-led",  ext_set_led)) {
+    chprintf(chp,"set-led extension added.\n\r");
+  } else {
+    chprintf(chp,"set-led extension failed!\n\r");
+  }
+
   VALUE prelude = prelude_load();
   eval_cps_program(prelude);
 
@@ -316,6 +338,7 @@ static void cmd_repl(BaseSequentialStream *chp, int argc, char *argv[]) {
 
 static const ShellCommand commands[] = {
 		{"repl", cmd_repl},
+		{"duty", cmd_duty},
 		{NULL, NULL}
 };
 
@@ -349,7 +372,7 @@ int main(void) {
 	/*
 	 * Normal main() thread activity, spawning shells.
 	 */
-	while (true) {
+	while (true) {	  
 		if (SDU1.config->usbp->state == USB_ACTIVE) {
 			thread_t *shelltp = chThdCreateFromHeap(NULL, SHELL_WA_SIZE,
 					"shell", NORMALPRIO + 1,
