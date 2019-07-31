@@ -170,14 +170,17 @@ void drv_init(void) {
   
 }
 
-/* Everything locks up (freezes) on second call of pwmEnableChannel */
 VALUE ext_set_duty(VALUE *args, int argn) {
   if (argn != 1) return enc_sym(symrepr_nil());
 
-  int duty = dec_i(args[0]); 
+  int duty = dec_i(args[0]);
 
   if (duty >= 0 && duty <= 10000) {
+    //chSysLockFromISR();
+    //SysLock();
     pwmEnableChannel(&PWMD2, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD2, duty));
+    //SysUnlock();
+    //chSysUnlockFromISR();
     return enc_sym(symrepr_true());
   }
   
@@ -188,7 +191,7 @@ VALUE ext_set_duty(VALUE *args, int argn) {
 /* Command line related.                                                     */
 /*===========================================================================*/
 
-#define SHELL_WA_SIZE   THD_WORKING_AREA_SIZE(2048)
+#define SHELL_WA_SIZE   THD_WORKING_AREA_SIZE(10*2048)
 
 unsigned char inbyte(BaseSequentialStream *chp) {
   unsigned char c;

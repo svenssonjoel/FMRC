@@ -495,7 +495,7 @@
 #endif
 
 /**
- * @brief   Debug option, parameters checks.
+  * @brief   Debug option, parameters checks.
  * @details If enabled then the checks on the API functions input
  *          parameters are activated.
  *
