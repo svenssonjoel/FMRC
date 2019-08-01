@@ -92,8 +92,8 @@
 
 
 static PWMConfig pwmcfg = {
-  100000,
-  1024,
+  500000,  
+  1000,
   NULL,
   { // per channel conf
     {PWM_OUTPUT_ACTIVE_HIGH, NULL},
@@ -149,19 +149,26 @@ VALUE ext_set_led(VALUE *args, int argn) {
 void drv_init(void) {
   
   palSetPadMode(GPIOA, 0,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM2));
-  /*		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING); */
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) | 
+  		PAL_STM32_OSPEED_HIGHEST |
+		PAL_STM32_PUPDR_FLOATING); 
   palSetPadMode(GPIOA, 1,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM2));
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
+		PAL_STM32_OSPEED_HIGHEST |
+		PAL_STM32_PUPDR_FLOATING); 
 		
   palSetPadMode(GPIOA, 2,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM2));
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
+		PAL_STM32_OSPEED_HIGHEST |
+		PAL_STM32_PUPDR_FLOATING); 
   palSetPadMode(GPIOA, 3,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM2));
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
+		PAL_STM32_OSPEED_HIGHEST |
+		PAL_STM32_PUPDR_FLOATING);
+  
   pwmStart(&PWMD2, &pwmcfg);
   
-  pwmEnableChannel(&PWMD2, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD2, 1000));
+  pwmEnableChannel(&PWMD2, 0, 0);
   pwmEnableChannel(&PWMD2, 1, 0);
   pwmEnableChannel(&PWMD2, 2, 0);
   pwmEnableChannel(&PWMD2, 3, 0);
@@ -171,17 +178,16 @@ void drv_init(void) {
 }
 
 VALUE ext_set_duty(VALUE *args, int argn) {
-  if (argn != 1) return enc_sym(symrepr_nil());
+  if (argn != 2) return enc_sym(symrepr_nil());
 
+  int chn  = dec_i(args[1]);
   int duty = dec_i(args[0]);
 
-  if (duty >= 0 && duty <= 10000) {
-    //chSysLockFromISR();
-    //SysLock();
-    pwmEnableChannel(&PWMD2, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD2, duty));
-    //SysUnlock();
-    //chSysUnlockFromISR();
-    return enc_sym(symrepr_true());
+  if (chn >= 0 && chn <= 4) {
+    if (duty >= 0 && duty <= 10000) {
+      pwmEnableChannel(&PWMD2, chn , PWM_PERCENTAGE_TO_WIDTH(&PWMD2, duty));
+      return enc_sym(symrepr_true());
+    }
   }
   
   return enc_sym(symrepr_nil());
