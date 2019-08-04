@@ -91,7 +91,7 @@
 #define GPIO_AF_TIM3          ((uint8_t)0x02)
 
 
-static PWMConfig pwmcfg = {
+static PWMConfig pwmcfg1 = {
   500000,  
   1000,
   NULL,
@@ -104,6 +104,21 @@ static PWMConfig pwmcfg = {
   0,
   0
 };
+
+static PWMConfig pwmcfg2 = {
+  500000,  
+  1000,
+  NULL,
+  { // per channel conf
+    {PWM_OUTPUT_ACTIVE_HIGH, NULL},
+    {PWM_OUTPUT_ACTIVE_HIGH, NULL},
+    {PWM_OUTPUT_ACTIVE_HIGH, NULL}, 
+    {PWM_OUTPUT_ACTIVE_HIGH, NULL}  
+  },
+  0,
+  0
+};
+
 
 void led_write(int num, int state) {
   switch (num) {
@@ -156,7 +171,6 @@ void drv_init(void) {
 		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
 		PAL_STM32_OSPEED_HIGHEST |
 		PAL_STM32_PUPDR_FLOATING); 
-		
   palSetPadMode(GPIOA, 2,
 		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
 		PAL_STM32_OSPEED_HIGHEST |
@@ -165,27 +179,59 @@ void drv_init(void) {
 		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
 		PAL_STM32_OSPEED_HIGHEST |
 		PAL_STM32_PUPDR_FLOATING);
+
+
+  palSetPadMode(GPIOC, 6,
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) | 
+  		PAL_STM32_OSPEED_HIGHEST |
+		PAL_STM32_PUPDR_FLOATING); 
+  palSetPadMode(GPIOC, 7,
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) |
+		PAL_STM32_OSPEED_HIGHEST |
+		PAL_STM32_PUPDR_FLOATING); 	
+  palSetPadMode(GPIOC, 8,
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) |
+		PAL_STM32_OSPEED_HIGHEST |
+		PAL_STM32_PUPDR_FLOATING); 
+  palSetPadMode(GPIOC, 9,
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) |
+		PAL_STM32_OSPEED_HIGHEST |
+		PAL_STM32_PUPDR_FLOATING);
   
-  pwmStart(&PWMD2, &pwmcfg);
+  pwmStart(&PWMD2, &pwmcfg1);
+  pwmStart(&PWMD3, &pwmcfg2);
   
   pwmEnableChannel(&PWMD2, 0, 0);
   pwmEnableChannel(&PWMD2, 1, 0);
   pwmEnableChannel(&PWMD2, 2, 0);
   pwmEnableChannel(&PWMD2, 3, 0);
 
-
-  
+  pwmEnableChannel(&PWMD3, 0, 0);
+  pwmEnableChannel(&PWMD3, 1, 0);
+  pwmEnableChannel(&PWMD3, 2, 0);
+  pwmEnableChannel(&PWMD3, 3, 0);  
 }
 
 VALUE ext_set_duty(VALUE *args, int argn) {
-  if (argn != 2) return enc_sym(symrepr_nil());
+  if (argn != 3) return enc_sym(symrepr_nil());
 
+  int driver = dec_i(args[2]);
   int chn  = dec_i(args[1]);
   int duty = dec_i(args[0]);
 
   if (chn >= 0 && chn <= 4) {
     if (duty >= 0 && duty <= 10000) {
-      pwmEnableChannel(&PWMD2, chn , PWM_PERCENTAGE_TO_WIDTH(&PWMD2, duty));
+      switch(driver){
+      case 0:
+	pwmEnableChannel(&PWMD2, chn , PWM_PERCENTAGE_TO_WIDTH(&PWMD2, duty));
+	break;
+      case 1:
+	pwmEnableChannel(&PWMD3, chn , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, duty));
+	break;
+      default:
+	return enc_sym(symrepr_nil());
+      }
+
       return enc_sym(symrepr_true());
     }
   }
