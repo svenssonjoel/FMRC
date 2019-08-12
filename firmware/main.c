@@ -15,30 +15,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/* Information 
-   
-   2x DRV8833 - four motors
-
-   DRV8833-1:  (TIM2)
-   AIN1 - PA0 
-   AIN2 - PA1
-   BIN1 - PA2
-   BIN2 - PA3 
-
-   DRV8833-2:  (TIM3) 
-   AIN1 - PC6
-   AIN2 - PC7
-   BIN1 - PC8 
-   BIN2 - PC9
-
-   xIN1    |  xIN2   |   Function
-   PWM     |   0     |   Forward PWM - fast decay
-    1      |  PWM    |   Forward PWM - slow decay
-    0      |  PWM    |   Backwards PWM - fast decay 
-   PWM     |   1     |   Backwards PWM - slow decay
-
- */ 
-
 #include <stdio.h>
 #include <string.h>
 #include <string.h>
@@ -64,40 +40,9 @@
 #include "prelude.h"
 
 #include "led.h"
+#include "motor_drv.h"
 
 // Definitions
-
-#define GPIO_AF_TIM2          ((uint8_t)0x01) 
-#define GPIO_AF_TIM3          ((uint8_t)0x02)
-
-
-static PWMConfig pwmcfg1 = {
-  500000,  
-  1000,
-  NULL,
-  { // per channel conf
-    {PWM_OUTPUT_ACTIVE_HIGH, NULL},
-    {PWM_OUTPUT_ACTIVE_HIGH, NULL},
-    {PWM_OUTPUT_ACTIVE_HIGH, NULL}, 
-    {PWM_OUTPUT_ACTIVE_HIGH, NULL}  
-  },
-  0,
-  0
-};
-
-static PWMConfig pwmcfg2 = {
-  500000,  
-  1000,
-  NULL,
-  { // per channel conf
-    {PWM_OUTPUT_ACTIVE_HIGH, NULL},
-    {PWM_OUTPUT_ACTIVE_HIGH, NULL},
-    {PWM_OUTPUT_ACTIVE_HIGH, NULL}, 
-    {PWM_OUTPUT_ACTIVE_HIGH, NULL}
-  },
-  0,
-  0
-};
 
 
 VALUE ext_set_led(VALUE *args, int argn) {
@@ -111,58 +56,6 @@ VALUE ext_set_led(VALUE *args, int argn) {
   led_write(led_num, state);
 
   return enc_sym(symrepr_true());
-}
-
-
-void drv_init(void) {
-
-  palSetPadMode(GPIOA, 0,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
-  		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING);
-  palSetPadMode(GPIOA, 1,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
-		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING);
-  palSetPadMode(GPIOA, 2,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
-		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING);
-  palSetPadMode(GPIOA, 3,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
-		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING);
-
-
-  palSetPadMode(GPIOC, 6,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) |
-  		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING);
-  palSetPadMode(GPIOC, 7,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) |
-		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING);
-  palSetPadMode(GPIOC, 8,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) |
-		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING);
-  palSetPadMode(GPIOC, 9,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) |
-		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING);
-
-  pwmStart(&PWMD2, &pwmcfg1);
-  pwmStart(&PWMD3, &pwmcfg2);
-
-  pwmEnableChannel(&PWMD2, 0, 0);
-  pwmEnableChannel(&PWMD2, 1, 0);
-  pwmEnableChannel(&PWMD2, 2, 0);
-  pwmEnableChannel(&PWMD2, 3, 0);
-
-  pwmEnableChannel(&PWMD3, 0, 0);
-  pwmEnableChannel(&PWMD3, 1, 0);
-  pwmEnableChannel(&PWMD3, 2, 0);
-  pwmEnableChannel(&PWMD3, 3, 0);
 }
 
 VALUE ext_set_duty(VALUE *args, int argn) {
