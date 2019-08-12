@@ -15,25 +15,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// File also contains code distributed as part of Chibios under license below.
-
-/*
-    ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
- */
-
-
 /* Information 
    
    2x DRV8833 - four motors
@@ -82,10 +63,9 @@
 #include "tokpar.h"
 #include "prelude.h"
 
-// Definitions
-#define LED_RED		0
-#define LED_GREEN	1
+#include "led.h"
 
+// Definitions
 
 #define GPIO_AF_TIM2          ((uint8_t)0x01) 
 #define GPIO_AF_TIM3          ((uint8_t)0x02)
@@ -113,39 +93,12 @@ static PWMConfig pwmcfg2 = {
     {PWM_OUTPUT_ACTIVE_HIGH, NULL},
     {PWM_OUTPUT_ACTIVE_HIGH, NULL},
     {PWM_OUTPUT_ACTIVE_HIGH, NULL}, 
-    {PWM_OUTPUT_ACTIVE_HIGH, NULL}  
+    {PWM_OUTPUT_ACTIVE_HIGH, NULL}
   },
   0,
   0
 };
 
-
-void led_write(int num, int state) {
-  switch (num) {
-  case LED_RED:
-    palWritePad(GPIOB, 0, state);
-    break;
-
-  case LED_GREEN:
-    palWritePad(GPIOB, 1, state);
-    break;
-
-  default:
-    break;
-  }
-}
-
-void led_init(void) {
-  palSetPadMode(GPIOB, 0,
-		PAL_MODE_OUTPUT_PUSHPULL |
-		PAL_STM32_OSPEED_HIGHEST);
-  palSetPadMode(GPIOB, 1,
-		PAL_MODE_OUTPUT_PUSHPULL |
-		PAL_STM32_OSPEED_HIGHEST);
-
-  led_write(LED_RED, 0);
-  led_write(LED_GREEN, 1);
-}
 
 VALUE ext_set_led(VALUE *args, int argn) {
   if (argn != 2) {
@@ -154,7 +107,7 @@ VALUE ext_set_led(VALUE *args, int argn) {
 
   int led_num = dec_i(args[1]);
   int state   = dec_i(args[0]);
-  
+
   led_write(led_num, state);
 
   return enc_sym(symrepr_true());
@@ -162,19 +115,19 @@ VALUE ext_set_led(VALUE *args, int argn) {
 
 
 void drv_init(void) {
-  
+
   palSetPadMode(GPIOA, 0,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) | 
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
   		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING); 
+		PAL_STM32_PUPDR_FLOATING);
   palSetPadMode(GPIOA, 1,
 		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
 		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING); 
+		PAL_STM32_PUPDR_FLOATING);
   palSetPadMode(GPIOA, 2,
 		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
 		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING); 
+		PAL_STM32_PUPDR_FLOATING);
   palSetPadMode(GPIOA, 3,
 		PAL_MODE_ALTERNATE(GPIO_AF_TIM2) |
 		PAL_STM32_OSPEED_HIGHEST |
@@ -182,25 +135,25 @@ void drv_init(void) {
 
 
   palSetPadMode(GPIOC, 6,
-		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) | 
+		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) |
   		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING); 
+		PAL_STM32_PUPDR_FLOATING);
   palSetPadMode(GPIOC, 7,
 		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) |
 		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING); 	
+		PAL_STM32_PUPDR_FLOATING);
   palSetPadMode(GPIOC, 8,
 		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) |
 		PAL_STM32_OSPEED_HIGHEST |
-		PAL_STM32_PUPDR_FLOATING); 
+		PAL_STM32_PUPDR_FLOATING);
   palSetPadMode(GPIOC, 9,
 		PAL_MODE_ALTERNATE(GPIO_AF_TIM3) |
 		PAL_STM32_OSPEED_HIGHEST |
 		PAL_STM32_PUPDR_FLOATING);
-  
+
   pwmStart(&PWMD2, &pwmcfg1);
   pwmStart(&PWMD3, &pwmcfg2);
-  
+
   pwmEnableChannel(&PWMD2, 0, 0);
   pwmEnableChannel(&PWMD2, 1, 0);
   pwmEnableChannel(&PWMD2, 2, 0);
@@ -209,7 +162,7 @@ void drv_init(void) {
   pwmEnableChannel(&PWMD3, 0, 0);
   pwmEnableChannel(&PWMD3, 1, 0);
   pwmEnableChannel(&PWMD3, 2, 0);
-  pwmEnableChannel(&PWMD3, 3, 0);  
+  pwmEnableChannel(&PWMD3, 3, 0);
 }
 
 VALUE ext_set_duty(VALUE *args, int argn) {
@@ -235,7 +188,7 @@ VALUE ext_set_duty(VALUE *args, int argn) {
       return enc_sym(symrepr_true());
     }
   }
-  
+
   return enc_sym(symrepr_nil());
 }
 
@@ -289,11 +242,11 @@ int inputline(BaseSequentialStream *chp, char *buffer, int size) {
 }
 
 static void cmd_duty(BaseSequentialStream *chp, int argc, char *argv[]) {
-  int duty = atoi(argv[0]); 
+  int duty = atoi(argv[0]);
 
   chprintf(chp,"args: %d\n\r", argc);
   chprintf(chp,"setting duty: %d\n\r", duty);
-  
+
   if (duty >= 0 && duty <= 10000) {
     pwmEnableChannel(&PWMD2, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD2, duty));
   }
@@ -340,7 +293,7 @@ static void cmd_repl(BaseSequentialStream *chp, int argc, char *argv[]) {
   } else {
     chprintf(chp,"set-duty extension failed!\n\r");
   }
-  
+
   if(extensions_add("set-led",  ext_set_led)) {
     chprintf(chp,"set-led extension added.\n\r");
   } else {
@@ -427,7 +380,7 @@ int main(void) {
 	/*
 	 * Normal main() thread activity, spawning shells.
 	 */
-	while (true) {	  
+	while (true) {
 		if (SDU1.config->usbp->state == USB_ACTIVE) {
 			thread_t *shelltp = chThdCreateFromHeap(NULL, SHELL_WA_SIZE,
 					"shell", NORMALPRIO + 1,
