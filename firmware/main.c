@@ -23,32 +23,9 @@
 
 #include "ch.h"
 #include "hal.h"
-#include "hal_pwm.h"
-#include "hal_pal.h"
-
-#include "chprintf.h"
-
 #include "usbcfg.h"
 
 #include "repl.h"
-
-// Definitions
-
-/*===========================================================================*/
-/* Command line related.                                                     */
-/*===========================================================================*/
-/*
-static const ShellCommand commands[] = {
-		{"repl", cmd_repl},
-		{"duty", cmd_duty},
-		{NULL, NULL}
-};
-
-static const ShellConfig shell_cfg1 = {
-		(BaseSequentialStream *)&SDU1,
-		commands
-};
-*/
 
 int main(void) {
 	halInit();
@@ -71,21 +48,11 @@ int main(void) {
 	usbConnectBus(serusbcfg.usbp);
 
 	createReplThread((BaseSequentialStream *)&SDU1);
-	
-	//shellInit();
 
 	/*
-	 * Normal main() thread activity, spawning shells.
+	 *  Main thread activity...
 	 */
 	while (true) {
-	  /*
-		if (SDU1.config->usbp->state == USB_ACTIVE) {
-			thread_t *shelltp = chThdCreateFromHeap(NULL, SHELL_WA_SIZE,
-					"shell", NORMALPRIO + 1,
-					shellThread, (void *)&shell_cfg1);
-			chThdWait(shelltp);
-		}
-	  */
-		chThdSleepMilliseconds(1000);
+	  chThdSleepMilliseconds(1000);
 	}
 }

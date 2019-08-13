@@ -124,7 +124,7 @@ int inputline(BaseSequentialStream *chp, char *buffer, int size) {
 static THD_FUNCTION(repl, arg) {
 
   BaseSequentialStream *chp = (BaseSequentialStream *)arg;
-  
+
   size_t len = 1024;
   char *str = malloc(1024);
   char *outbuf = malloc(1024);
