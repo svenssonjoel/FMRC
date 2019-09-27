@@ -25,6 +25,8 @@
 #include "hal.h"
 #include "usbcfg.h"
 
+#include "led.h"
+#include "motor_drv.h"
 #include "repl.h"
 
 /* IMU pins
@@ -35,11 +37,14 @@
 
  */
 
-void init_imu(void) {
+void imu_init(void) {
 
-
-
-
+  palSetPadMode(GPIOB, 6 , /* pad settings for I2CD1 SCL */
+		PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN |
+		PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUPDR_FLOATING);
+  palSetPadMode(GPIOB, 7, /* pad settings for I2CD1 SDA */
+		PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN |
+		PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUPDR_FLOATING);
 }
 
 int main(void) {
@@ -50,8 +55,10 @@ int main(void) {
 	sduStart(&SDU1, &serusbcfg);
 
 	led_init();
-
 	drv_init();
+	imu_init();
+	
+	
 	/*
 	 * Activates the USB driver and then the USB bus pull-up on D+.
 	 * Note, a delay is inserted in order to not have to disconnect the cable
