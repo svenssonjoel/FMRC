@@ -29,6 +29,9 @@
 #include "motor_drv.h"
 #include "repl.h"
 
+#include "bmi160.h"
+#include "bmi160_defs.h"
+
 /* IMU pins
 
    PB5 - IMU_INT
@@ -36,6 +39,12 @@
    PB7 - SDA
 
  */
+
+static const I2CConfig i2cconfig = {
+  OPMODE_I2C,
+  400000,
+  FAST_DUTY_CYCLE_2
+};
 
 void imu_init(void) {
 
@@ -45,6 +54,9 @@ void imu_init(void) {
   palSetPadMode(GPIOB, 7, /* pad settings for I2CD1 SDA */
 		PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN |
 		PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUPDR_FLOATING);
+
+
+  i2cStart(&I2CD1, &i2cconfig);
 }
 
 int main(void) {

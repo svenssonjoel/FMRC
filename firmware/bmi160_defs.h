@@ -106,7 +106,9 @@
 #endif
 
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-#define LITTLE_ENDIAN           1
+#ifndef LITTLE_ENDIAN
+#define LITTLE_ENDIAN 1
+#endif
 #elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
 #define BIG_ENDIAN              1
 #else
