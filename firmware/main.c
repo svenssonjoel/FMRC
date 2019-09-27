@@ -27,6 +27,21 @@
 
 #include "repl.h"
 
+/* IMU pins
+
+   PB5 - IMU_INT
+   PB6 - SCL
+   PB7 - SDA
+
+ */
+
+void init_imu(void) {
+
+
+
+
+}
+
 int main(void) {
 	halInit();
 	chSysInit();
