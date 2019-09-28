@@ -130,6 +130,7 @@ CSRC = $(ALLCSRC) \
        motor_drv.c \
        repl.c \
        bmi160.c \
+       i2c_bb.c \
        $(CHIBIOS)/os/various/syscalls.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
