@@ -24,6 +24,7 @@
 #include "ch.h"
 #include "hal.h"
 #include "usbcfg.h"
+#include "chprintf.h"
 
 #include "led.h"
 #include "motor_drv.h"
@@ -45,6 +46,8 @@
 #define BMI160_SCL_PIN  6
 #define BMI160_SDA_GPIO GPIOB
 #define BMI160_SDA_PIN  7
+
+struct bmi160_dev sensor;
 
 static const GPTConfig gpt1cfg = {
   1000000, // 1 MHz timer clock.
@@ -110,8 +113,6 @@ void imu_init(void) {
 
   // start a GPT for usleep functionality
   gptStart(&GPTD1, &gpt1cfg);
-  
-  struct bmi160_dev sensor;
 
   sensor.id = BMI160_I2C_ADDR;
   sensor.interface = BMI160_I2C_INTF;
@@ -123,49 +124,29 @@ void imu_init(void) {
   rslt = bmi160_init(&sensor);
 
   if (rslt == BMI160_OK) led_write(LED_RED, 0);
-  if (rslt == BMI160_E_DEV_NOT_FOUND) led_write(LED_RED, 1);
+  else led_write(LED_RED, 1);
 
-  
-  rslt = bmi160_init(&sensor);
-  
-  while (rslt != BMI160_OK) {
-    rslt = bmi160_init(&sensor);
-    if (rslt == BMI160_OK) led_write(LED_RED, 0);
-    if (rslt == BMI160_E_DEV_NOT_FOUND) led_write(LED_RED, 1);
-    chThdSleepMilliseconds(250);
-    led_write(LED_RED, 0);
-    chThdSleepMilliseconds(250);
-  }
-  
-  if (rslt == BMI160_OK) led_write(LED_RED, 0);
-  if (rslt == BMI160_E_DEV_NOT_FOUND) led_write(LED_RED, 1);
+  /* rslt = bmi160_perform_self_test(BMI160_ACCEL_ONLY, &sensor); */
 
-  rslt = bmi160_perform_self_test(BMI160_ACCEL_ONLY, &sensor);
+  /* if (rslt == BMI160_OK) led_write(LED_RED, 0); */
+  /* else led_write(LED_RED, 1); */
 
-  if (rslt == BMI160_OK) led_write(LED_RED, 0);
-  if (rslt == BMI160_E_DEV_NOT_FOUND) led_write(LED_RED, 1);
+  /* rslt = bmi160_perform_self_test(BMI160_GYRO_ONLY, &sensor); */
 
-  rslt = bmi160_perform_self_test(BMI160_GYRO_ONLY, &sensor);
-
-  if (rslt == BMI160_OK) led_write(LED_RED, 0);
-  if (rslt == BMI160_E_DEV_NOT_FOUND) led_write(LED_RED, 1);
-
-  rslt = bmi160_perform_self_test(BMI160_ACCEL_ONLY, &sensor);
-
-  if (rslt == BMI160_OK) led_write(LED_RED, 0);
-  if (rslt == BMI160_E_DEV_NOT_FOUND) led_write(LED_RED, 1);
+  /* if (rslt == BMI160_OK) led_write(LED_RED, 0); */
+  /* else led_write(LED_RED, 1); */
 
   
   /* Select the Output data rate, range of accelerometer sensor */
-  sensor.accel_cfg.odr = BMI160_ACCEL_ODR_1600HZ;
-  sensor.accel_cfg.range = BMI160_ACCEL_RANGE_2G;
+  sensor.accel_cfg.odr = BMI160_ACCEL_ODR_200HZ;
+  sensor.accel_cfg.range = BMI160_ACCEL_RANGE_16G;
   sensor.accel_cfg.bw = BMI160_ACCEL_BW_NORMAL_AVG4;
 
   /* Select the power mode of accelerometer sensor */
   sensor.accel_cfg.power = BMI160_ACCEL_NORMAL_MODE;
 
   /* Select the Output data rate, range of Gyroscope sensor */
-  sensor.gyro_cfg.odr = BMI160_GYRO_ODR_3200HZ;
+  sensor.gyro_cfg.odr = BMI160_GYRO_ODR_200HZ;
   sensor.gyro_cfg.range = BMI160_GYRO_RANGE_2000_DPS;
   sensor.gyro_cfg.bw = BMI160_GYRO_BW_NORMAL_MODE;
 
@@ -175,8 +156,7 @@ void imu_init(void) {
   /* Set the sensor configuration */
   rslt = bmi160_set_sens_conf(&sensor);
 
-  if (rslt == BMI160_OK) led_write(LED_GREEN, 1); 
-  
+  if (rslt == BMI160_OK) led_write(LED_GREEN, 1);   
 }
 
 
@@ -190,7 +170,6 @@ int main(void) {
 	led_init();
 	drv_init();
 	imu_init();
-	
 	
 	/*
 	 * Activates the USB driver and then the USB bus pull-up on D+.
@@ -208,6 +187,37 @@ int main(void) {
 	 *  Main thread activity...
 	 */
 	while (true) {
-	  chThdSleepMilliseconds(1000);
+	  led_write(LED_RED, 0);
+	  int8_t rslt = BMI160_OK;
+	  struct bmi160_sensor_data accel;
+	  struct bmi160_sensor_data gyro;
+
+	  rslt = bmi160_get_sensor_data((BMI160_ACCEL_SEL | BMI160_GYRO_SEL), &accel, &gyro, &sensor);
+
+	  float acc_x = (float)accel.x * 16.0 / 32768.0;
+	  float acc_y = (float)accel.y * 16.0 / 32768.0;
+	  float acc_z = (float)accel.x * 16.0 / 32768.0;
+
+	  float gyr_x = (float)gyro.x * 2000 / 32768.0;
+	  float gyr_y = (float)gyro.y * 2000 / 32768.0;
+	  float gyr_z = (float)gyro.z * 2000 / 32768.0;
+
+	  char str[128];
+	  
+	  snprintf(str, 128, "accel: %f, %f, %f\n\r", acc_x, acc_y, acc_z);
+	  
+	  chprintf((BaseSequentialStream *)&SDU1, "%s", str);
+
+	  snprintf(str, 128, "gyro: %f, %f, %f\n\r", gyr_x, gyr_y, gyr_z);
+	  chprintf((BaseSequentialStream *)&SDU1, "%s", str);
+	  
+	  
+	  
+	  
+	  if (rslt != BMI160_OK) {
+	    led_write(LED_RED, 1);
+	  }
+	  
+	  chThdSleepMilliseconds(100);
 	}
 }
