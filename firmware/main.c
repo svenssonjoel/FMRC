@@ -17,7 +17,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 
@@ -125,17 +124,6 @@ void imu_init(void) {
 
   if (rslt == BMI160_OK) led_write(LED_RED, 0);
   else led_write(LED_RED, 1);
-
-  /* rslt = bmi160_perform_self_test(BMI160_ACCEL_ONLY, &sensor); */
-
-  /* if (rslt == BMI160_OK) led_write(LED_RED, 0); */
-  /* else led_write(LED_RED, 1); */
-
-  /* rslt = bmi160_perform_self_test(BMI160_GYRO_ONLY, &sensor); */
-
-  /* if (rslt == BMI160_OK) led_write(LED_RED, 0); */
-  /* else led_write(LED_RED, 1); */
-
   
   /* Select the Output data rate, range of accelerometer sensor */
   sensor.accel_cfg.odr = BMI160_ACCEL_ODR_200HZ;
@@ -196,7 +184,7 @@ int main(void) {
 
 	  float acc_x = (float)accel.x * 16.0 / 32768.0;
 	  float acc_y = (float)accel.y * 16.0 / 32768.0;
-	  float acc_z = (float)accel.x * 16.0 / 32768.0;
+	  float acc_z = (float)accel.z * 16.0 / 32768.0;
 
 	  float gyr_x = (float)gyro.x * 2000 / 32768.0;
 	  float gyr_y = (float)gyro.y * 2000 / 32768.0;
