@@ -15,6 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <ctype.h>
+
 #include "ch.h"
 #include "hal.h"
 #include "chprintf.h"

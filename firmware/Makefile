@@ -131,6 +131,7 @@ CSRC = $(ALLCSRC) \
        repl.c \
        bmi160.c \
        i2c_bb.c \
+       imu.c \
        $(CHIBIOS)/os/various/syscalls.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
