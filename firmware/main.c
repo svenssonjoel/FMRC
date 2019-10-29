@@ -30,10 +30,38 @@
 #include "repl.h"
 
 #include "imu.h"
+#include "bm_if.h"
+
+static unsigned char nrf_program[100];
+
+void nrf_swd_example(void) {
+	bm_change_swd_pins(GPIOB, 14, GPIOB, 15);
+	
+	if (bm_connect() != 8) {
+		return;
+	}
+	
+	if (bm_erase_flash_all() != 1) {
+		return;
+	}
+	
+	if (bm_write_flash(0, nrf_program, sizeof(nrf_program) != 1)) {
+		return;
+	}
+	
+	if (bm_reboot() != 1) {
+		return;
+	}
+	
+	bm_disconnect();
+}
+
 
 int main(void) {
 	halInit();
 	chSysInit();
+	
+//	nrf_swd_example();
 
 	sduObjectInit(&SDU1);
 	sduStart(&SDU1, &serusbcfg);
