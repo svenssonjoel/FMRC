@@ -133,6 +133,7 @@ CSRC = $(ALLCSRC) \
        bmi160.c \
        i2c_bb.c \
        imu.c \
+       neato_lidar.c\
        $(CHIBIOS)/os/various/syscalls.c \
        $(BLACKMAGICSRC)
 

@@ -31,6 +31,7 @@
 
 #include "imu.h"
 #include "bm_if.h"
+#include "neato_lidar.h"
 
 static unsigned char nrf_program[100];
 
@@ -69,6 +70,7 @@ int main(void) {
 	led_init();
 	drv_init();
 	imu_init();
+	neato_lidar_init();
 	
 	/*
 	 * Activates the USB driver and then the USB bus pull-up on D+.
@@ -85,27 +87,8 @@ int main(void) {
 	/*
 	 *  Main thread activity...
 	 */
+
 	while (true) {
-	  led_write(LED_RED, 0);
-
-	  char str[128];
-
-	  float acc_x, acc_y, acc_z;
-	  float gyr_x, gyr_y, gyr_z;
-
-	  if (imu_get_data(&acc_x, &acc_y, &acc_z,
-			   &gyr_x, &gyr_y, &gyr_z)) { 
-	  
-	    snprintf(str, 128, "accel: %f, %f, %f\n\r", acc_x, acc_y, acc_z);
-	  
-	    chprintf((BaseSequentialStream *)&SDU1, "%s", str);
-
-	    snprintf(str, 128, "gyro: %f, %f, %f\n\r", gyr_x, gyr_y, gyr_z);
-	    chprintf((BaseSequentialStream *)&SDU1, "%s", str);
-	  } else {
-	    chprintf((BaseSequentialStream *)&SDU1,"Error: Not able to read data from IMU\n\r");
-	  }
-	  
 	  chThdSleepMilliseconds(100);
 	}
 }
