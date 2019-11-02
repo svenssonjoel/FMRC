@@ -61,17 +61,34 @@ void nrf_swd_example(void) {
 int main(void) {
 	halInit();
 	chSysInit();
-	
-//	nrf_swd_example();
 
+	/* palSetPadMode(GPIOC, 6, */
+	/* 	      PAL_MODE_OUTPUT_PUSHPULL | */
+	/* 	      PAL_STM32_OSPEED_HIGHEST); */
+	/* palSetPadMode(GPIOC, 7, */
+	/* 	      PAL_MODE_OUTPUT_PUSHPULL | */
+	/* 	      PAL_STM32_OSPEED_HIGHEST); */
+	/* palSetPadMode(GPIOC, 8, */
+	/* 	      PAL_MODE_OUTPUT_PUSHPULL | */
+	/* 	      PAL_STM32_OSPEED_HIGHEST); */
+	/* palSetPadMode(GPIOC, 9, */
+	/* 	      PAL_MODE_OUTPUT_PUSHPULL | */
+	/* 	      PAL_STM32_OSPEED_HIGHEST); */
+        /* palWritePad(GPIOC, 6, 0); */
+        /* palWritePad(GPIOC, 7, 0); */
+        /* palWritePad(GPIOC, 8, 0); */
+        /* palWritePad(GPIOC, 9, 0); */
+
+//	nrf_swd_example();
+	
+	drv_init();
+	led_init();
+	imu_init();
+
+	
 	sduObjectInit(&SDU1);
 	sduStart(&SDU1, &serusbcfg);
 
-	led_init();
-	drv_init();
-	imu_init();
-	neato_lidar_init();
-	
 	/*
 	 * Activates the USB driver and then the USB bus pull-up on D+.
 	 * Note, a delay is inserted in order to not have to disconnect the cable
@@ -81,6 +98,9 @@ int main(void) {
 	chThdSleepMilliseconds(1500);
 	usbStart(serusbcfg.usbp, &usbcfg);
 	usbConnectBus(serusbcfg.usbp);
+
+        
+	neato_lidar_init();
 
 	createReplThread((BaseSequentialStream *)&SDU1);
 
