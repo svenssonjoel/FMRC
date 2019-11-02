@@ -18,10 +18,9 @@
 #include "neato_lidar.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "ch.h"
 #include "hal.h"
-#include "usbcfg.h"
-#include "chprintf.h"
 
 #define LIDAR_UART_PORT GPIOC
 #define LIDAR_UART_TX   10
@@ -38,9 +37,9 @@ typedef struct {
   bool     checksum_ok; 
 } neato_lidar_packet_t;
 
-static uint16_t distances[360];
-static uint8_t  generation[360];
-static uint8_t  current_generation = 0; 
+
+// need to guard these with mutex if want consistent reads... 
+static int distance[360];
 
 #define MOTOR_DUTY_INITIAL 4500
 #define MOTOR_TARGET_RPM   300
@@ -147,40 +146,34 @@ static THD_FUNCTION(neatoLidarThread, arg) {
 
     
     if (read_packet(&p)) {
-      
-      chprintf((BaseSequentialStream *)&SDU1, "INDEX: %d\n\r", p.index);
-      chprintf((BaseSequentialStream *)&SDU1, "%s (%d, %d)\n\r", p.checksum_ok ? "CHECKSUM OK" : "CHECKSUM ERROR!", num_valid, num_invalid);
 
-      snprintf(str, 256, "%f", p.rpm);
-      chprintf((BaseSequentialStream *)&SDU1, "RPM: %s\n\r", str);
-      chprintf((BaseSequentialStream *)&SDU1, "DIST0: %d %s %s\n\r", p.dist[0], p.valid[0] ? "VALID" : "INVALID", p.warn[0] ? "WARNING!" : "");
-      chprintf((BaseSequentialStream *)&SDU1, "DIST1: %d %s %s\n\r", p.dist[1], p.valid[1] ? "VALID" : "INVALID", p.warn[1] ? "WARNING!" : "");
-      chprintf((BaseSequentialStream *)&SDU1, "DIST2: %d %s %s\n\r", p.dist[2], p.valid[2] ? "VALID" : "INVALID", p.warn[2] ? "WARNING!" : "");
-      chprintf((BaseSequentialStream *)&SDU1, "DIST3: %d %s %s\n\r", p.dist[3], p.valid[3] ? "VALID" : "INVALID", p.warn[3] ? "WARNING!" : "");
-      
-      for (int i = 0; i < 4; i ++)  {
-	if (p.valid[i]) {
-	  num_valid++;
+      int i = p.index * 4;
+      for (int j = 0; j < 4; j ++) {
+	if (p.valid[j]) { 
+	  distance[i+j] = p.dist[j];
 	} else {
-	  num_invalid++;
-	}
+	  distance[i+j] = -1;
+	}	  
+	  
       }
-      
-      if (p.rpm < 295) {
+
+      // Adds a bit of correction to the duty cycle based on current RPM
+      // Maybe should filter this for "influence over time" in some way. 
+      if (p.rpm < 300) {
 	motor_duty ++;
 	if (motor_duty > 10000) motor_duty = 10000;
 	pwmEnableChannel(&PWMD2, 3 , PWM_PERCENTAGE_TO_WIDTH(&PWMD2,motor_duty));
-      } else if (p.rpm > 305) {
+      } else if (p.rpm > 315) {
 	motor_duty --;
 	if (motor_duty < 0) motor_duty = 0;
 	pwmEnableChannel(&PWMD2, 3 , PWM_PERCENTAGE_TO_WIDTH(&PWMD2,motor_duty));
       }
       
     } else {
-      chprintf((BaseSequentialStream *)&SDU1, "TIMEOUT!");
+      //chprintf((BaseSequentialStream *)&SDU1, "TIMEOUT!\n\r");
     }
     
-    chThdSleepMilliseconds(1);
+     chThdSleepMilliseconds(1);
   }
 }
 
@@ -211,22 +204,21 @@ int calibrate_lidar_motor() {
     } else if ( avg_rpm > 60000 ) {
       high = duty;
       duty = low + ((duty - low) / 2);
-      chprintf((BaseSequentialStream *)&SDU1, "LOWERING %d !\n\r", duty);
     } else if ( avg_rpm < 60000) {
       low = duty; 
       duty = high - ((high - duty) / 2);
-      chprintf((BaseSequentialStream *)&SDU1, "INCREASING %d !\n\r", duty);
     }
-    
-    chprintf((BaseSequentialStream *)&SDU1, "DUTY:  %d\n\r", duty);
-    chprintf((BaseSequentialStream *)&SDU1, "RPM:  %d\n\r",  avg_rpm);    
   }
   
   motor_duty = duty;
   pwmEnableChannel(&PWMD2, 3 , PWM_PERCENTAGE_TO_WIDTH(&PWMD2,motor_duty));
   return 1;  
 }
-			  
+
+
+int neato_lidar_distance(int ix) {
+  return distance[ix]; 
+}
 
 void neato_lidar_init(void) {
 
@@ -236,7 +228,8 @@ void neato_lidar_init(void) {
 
   // spin up motor
   if (!calibrate_lidar_motor()) {
-    chprintf((BaseSequentialStream *)&SDU1, "ERROR: Could not calibrate Lidar motor\n\r");
+    //chprintf((BaseSequentialStream *)&SDU1, "ERROR: Could not calibrate Lidar motor\n\r");
+    return;
   }
   //pwmEnableChannel(&PWMD2, 3 , PWM_PERCENTAGE_TO_WIDTH(&PWMD2, 6500));
 

@@ -175,6 +175,7 @@ static THD_FUNCTION(repl, arg) {
   chprintf(chp,"Lisp REPL started (FMRC)!\n\r");
 
   while (1) {
+    chThdSleepMilliseconds(100);
     chprintf(chp,"# ");
     memset(str,0,len);
     memset(outbuf,0, 1024);

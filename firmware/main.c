@@ -58,33 +58,41 @@ void nrf_swd_example(void) {
 }
 
 
+void forward(int speed) {
+
+  pwmEnableChannel(&PWMD3, 0 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, speed));
+  pwmEnableChannel(&PWMD3, 1 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
+  pwmEnableChannel(&PWMD3, 2 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, speed));
+  pwmEnableChannel(&PWMD3, 3 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
+}
+
+void turn(int speed) {
+  pwmEnableChannel(&PWMD3, 0 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
+  pwmEnableChannel(&PWMD3, 1 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, speed));
+  pwmEnableChannel(&PWMD3, 2 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, speed));
+  pwmEnableChannel(&PWMD3, 3 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
+}
+
+void stop() {
+  pwmEnableChannel(&PWMD3, 0 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
+  pwmEnableChannel(&PWMD3, 1 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
+  pwmEnableChannel(&PWMD3, 2 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
+  pwmEnableChannel(&PWMD3, 3 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
+}
+
+
+typedef enum {
+  go,
+  turning 
+} state_enum;
+
 int main(void) {
 	halInit();
 	chSysInit();
 
-	/* palSetPadMode(GPIOC, 6, */
-	/* 	      PAL_MODE_OUTPUT_PUSHPULL | */
-	/* 	      PAL_STM32_OSPEED_HIGHEST); */
-	/* palSetPadMode(GPIOC, 7, */
-	/* 	      PAL_MODE_OUTPUT_PUSHPULL | */
-	/* 	      PAL_STM32_OSPEED_HIGHEST); */
-	/* palSetPadMode(GPIOC, 8, */
-	/* 	      PAL_MODE_OUTPUT_PUSHPULL | */
-	/* 	      PAL_STM32_OSPEED_HIGHEST); */
-	/* palSetPadMode(GPIOC, 9, */
-	/* 	      PAL_MODE_OUTPUT_PUSHPULL | */
-	/* 	      PAL_STM32_OSPEED_HIGHEST); */
-        /* palWritePad(GPIOC, 6, 0); */
-        /* palWritePad(GPIOC, 7, 0); */
-        /* palWritePad(GPIOC, 8, 0); */
-        /* palWritePad(GPIOC, 9, 0); */
-
-//	nrf_swd_example();
-	
 	drv_init();
 	led_init();
 	imu_init();
-
 	
 	sduObjectInit(&SDU1);
 	sduStart(&SDU1, &serusbcfg);
@@ -98,17 +106,77 @@ int main(void) {
 	chThdSleepMilliseconds(1500);
 	usbStart(serusbcfg.usbp, &usbcfg);
 	usbConnectBus(serusbcfg.usbp);
-
+	chThdSleepMilliseconds(500);
         
 	neato_lidar_init();
 
-	createReplThread((BaseSequentialStream *)&SDU1);
+	//createReplThread((BaseSequentialStream *)&SDU1);
 
 	/*
 	 *  Main thread activity...
 	 */
 
+	state_enum state = go; 
+	
 	while (true) {
+	  led_write(LED_RED, 0);
+	  led_write(LED_GREEN,1);
+
+	  int sum = 0;
+	  int readings = 0;
+	  
+	  for (int i = 0; i < 20; i ++) {
+
+	    int d0 = neato_lidar_distance(359 - i);
+	    int d1 = neato_lidar_distance(i);
+	    
+	    if ( d0 != -1) {
+	      sum += d0;
+	      readings++;
+	    }
+
+	    if ( d1 != -1) {
+	      sum += d1;
+	      readings++; 
+	    }
+	  }
+
+	  if (readings == 0) {
+
+	    if (state == go) {
+	      stop();
+	      state = turning;
+	    } else if (state == turning) {
+	      turn(5000);
+	    }
+	    
+	    led_write(LED_RED, 1);
+	    led_write(LED_GREEN, 0);
+	  } else {
+
+	    float dist = (float)sum / readings; 
+
+	    if (dist < 500.0) {
+	      if (state == go) {
+		stop(); 
+		state = turning;
+	      }else if (state == turning) {
+		turn(5000);
+	      }
+	      
+	    
+	      led_write(LED_RED, 1);
+	    } else {
+
+	      if (state == go) { 
+		forward(5000);
+	      } else if (state == turning) {
+		state = go; 
+	      }
+	    }
+	    
+	  }
+	  
 	  chThdSleepMilliseconds(100);
 	}
 }

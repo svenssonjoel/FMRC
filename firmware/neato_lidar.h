@@ -19,6 +19,7 @@
 #define NEATO_LIDAR_H_
 
 extern void neato_lidar_init(void);
+extern int neato_lidar_distance(int ix);
 
-
+  
 #endif 
