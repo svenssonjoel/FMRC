@@ -6,6 +6,8 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_SynthesizeTouchForUnhandledMouseEvents);
+    QCoreApplication::setAttribute(Qt::AA_SynthesizeMouseForUnhandledTouchEvents);
     QCoreApplication::setOrganizationName("BJS");
     QCoreApplication::setOrganizationDomain("svenssonjoel.github.io");
     QCoreApplication::setApplicationName("FMRC GUI");
