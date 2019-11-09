@@ -41,10 +41,9 @@ void Controller::mouseMoveEvent(QMouseEvent *event)
     int pos_x = p.x() - center_x;
     int pos_y = p.y() - center_y;
 
-    if ( pos_x <= mOuterRad && pos_x >= -mOuterRad &&
-         pos_y <= mOuterRad && pos_y >= -mOuterRad) {
+    float mag = qSqrt(pos_x*pos_x + pos_y*pos_y);
 
-        float mag = qSqrt(pos_x*pos_x + pos_y*pos_y);
+    if (mag <= mOuterRad) {
 
         if (mag >= mInnerRad) {
             int s_x = (int)(((float)pos_x / mag) * mInnerRad);
