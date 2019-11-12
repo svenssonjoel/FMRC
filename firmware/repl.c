@@ -32,10 +32,41 @@
 #include "tokpar.h"
 #include "prelude.h"
 
+#include "zephyr.h"
+#include "bm_if.h"
 
 #define REPL_WA_SIZE THD_WORKING_AREA_SIZE(10*2048)
 
+VALUE ext_flash_nrf(VALUE *args, int argn) {
 
+  (void) args;
+  
+  if (argn != 0) {
+    return enc_sym(symrepr_nil());
+  }
+
+  bm_change_swd_pins(GPIOB, 14, GPIOB, 15);
+
+  if (bm_connect() != 8) {
+    return enc_sym(symrepr_nil());;
+  }
+
+  if (bm_erase_flash_all() != 1) {
+    return enc_sym(symrepr_nil());;
+  }
+
+  if (bm_write_flash(0, zephyr_bin, zephyr_bin_len)!= 1) {
+    return enc_sym(symrepr_nil());;
+  }
+
+  if (bm_reboot() != 1) {
+    return enc_sym(symrepr_nil());;
+  }
+
+  bm_disconnect();
+
+  return enc_sym(symrepr_true());
+}
 
 VALUE ext_set_led(VALUE *args, int argn) {
   if (argn != 2) {
@@ -163,11 +194,18 @@ static THD_FUNCTION(repl, arg) {
     chprintf(chp,"set-duty extension failed!\n\r");
   }
 
-  if(extensions_add("set-led",  ext_set_led)) {
+  if (extensions_add("set-led",  ext_set_led)) {
     chprintf(chp,"set-led extension added.\n\r");
   } else {
     chprintf(chp,"set-led extension failed!\n\r");
   }
+
+  if (extensions_add("flash-nrf",  ext_flash_nrf)) {
+    chprintf(chp,"flash-nrf extension added.\n\r");
+  } else {
+    chprintf(chp,"flash-nrf extension failed!\n\r");
+  }
+
 
   VALUE prelude = prelude_load();
   eval_cps_program(prelude);

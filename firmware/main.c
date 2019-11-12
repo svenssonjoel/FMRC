@@ -30,33 +30,7 @@
 #include "repl.h"
 
 #include "imu.h"
-#include "bm_if.h"
 #include "neato_lidar.h"
-
-static unsigned char nrf_program[100];
-
-void nrf_swd_example(void) {
-	bm_change_swd_pins(GPIOB, 14, GPIOB, 15);
-	
-	if (bm_connect() != 8) {
-		return;
-	}
-	
-	if (bm_erase_flash_all() != 1) {
-		return;
-	}
-	
-	if (bm_write_flash(0, nrf_program, sizeof(nrf_program) != 1)) {
-		return;
-	}
-	
-	if (bm_reboot() != 1) {
-		return;
-	}
-	
-	bm_disconnect();
-}
-
 
 void forward(int speed) {
 
@@ -73,7 +47,7 @@ void turn(int speed) {
   pwmEnableChannel(&PWMD3, 3 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
 }
 
-void stop() {
+void stop(void) {
   pwmEnableChannel(&PWMD3, 0 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
   pwmEnableChannel(&PWMD3, 1 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
   pwmEnableChannel(&PWMD3, 2 , PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 0));
@@ -108,16 +82,25 @@ int main(void) {
 	usbConnectBus(serusbcfg.usbp);
 	chThdSleepMilliseconds(500);
         
-	neato_lidar_init();
+	//neato_lidar_init();
 
-	//createReplThread((BaseSequentialStream *)&SDU1);
+	createReplThread((BaseSequentialStream *)&SDU1);
 
 	/*
 	 *  Main thread activity...
 	 */
 
-	state_enum state = go; 
 	
+
+	while (true) {
+
+
+	   chThdSleepMilliseconds(100);
+	}
+	
+	/*
+
+	state_enum state = go;
 	while (true) {
 	  led_write(LED_RED, 0);
 	  led_write(LED_GREEN,1);
@@ -176,7 +159,7 @@ int main(void) {
 	    }
 	    
 	  }
-	  
 	  chThdSleepMilliseconds(100);
 	}
+	*/
 }
