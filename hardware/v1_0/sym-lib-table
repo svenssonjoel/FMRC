@@ -1,7 +1,7 @@
 (sym_lib_table
   (lib (name "robot_pcb0-rescue")(type "Legacy")(uri "${KIPRJMOD}/robot_pcb0-rescue.lib")(options "")(descr ""))
-  (lib (name "drv8833_hack")(type "Legacy")(uri "${KIPRJMOD}/drv8833_hack.lib")(options "")(descr ""))
+  (lib (name "drv8833_hack")(type "Legacy")(uri "${KIPRJMOD}/Lib/drv8833_hack.lib")(options "")(descr ""))
   (lib (name "IMU")(type "Legacy")(uri "${KIPRJMOD}/Lib/crf_1.lib")(options "")(descr ""))
   (lib (name "bmi160")(type "Legacy")(uri "${KIPRJMOD}/Lib/bmi160.lib")(options "")(descr ""))
-  (lib (name "BMD-340")(type "Legacy")(uri "/home/joels/Current/FMRC/Lib/BMD-340-A-R.lib")(options "")(descr ""))
+  (lib (name "BMD-340")(type "Legacy")(uri "${KIPRJMOD}/Lib/BMD-340-A-R.lib")(options "")(descr ""))
 )

@@ -1,6 +1,5 @@
 EESchema Schematic File Version 5
-LIBS:robot_pcb0-cache
-EELAYER 29 0
+EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -13,6 +12,11 @@ Comment1 ""
 Comment2 ""
 Comment3 ""
 Comment4 ""
+Comment5 ""
+Comment6 ""
+Comment7 ""
+Comment8 ""
+Comment9 ""
 $EndDescr
 $Comp
 L Interface_CAN_LIN:TJA1051TK-3 U1
@@ -1069,9 +1073,11 @@ NoConn ~ 3400 4200
 Text GLabel 3050 3800 0    50   Input ~ 0
 V_METER
 $Comp
-L bmi160:BMI160 U3
+L robot_pcb0-rescue:BMI160-bmi160 U3
 U 1 1 5CF27D04
 P 8700 3650
+AR Path="/5CF27D04" Ref="U3"  Part="1" 
+AR Path="/5AF92F5C/5CF27D04" Ref="U3"  Part="1" 
 F 0 "U3" H 8700 4365 50  0000 C CNN
 F 1 "BMI160" H 8700 4274 50  0000 C CNN
 F 2 "Package_LGA:Bosch_LGA-14_3x2.5mm_P0.5mm" H 9000 4150 50  0001 C CNN
