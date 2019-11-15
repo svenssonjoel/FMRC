@@ -19,183 +19,6 @@ Comment8 ""
 Comment9 ""
 $EndDescr
 $Comp
-L favorites:MCP16311_2 U5
-U 1 1 5B1BBDDC
-P 4700 4400
-F 0 "U5" H 4700 4750 60  0000 C CNN
-F 1 "MCP16311/2" H 4700 4100 60  0000 C CNN
-F 2 "Package_SO:MSOP-8_3x3mm_P0.65mm" H 4750 4400 60  0001 C CNN
-F 3 "" H 4750 4400 60  0000 C CNN
-	1    4700 4400
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:L L2
-U 1 1 5B1BBDE3
-P 6100 4450
-F 0 "L2" V 6300 4450 40  0000 C CNN
-F 1 "22U" V 6050 4450 40  0000 C CNN
-F 2 "Inductor_SMD:L_Taiyo-Yuden_MD-5050" H 6100 4450 60  0001 C CNN
-F 3 "" H 6100 4450 60  0000 C CNN
-	1    6100 4450
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	6450 4600 6200 4600
-Connection ~ 5400 5050
-Connection ~ 4550 3900
-Wire Wire Line
-	4550 4050 4550 3900
-Wire Wire Line
-	3950 4050 4550 4050
-Wire Wire Line
-	3950 4050 3950 4250
-Wire Wire Line
-	3950 4250 4100 4250
-Connection ~ 5400 4250
-Wire Wire Line
-	5400 4550 5300 4550
-Wire Wire Line
-	5400 3900 5400 4250
-Wire Wire Line
-	5300 4250 5400 4250
-Connection ~ 6450 4450
-Wire Wire Line
-	3950 3700 3950 3900
-Wire Wire Line
-	6450 3700 3950 3700
-Wire Wire Line
-	5500 4000 5700 4000
-Wire Wire Line
-	5500 4350 5500 4000
-Wire Wire Line
-	5300 4350 5500 4350
-Wire Wire Line
-	5300 4450 5700 4450
-Wire Wire Line
-	3700 4450 3700 4550
-Wire Wire Line
-	6250 4100 6250 4150
-Wire Wire Line
-	6250 4150 6450 4150
-Wire Wire Line
-	4100 4450 3850 4450
-Wire Wire Line
-	3850 4450 3850 4550
-$Comp
-L Device:C_Small C18
-U 1 1 5B1BBE0D
-P 3700 4800
-F 0 "C18" H 3725 4900 50  0000 L CNN
-F 1 "2.2u" H 3725 4700 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 3738 4650 30  0001 C CNN
-F 3 "" H 3700 4800 60  0000 C CNN
-	1    3700 4800
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C_Small C20
-U 1 1 5B1BBE14
-P 3950 4800
-F 0 "C20" H 3975 4900 50  0000 L CNN
-F 1 "2.2u" H 3975 4700 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 3988 4650 30  0001 C CNN
-F 3 "" H 3950 4800 60  0000 C CNN
-	1    3950 4800
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C_Small C24
-U 1 1 5B1BBE1B
-P 6200 4800
-F 0 "C24" H 6225 4900 50  0000 L CNN
-F 1 "2.2u" H 6225 4700 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 6238 4650 30  0001 C CNN
-F 3 "" H 6200 4800 60  0000 C CNN
-	1    6200 4800
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP1_Small C26
-U 1 1 5B1BBE22
-P 6450 4800
-F 0 "C26" H 6475 4900 50  0000 L CNN
-F 1 "100u" H 6475 4700 50  0000 L CNN
-F 2 "Capacitor_Tantalum_SMD:CP_EIA-3528-12_Kemet-T" H 6450 4800 60  0001 C CNN
-F 3 "" H 6450 4800 60  0000 C CNN
-	1    6450 4800
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C_Small C22
-U 1 1 5B1BBE2F
-P 5700 4200
-F 0 "C22" H 5725 4300 50  0000 L CNN
-F 1 "100n" H 5725 4100 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 5738 4050 30  0001 C CNN
-F 3 "" H 5700 4200 60  0000 C CNN
-	1    5700 4200
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R9
-U 1 1 5B1BBE36
-P 5000 3900
-F 0 "R9" V 5080 3900 50  0000 C CNN
-F 1 "10k" V 4900 3900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 4930 3900 30  0001 C CNN
-F 3 "" H 5000 3900 30  0000 C CNN
-	1    5000 3900
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R7
-U 1 1 5B1BBE3D
-P 4300 3900
-F 0 "R7" V 4380 3900 50  0000 C CNN
-F 1 "52.3k" V 4200 3900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 4230 3900 30  0001 C CNN
-F 3 "" H 4300 3900 30  0000 C CNN
-	1    4300 3900
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	5400 5050 5400 5150
-Wire Wire Line
-	5400 4250 5400 4550
-Wire Wire Line
-	5400 4550 5400 5050
-Text GLabel 6250 4100 1    60   Input ~ 0
-5V
-Wire Wire Line
-	4100 4350 3950 4350
-Wire Wire Line
-	5400 5050 6200 5050
-Wire Wire Line
-	6200 5050 6450 5050
-Connection ~ 3950 5050
-Wire Wire Line
-	3950 5050 5400 5050
-Wire Wire Line
-	3700 5050 3950 5050
-Connection ~ 6200 5050
-Wire Wire Line
-	6450 4450 6450 4600
-Connection ~ 6450 4150
-Wire Wire Line
-	6450 4150 6450 4450
-Wire Wire Line
-	6450 3700 6450 4150
-Connection ~ 6450 4600
-Connection ~ 3850 4550
-Connection ~ 3700 4550
-Wire Wire Line
-	3850 4550 4100 4550
-Wire Wire Line
-	3700 4550 3850 4550
-Connection ~ 5700 4450
-Connection ~ 5400 4550
-$Comp
 L favorites:MCP16311_2 U4
 U 1 1 5B1BFD2A
 P 4650 2100
@@ -220,8 +43,6 @@ $EndComp
 Wire Wire Line
 	6400 2300 6150 2300
 Connection ~ 5350 2750
-Wire Wire Line
-	3900 2050 3900 2350
 Wire Wire Line
 	4050 2050 3900 2050
 Connection ~ 4500 1600
@@ -248,10 +69,6 @@ Wire Wire Line
 	5250 2050 5450 2050
 Wire Wire Line
 	5250 2150 5650 2150
-Wire Wire Line
-	3900 2650 3900 2750
-Wire Wire Line
-	3650 2650 3650 2750
 Wire Wire Line
 	3650 2250 3800 2250
 Connection ~ 3650 2250
@@ -360,8 +177,6 @@ Wire Wire Line
 Wire Wire Line
 	5350 2750 5350 2850
 Wire Wire Line
-	3650 2250 3650 2350
-Wire Wire Line
 	6400 1850 6400 2150
 Wire Wire Line
 	3800 2250 4050 2250
@@ -413,21 +228,8 @@ F 3 "~" H 2050 3650 50  0001 C CNN
 	1    2050 3650
 	-1   0    0    1   
 $EndComp
-Text GLabel 3700 4450 1    60   Input ~ 0
-V_IN
 Text GLabel 2500 3550 2    60   Input ~ 0
 V_IN
-$Comp
-L power:GND #PWR031
-U 1 1 5B52681D
-P 5400 5150
-F 0 "#PWR031" H 5400 4900 50  0001 C CNN
-F 1 "GND" H 5400 5000 50  0000 C CNN
-F 2 "" H 5400 5150 60  0000 C CNN
-F 3 "" H 5400 5150 60  0000 C CNN
-	1    5400 5150
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR029
 U 1 1 5B529148
@@ -511,8 +313,6 @@ Text GLabel 8300 3200 1    50   Input ~ 0
 V_METER
 Text Notes 8600 3150 0    50   ~ 0
 DONE: Calculate the resistances needed here.\n      47k, 31k gives a max output of 3.33V at 8.4V input.\n      51k, 33k gives a max output of 3.3V at 8.4V input.\n      56k, 33k gives a max output of 3.115V at 8.4V input  \n
-Text Notes 7300 4200 2    50   ~ 0
-5V needed for CAN
 $Comp
 L Device:C_Small C33
 U 1 1 5AFD4290
@@ -534,39 +334,7 @@ Wire Wire Line
 Text Notes 9450 4400 2    50   ~ 0
 E12 serien\n
 Text Notes 4100 5500 2    50   ~ 0
-The DRV8833 can handle 11.8V max on the VM (motor voltage)
-Wire Wire Line
-	6450 4900 6450 5050
-Wire Wire Line
-	6450 4600 6450 4700
-Wire Wire Line
-	6250 4450 6450 4450
-Wire Wire Line
-	5700 4450 5950 4450
-Wire Wire Line
-	6200 4600 6200 4700
-Wire Wire Line
-	6200 4900 6200 5050
-Wire Wire Line
-	3950 4900 3950 5050
-Wire Wire Line
-	3950 4350 3950 4700
-Wire Wire Line
-	3700 4550 3700 4700
-Wire Wire Line
-	3700 4900 3700 5050
-Wire Wire Line
-	4400 3900 4550 3900
-Wire Wire Line
-	3950 3900 4200 3900
-Wire Wire Line
-	5100 3900 5400 3900
-Wire Wire Line
-	4550 3900 4900 3900
-Wire Wire Line
-	5700 4000 5700 4100
-Wire Wire Line
-	5700 4300 5700 4450
+The DRV8847 can handle 18V max on the VM (motor voltage)
 Wire Wire Line
 	8600 3850 8700 3850
 Wire Wire Line
@@ -1707,75 +1475,192 @@ AE 5C D9 CB CB AB 7B F7 EE C2 44 B8 50 B6 79 79 79 55 AD 5A 75 CE 9C 39 3A F3 54
 EndData
 $EndBitmap
 $Comp
-L Device:C_Small C?
+L Device:C_Small C34
 U 1 1 5DCE5F0E
-P 100 -1950
-F 0 "C?" H 192 -1904 50  0000 L CNN
-F 1 "10uF" H 192 -1995 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 100 -1950 50  0001 C CNN
-F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1059.pdf" H 100 -1950 50  0001 C CNN
-F 4 "P997-ND " H 100 -1950 50  0001 C CNN "OrderN"
-	1    100  -1950
+P 3500 4100
+F 0 "C34" H 3300 4000 50  0000 L CNN
+F 1 "10uF" H 3200 4100 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 3500 4100 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1059.pdf" H 3500 4100 50  0001 C CNN
+F 4 "P997-ND " H 3500 4100 50  0001 C CNN "OrderN"
+	1    3500 4100
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C?
+L Device:C_Small C36
 U 1 1 5DCEAC35
-P 6600 -1250
-F 0 "C?" H 6692 -1204 50  0000 L CNN
-F 1 "47uF" H 6692 -1295 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 6600 -1250 50  0001 C CNN
-F 3 "https://www.nichicon.co.jp/english/products/pdfs/e-uma.pdf" H 6600 -1250 50  0001 C CNN
-F 4 " 493-10439-1-ND " H 6600 -1250 50  0001 C CNN "OrderN"
-	1    6600 -1250
+P 6400 4300
+F 0 "C36" H 6492 4346 50  0000 L CNN
+F 1 "47uF" H 6492 4255 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 6400 4300 50  0001 C CNN
+F 3 "https://www.nichicon.co.jp/english/products/pdfs/e-uma.pdf" H 6400 4300 50  0001 C CNN
+F 4 " 493-10439-1-ND " H 6400 4300 50  0001 C CNN "OrderN"
+	1    6400 4300
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:D_Schottky D?
+L Device:D_Schottky D5
 U 1 1 5DCECA38
-P 6600 -800
-F 0 "D?" V 6554 -721 50  0000 L CNN
-F 1 "SSB43L" V 6645 -721 50  0000 L CNN
-F 2 "Diode_SMD:D_SMB" H 6600 -800 50  0001 C CNN
-F 3 "www.vishay.com/docs/88884/ssb43l.pdf" H 6600 -800 50  0001 C CNN
-F 4 " SSB43L-E3/52TGICT-ND " V 6600 -800 50  0001 C CNN "OrderN"
-	1    6600 -800
+P 5350 4350
+F 0 "D5" V 5304 4429 50  0000 L CNN
+F 1 "SSB43L" V 5395 4429 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB" H 5350 4350 50  0001 C CNN
+F 3 "www.vishay.com/docs/88884/ssb43l.pdf" H 5350 4350 50  0001 C CNN
+F 4 " SSB43L-E3/52TGICT-ND " V 5350 4350 50  0001 C CNN "OrderN"
+	1    5350 4350
 	0    1    1    0   
 $EndComp
 Text Notes -1300 -1300 0    50   ~ 0
 I = V/R = 20/100000 = 0.0002A = 0.2mA  (Ohms law)\np = I * V = 0.0002 * 20 = 0.004W  (Power rule)\n\nSo Rpgood needs to handle 4mW\n
 $Comp
-L Device:L L?
+L Device:L L3
 U 1 1 5DCEECFF
-P 6550 -350
-F 0 "L?" H 6603 -304 50  0000 L CNN
-F 1 "4,7uH" H 6603 -395 50  0000 L CNN
-F 2 "Inductor_SMD:L_Vishay_IHLP-2525" H 6550 -350 50  0001 C CNN
-F 3 "https://www.vishay.com/docs/34104/ihlp-2525cz-01.pdf" H 6550 -350 50  0001 C CNN
-F 4 " 541-1010-1-ND " H 6550 -350 50  0001 C CNN "OrderN"
-	1    6550 -350
-	1    0    0    -1  
+P 6050 4200
+F 0 "L3" H 6103 4246 50  0000 L CNN
+F 1 "4,7uH" H 6103 4155 50  0000 L CNN
+F 2 "Inductor_SMD:L_Vishay_IHLP-2525" H 6050 4200 50  0001 C CNN
+F 3 "https://www.vishay.com/docs/34104/ihlp-2525cz-01.pdf" H 6050 4200 50  0001 C CNN
+F 4 " 541-1010-1-ND " H 6050 4200 50  0001 C CNN "OrderN"
+	1    6050 4200
+	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:R_Small R?
+L Device:R_Small R17
 U 1 1 5DCEFD9A
-P 100 -1100
-F 0 "R?" H 159 -1054 50  0000 L CNN
-F 1 "100k" H 159 -1145 50  0000 L CNN
-F 2 "" H 100 -1100 50  0001 C CNN
-F 3 "~" H 100 -1100 50  0001 C CNN
-	1    100  -1100
+P 3700 4300
+F 0 "R17" H 3759 4346 50  0000 L CNN
+F 1 "100k" H 3759 4255 50  0000 L CNN
+F 2 "" H 3700 4300 50  0001 C CNN
+F 3 "~" H 3700 4300 50  0001 C CNN
+	1    3700 4300
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C?
+L Device:C_Small C35
 U 1 1 5DCF1277
-P 6600 -1600
-F 0 "C?" H 6692 -1554 50  0000 L CNN
-F 1 "0.1uF" H 6692 -1645 50  0000 L CNN
-F 2 "" H 6600 -1600 50  0001 C CNN
-F 3 "~" H 6600 -1600 50  0001 C CNN
-	1    6600 -1600
+P 5500 4100
+F 0 "C35" H 5592 4146 50  0000 L CNN
+F 1 "0.1uF" H 5592 4055 50  0000 L CNN
+F 2 "" H 5500 4100 50  0001 C CNN
+F 3 "~" H 5500 4100 50  0001 C CNN
+	1    5500 4100
 	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_Switching:ADP2303ARDZ-5.0 U9
+U 1 1 5DD04B17
+P 4650 4200
+F 0 "U9" H 4650 4667 50  0000 C CNN
+F 1 "ADP2303ARDZ-5.0" H 4650 4576 50  0000 C CNN
+F 2 "Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm" H 4800 3850 50  0001 L CNN
+F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/ADP2302_2303.pdf" H 4450 4800 50  0001 C CNN
+	1    4650 4200
+	1    0    0    -1  
+$EndComp
+Text GLabel 3500 3650 1    60   Input ~ 0
+V_IN
+Wire Wire Line
+	4150 4000 3700 4000
+Wire Wire Line
+	4150 4200 3700 4200
+Wire Wire Line
+	3700 4200 3700 4000
+Connection ~ 3700 4200
+Wire Wire Line
+	4150 4400 3700 4400
+Wire Wire Line
+	3700 4000 3500 4000
+Connection ~ 3700 4000
+Wire Wire Line
+	3500 4000 3500 3650
+Connection ~ 3500 4000
+$Comp
+L power:GND #PWR0105
+U 1 1 5DD1DB60
+P 3500 4750
+F 0 "#PWR0105" H 3500 4500 50  0001 C CNN
+F 1 "GND" H 3505 4577 50  0000 C CNN
+F 2 "" H 3500 4750 50  0001 C CNN
+F 3 "" H 3500 4750 50  0001 C CNN
+	1    3500 4750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4750 4600 4750 4700
+Wire Wire Line
+	4750 4700 4650 4700
+Wire Wire Line
+	3500 4700 3500 4750
+Wire Wire Line
+	3500 4200 3500 4700
+Connection ~ 3500 4700
+Wire Wire Line
+	4650 4600 4650 4700
+Connection ~ 4650 4700
+Wire Wire Line
+	4650 4700 3500 4700
+Wire Wire Line
+	5150 4000 5500 4000
+Wire Wire Line
+	5150 4200 5350 4200
+Wire Wire Line
+	5350 4200 5500 4200
+Connection ~ 5350 4200
+Wire Wire Line
+	5500 4200 5900 4200
+Connection ~ 5500 4200
+Wire Wire Line
+	6200 4200 6400 4200
+Wire Wire Line
+	5350 4500 5350 4700
+Wire Wire Line
+	5350 4700 4750 4700
+Connection ~ 4750 4700
+Wire Wire Line
+	6400 4400 6400 4700
+Wire Wire Line
+	6400 4700 5350 4700
+Connection ~ 5350 4700
+$Comp
+L power:+5V #PWR0106
+U 1 1 5DD5929B
+P 6400 3600
+F 0 "#PWR0106" H 6400 3450 50  0001 C CNN
+F 1 "+5V" H 6415 3773 50  0000 C CNN
+F 2 "" H 6400 3600 50  0001 C CNN
+F 3 "" H 6400 3600 50  0001 C CNN
+	1    6400 3600
+	1    0    0    -1  
+$EndComp
+Connection ~ 6400 4200
+Wire Wire Line
+	6400 3700 6400 4200
+Wire Wire Line
+	6400 3700 5200 3700
+Wire Wire Line
+	5200 3700 5200 4400
+Wire Wire Line
+	5200 4400 5150 4400
+Wire Wire Line
+	3900 2050 3900 2400
+Wire Wire Line
+	3650 2250 3650 2400
+Wire Wire Line
+	3650 2600 3650 2750
+Wire Wire Line
+	3900 2600 3900 2750
+Wire Wire Line
+	6400 3700 6400 3600
+Connection ~ 6400 3700
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5DD60D7D
+P 6400 3700
+F 0 "#FLG0101" H 6400 3775 50  0001 C CNN
+F 1 "PWR_FLAG" V 6400 3828 50  0000 L CNN
+F 2 "" H 6400 3700 50  0001 C CNN
+F 3 "~" H 6400 3700 50  0001 C CNN
+	1    6400 3700
+	0    1    1    0   
 $EndComp
 $EndSCHEMATC
