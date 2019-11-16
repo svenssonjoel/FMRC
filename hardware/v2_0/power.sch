@@ -228,7 +228,7 @@ F 3 "~" H 2050 3650 50  0001 C CNN
 	1    2050 3650
 	-1   0    0    1   
 $EndComp
-Text GLabel 2500 3550 2    60   Input ~ 0
+Text GLabel 2550 3550 2    60   Input ~ 0
 V_IN
 $Comp
 L power:GND #PWR029
@@ -260,7 +260,7 @@ Wire Wire Line
 	2350 3400 2350 3550
 Connection ~ 2350 3550
 Wire Wire Line
-	2350 3550 2500 3550
+	2350 3550 2550 3550
 Wire Wire Line
 	2250 3650 2500 3650
 Text GLabel 7900 3500 0    50   Input ~ 0
