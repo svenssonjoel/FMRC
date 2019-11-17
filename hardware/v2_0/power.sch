@@ -182,8 +182,6 @@ Wire Wire Line
 	3800 2250 4050 2250
 Wire Wire Line
 	3650 1850 3650 2250
-Text GLabel 3650 1850 1    60   Input ~ 0
-5V
 $Comp
 L power:VCC #PWR032
 U 1 1 5B1BFD9C
@@ -312,7 +310,7 @@ Connection ~ 8300 3500
 Text GLabel 8300 3200 1    50   Input ~ 0
 V_METER
 Text Notes 8600 3150 0    50   ~ 0
-DONE: Calculate the resistances needed here.\n      47k, 31k gives a max output of 3.33V at 8.4V input.\n      51k, 33k gives a max output of 3.3V at 8.4V input.\n      56k, 33k gives a max output of 3.115V at 8.4V input  \n
+TODO: Calculate the resistances needed here.\n      47k, 31k gives a max output of 3.33V at 8.4V input.\n      51k, 33k gives a max output of 3.3V at 8.4V input.\n      56k, 33k gives a max output of 3.115V at 8.4V input  \n
 $Comp
 L Device:C_Small C33
 U 1 1 5AFD4290
@@ -1477,13 +1475,13 @@ $EndBitmap
 $Comp
 L Device:C_Small C34
 U 1 1 5DCE5F0E
-P 3500 4100
-F 0 "C34" H 3300 4000 50  0000 L CNN
-F 1 "10uF" H 3200 4100 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 3500 4100 50  0001 C CNN
-F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1059.pdf" H 3500 4100 50  0001 C CNN
-F 4 "P997-ND " H 3500 4100 50  0001 C CNN "OrderN"
-	1    3500 4100
+P 3500 4150
+F 0 "C34" H 3300 4050 50  0000 L CNN
+F 1 "10uF" H 3200 4150 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 3500 4150 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1059.pdf" H 3500 4150 50  0001 C CNN
+F 4 "P997-ND " H 3500 4150 50  0001 C CNN "OrderN"
+	1    3500 4150
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1592,7 +1590,7 @@ Wire Wire Line
 Wire Wire Line
 	3500 4700 3500 4750
 Wire Wire Line
-	3500 4200 3500 4700
+	3500 4250 3500 4300
 Connection ~ 3500 4700
 Wire Wire Line
 	4650 4600 4650 4700
@@ -1662,5 +1660,94 @@ F 2 "" H 6400 3700 50  0001 C CNN
 F 3 "~" H 6400 3700 50  0001 C CNN
 	1    6400 3700
 	0    1    1    0   
+$EndComp
+$Comp
+L power:+5V #PWR0107
+U 1 1 5DD19B4C
+P 3650 1850
+F 0 "#PWR0107" H 3650 1700 50  0001 C CNN
+F 1 "+5V" H 3665 2023 50  0000 C CNN
+F 2 "" H 3650 1850 50  0001 C CNN
+F 3 "" H 3650 1850 50  0001 C CNN
+	1    3650 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C18
+U 1 1 5DD9CCB8
+P 6800 4300
+F 0 "C18" H 6892 4346 50  0000 L CNN
+F 1 "47uF" H 6892 4255 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 6800 4300 50  0001 C CNN
+F 3 "https://www.nichicon.co.jp/english/products/pdfs/e-uma.pdf" H 6800 4300 50  0001 C CNN
+F 4 " 493-10439-1-ND " H 6800 4300 50  0001 C CNN "OrderN"
+	1    6800 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6400 4200 6800 4200
+Wire Wire Line
+	6800 4400 6400 4400
+Connection ~ 6400 4400
+$Comp
+L Device:C_Small C?
+U 1 1 5DD3C698
+P 3100 4150
+F 0 "C?" H 2900 4050 50  0000 L CNN
+F 1 "10uF" H 2800 4150 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 3100 4150 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1059.pdf" H 3100 4150 50  0001 C CNN
+F 4 "P997-ND " H 3100 4150 50  0001 C CNN "OrderN"
+	1    3100 4150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 4300 3100 4300
+Wire Wire Line
+	3100 4300 3100 4250
+Connection ~ 3500 4300
+Wire Wire Line
+	3500 4300 3500 4700
+Wire Wire Line
+	3500 4000 3500 4050
+Wire Wire Line
+	3500 4000 3100 4000
+Wire Wire Line
+	3100 4000 3100 4050
+$Comp
+L Device:CP_Small C?
+U 1 1 5DD1A7FA
+P 1700 4450
+F 0 "C?" H 1788 4496 50  0000 L CNN
+F 1 "47uF" H 1788 4405 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 1700 4450 50  0001 C CNN
+F 3 "http://www.chemi-con.co.jp/cgi-bin/CAT_DB/SEARCH/cat_db_al.cgi?e=e&j=p&pdfname=ky" H 1700 4450 50  0001 C CNN
+F 4 " 565-4258-1-ND " H 1700 4450 50  0001 C CNN "orderN"
+	1    1700 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 5DD23EDB
+P 6850 4900
+F 0 "C?" H 6942 4946 50  0000 L CNN
+F 1 "47uF" H 6942 4855 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 6850 4900 50  0001 C CNN
+F 3 "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61A476ME15-01.pdf" H 6850 4900 50  0001 C CNN
+F 4 "490-9961-1-ND  " H 6850 4900 50  0001 C CNN "OrderN"
+	1    6850 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 5DD263D0
+P 2150 4450
+F 0 "C?" H 2242 4496 50  0000 L CNN
+F 1 "2.2uF" H 2242 4405 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 2150 4450 50  0001 C CNN
+F 3 "https://www.yuden.co.jp/productdata/catalog/mlcc01_e.pdf" H 2150 4450 50  0001 C CNN
+F 4 " 587-3169-1-ND " H 2150 4450 50  0001 C CNN "OrderN"
+	1    2150 4450
+	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

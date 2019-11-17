@@ -32,55 +32,6 @@ F 3 "" H 5550 3100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR038
-U 1 1 5B541CB7
-P 5550 5400
-F 0 "#PWR038" H 5550 5150 50  0001 C CNN
-F 1 "GND" H 5555 5227 50  0000 C CNN
-F 2 "" H 5550 5400 50  0001 C CNN
-F 3 "" H 5550 5400 50  0001 C CNN
-	1    5550 5400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5550 5300 5550 5400
-Wire Wire Line
-	6150 4700 7200 4700
-Wire Wire Line
-	6150 4800 7200 4800
-Wire Wire Line
-	6150 4900 6700 4900
-Wire Wire Line
-	6700 4900 6700 4950
-Wire Wire Line
-	6700 4950 7200 4950
-Wire Wire Line
-	6700 5000 6700 5050
-Wire Wire Line
-	6700 5050 7200 5050
-$Comp
-L Connector:Screw_Terminal_01x02 J7
-U 1 1 5B542931
-P 7400 4700
-F 0 "J7" H 7480 4692 50  0000 L CNN
-F 1 "Motor3" H 7480 4601 50  0000 L CNN
-F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal" H 7400 4700 50  0001 C CNN
-F 3 "~" H 7400 4700 50  0001 C CNN
-	1    7400 4700
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector:Screw_Terminal_01x02 J8
-U 1 1 5B542938
-P 7400 4950
-F 0 "J8" H 7480 4942 50  0000 L CNN
-F 1 "Motor4" H 7480 4851 50  0000 L CNN
-F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal" H 7400 4950 50  0001 C CNN
-F 3 "~" H 7400 4950 50  0001 C CNN
-	1    7400 4950
-	1    0    0    -1  
-$EndComp
-$Comp
 L Connector:Screw_Terminal_01x02 J5
 U 1 1 5B542A37
 P 7400 2350
@@ -112,7 +63,7 @@ Wire Wire Line
 	6650 2700 7200 2700
 Text Notes 2750 2200 0    50   ~ 0
 AISEN and BISEN directly to \nground means no "current control". 
-Text Notes 6300 1950 0    50   ~ 0
+Text Notes 6775 1525 0    50   ~ 0
 nFAULT = 0 when overheated.\n        = 1 during normal function.
 Wire Wire Line
 	4950 1850 4800 1850
@@ -127,26 +78,6 @@ F 3 "" H 4450 2050 50  0001 C CNN
 	1    4450 2050
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:GND #PWR034
-U 1 1 5B551738
-P 4450 4400
-F 0 "#PWR034" H 4450 4150 50  0001 C CNN
-F 1 "GND" H 4455 4227 50  0000 C CNN
-F 2 "" H 4450 4400 50  0001 C CNN
-F 3 "" H 4450 4400 50  0001 C CNN
-	1    4450 4400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4950 4400 4700 4400
-Wire Wire Line
-	4950 4500 4700 4500
-Wire Wire Line
-	4700 4500 4700 4400
-Connection ~ 4700 4400
-Wire Wire Line
-	4700 4400 4450 4400
 Wire Wire Line
 	5750 1350 5750 1450
 Wire Wire Line
@@ -201,128 +132,9 @@ F 3 "~" H 4850 1200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5350 1250 5350 1300
-$Comp
-L power:GND #PWR035
-U 1 1 5B55677D
-P 5350 1300
-F 0 "#PWR035" H 5350 1050 50  0001 C CNN
-F 1 "GND" H 5355 1127 50  0000 C CNN
-F 2 "" H 5350 1300 50  0001 C CNN
-F 3 "" H 5350 1300 50  0001 C CNN
-	1    5350 1300
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP_Small C29
-U 1 1 5B556784
-P 5350 1150
-F 0 "C29" H 5438 1196 50  0000 L CNN
-F 1 "10uF" H 5438 1105 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 5350 1150 50  0001 C CNN
-F 3 "~" H 5350 1150 50  0001 C CNN
-	1    5350 1150
-	1    0    0    -1  
-$EndComp
-Connection ~ 5350 1050
-Wire Wire Line
-	5850 1050 5350 1050
-Text GLabel 5850 950  1    50   Input ~ 0
-V_IN
-Wire Wire Line
-	5750 3700 5750 3800
-Wire Wire Line
-	6100 3800 6200 3800
-Wire Wire Line
-	5750 3800 5900 3800
-Connection ~ 5750 3800
-Wire Wire Line
-	5750 3900 5750 3800
-$Comp
-L Device:C_Small C32
-U 1 1 5B559D72
-P 6000 3800
-F 0 "C32" V 5771 3800 50  0000 C CNN
-F 1 "2.2u" V 5862 3800 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 6000 3800 50  0001 C CNN
-F 3 "~" H 6000 3800 50  0001 C CNN
-	1    6000 3800
-	0    1    1    0   
-$EndComp
-$Comp
-L power:GND #PWR042
-U 1 1 5B559D79
-P 6200 3800
-F 0 "#PWR042" H 6200 3550 50  0001 C CNN
-F 1 "GND" H 6205 3627 50  0000 C CNN
-F 2 "" H 6200 3800 50  0001 C CNN
-F 3 "" H 6200 3800 50  0001 C CNN
-	1    6200 3800
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:VCC #PWR040
-U 1 1 5B559D7F
-P 5750 3700
-F 0 "#PWR040" H 5750 3550 50  0001 C CNN
-F 1 "VCC" H 5767 3873 50  0000 C CNN
-F 2 "" H 5750 3700 50  0001 C CNN
-F 3 "" H 5750 3700 50  0001 C CNN
-	1    5750 3700
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C28
-U 1 1 5B559D85
-P 4850 3550
-F 0 "C28" H 4965 3596 50  0000 L CNN
-F 1 "0.01uF" H 4965 3505 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 4888 3400 50  0001 C CNN
-F 3 "~" H 4850 3550 50  0001 C CNN
-	1    4850 3550
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5350 3600 5350 3650
-$Comp
-L power:GND #PWR036
-U 1 1 5B559D8E
-P 5350 3650
-F 0 "#PWR036" H 5350 3400 50  0001 C CNN
-F 1 "GND" H 5355 3477 50  0000 C CNN
-F 2 "" H 5350 3650 50  0001 C CNN
-F 3 "" H 5350 3650 50  0001 C CNN
-	1    5350 3650
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP_Small C30
-U 1 1 5B559D95
-P 5350 3500
-F 0 "C30" H 5438 3546 50  0000 L CNN
-F 1 "10uF" H 5438 3455 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 5350 3500 50  0001 C CNN
-F 3 "~" H 5350 3500 50  0001 C CNN
-	1    5350 3500
-	1    0    0    -1  
-$EndComp
-Connection ~ 5350 3400
-Wire Wire Line
-	5850 3400 5350 3400
-Wire Wire Line
-	4850 1050 5350 1050
-Wire Wire Line
 	4850 1350 4850 1950
 Wire Wire Line
 	4850 1950 4950 1950
-Wire Wire Line
-	4850 3400 5350 3400
-Wire Wire Line
-	4850 3700 4850 4300
-Wire Wire Line
-	4850 4300 4950 4300
-Wire Wire Line
-	6700 5000 6150 5000
 Wire Wire Line
 	6150 2350 7200 2350
 Wire Wire Line
@@ -340,47 +152,10 @@ Wire Wire Line
 Wire Wire Line
 	4950 2650 4800 2650
 Wire Wire Line
-	4950 4200 4750 4200
-Wire Wire Line
 	5850 1550 5850 1050
 Connection ~ 5850 1050
 Wire Wire Line
 	5850 950  5850 1050
-Wire Wire Line
-	4950 4700 4750 4700
-Wire Wire Line
-	4950 4800 4750 4800
-Wire Wire Line
-	4950 4900 4750 4900
-Wire Wire Line
-	4950 5000 4750 5000
-Text GLabel 5850 950  1    50   Input ~ 0
-V_IN
-Text GLabel 5850 3300 1    50   Input ~ 0
-V_IN
-Wire Wire Line
-	5850 3400 5850 3300
-Wire Wire Line
-	5850 3400 5850 3900
-Connection ~ 5850 3400
-Text GLabel 4800 2350 0    50   Input ~ 0
-DRV_AIN1_1
-Text GLabel 4800 2450 0    50   Input ~ 0
-DRV_AIN2_1
-Text GLabel 4800 2550 0    50   Input ~ 0
-DRV_BIN1_1
-Text GLabel 4800 2650 0    50   Input ~ 0
-DRV_BIN2_1
-Text GLabel 4750 4700 0    50   Input ~ 0
-DRV_AIN1_2
-Text GLabel 4750 4800 0    50   Input ~ 0
-DRV_AIN2_2
-Text GLabel 4750 4900 0    50   Input ~ 0
-DRV_BIN1_2
-Text GLabel 4750 5000 0    50   Input ~ 0
-DRV_BIN2_2
-Text GLabel 9250 2150 2    50   Output ~ 0
-DRV_nFAULT
 Wire Wire Line
 	4950 2050 4650 2050
 Wire Wire Line
@@ -390,17 +165,6 @@ Wire Wire Line
 Connection ~ 4650 2050
 Wire Wire Line
 	4650 2050 4450 2050
-$Comp
-L Driver_Motor:DRV8833PW U7
-U 1 1 5B516C56
-P 5550 4600
-F 0 "U7" H 5550 5300 50  0000 C CNN
-F 1 "DRV8833PW" H 5400 5150 50  0000 C CNN
-F 2 "Package_SO:TSSOP-16_4.4x5mm_P0.65mm" H 6000 5050 50  0001 L CNN
-F 3 "http://www.ti.com/lit/ds/symlink/drv8833.pdf" H 5400 5150 50  0001 C CNN
-	1    5550 4600
-	1    0    0    -1  
-$EndComp
 $Comp
 L Driver_Motor:DRV8833PW U6
 U 1 1 5B516BCB
@@ -412,74 +176,30 @@ F 3 "http://www.ti.com/lit/ds/symlink/drv8833.pdf" H 5400 2800 50  0001 C CNN
 	1    5550 2250
 	1    0    0    -1  
 $EndComp
-Text Notes 6750 4450 0    50   ~ 0
+Text Notes 7950 1950 0    50   ~ 0
 Pulled low on fault. \nI think this is an "open drain". \nIs a wired or an option ? 
-Wire Wire Line
-	9050 4500 9050 3150
-Wire Wire Line
-	6150 4500 9050 4500
 $Comp
 L Device:R_Small R10
 U 1 1 5AF94E00
-P 9500 3150
-F 0 "R10" V 9304 3150 50  0000 C CNN
-F 1 "10k" V 9395 3150 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 9500 3150 50  0001 C CNN
-F 3 "~" H 9500 3150 50  0001 C CNN
-	1    9500 3150
-	0    1    1    0   
+P 6350 1975
+F 0 "R10" V 6154 1975 50  0000 C CNN
+F 1 "10k" V 6245 1975 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 6350 1975 50  0001 C CNN
+F 3 "~" H 6350 1975 50  0001 C CNN
+	1    6350 1975
+	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	9050 3150 9400 3150
-Wire Wire Line
-	9600 3150 9950 3150
-Wire Wire Line
-	9950 3150 9950 3000
 $Comp
 L power:VCC #PWR0101
 U 1 1 5AF97779
-P 9950 3000
-F 0 "#PWR0101" H 9950 2850 50  0001 C CNN
-F 1 "VCC" H 9967 3173 50  0000 C CNN
-F 2 "" H 9950 3000 50  0001 C CNN
-F 3 "" H 9950 3000 50  0001 C CNN
-	1    9950 3000
+P 6350 1750
+F 0 "#PWR0101" H 6350 1600 50  0001 C CNN
+F 1 "VCC" H 6367 1923 50  0000 C CNN
+F 2 "" H 6350 1750 50  0001 C CNN
+F 3 "" H 6350 1750 50  0001 C CNN
+	1    6350 1750
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	9050 2150 9050 3150
-Wire Wire Line
-	6150 2150 9050 2150
-Connection ~ 9050 3150
-Wire Wire Line
-	9050 2150 9250 2150
-Connection ~ 9050 2150
-Text Notes 9800 3300 0    50   ~ 0
-hmm ?
-$Comp
-L Device:R_Small R13
-U 1 1 5B02FD2C
-P 4650 4200
-F 0 "R13" V 4454 4200 50  0000 C CNN
-F 1 "10k" V 4545 4200 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 4650 4200 50  0001 C CNN
-F 3 "~" H 4650 4200 50  0001 C CNN
-	1    4650 4200
-	0    1    1    0   
-$EndComp
-$Comp
-L power:VCC #PWR046
-U 1 1 5B02FE2E
-P 4400 4200
-F 0 "#PWR046" H 4400 4050 50  0001 C CNN
-F 1 "VCC" H 4417 4373 50  0000 C CNN
-F 2 "" H 4400 4200 50  0001 C CNN
-F 3 "" H 4400 4200 50  0001 C CNN
-	1    4400 4200
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4550 4200 4400 4200
 $Comp
 L Device:R_Small R14
 U 1 1 5B0330A5
@@ -9864,15 +9584,463 @@ A8 2E 00 80 08 AA 0B 00 20 82 EA 02 00 88 A0 BA 00 00 22 A8 2E 00 80 08 AA 0B 00
 EndData
 $EndBitmap
 $Comp
-L favorites:DRV8847 U?
+L favorites:DRV8847 U5
 U 1 1 5DD0F0BB
-P 14350 5750
-F 0 "U?" H 14350 6631 50  0000 C CNN
-F 1 "DRV8847" H 14350 6540 50  0000 C CNN
-F 2 "Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm" H 12700 6700 50  0001 L CNN
-F 3 "http://www.ti.com/lit/ds/symlink/drv8847.pdf" H 13650 6800 50  0001 C CNN
-F 4 "296-53424-1-ND " H 14350 5750 50  0001 C CNN "OrderN"
-	1    14350 5750
+P 3950 4500
+F 0 "U5" H 3650 5050 50  0000 C CNN
+F 1 "DRV8847" H 3550 3900 50  0000 C CNN
+F 2 "Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm" H 2300 5450 50  0001 L CNN
+F 3 "http://www.ti.com/lit/ds/symlink/drv8847.pdf" H 3250 5550 50  0001 C CNN
+F 4 "296-53424-1-ND " H 3950 4500 50  0001 C CNN "OrderN"
+	1    3950 4500
 	1    0    0    -1  
 $EndComp
+$Comp
+L power:+5V #PWR0108
+U 1 1 5DD3F637
+P 5850 950
+F 0 "#PWR0108" H 5850 800 50  0001 C CNN
+F 1 "+5V" H 5865 1123 50  0000 C CNN
+F 2 "" H 5850 950 50  0001 C CNN
+F 3 "" H 5850 950 50  0001 C CNN
+	1    5850 950 
+	1    0    0    -1  
+$EndComp
+Text HLabel 4800 2350 0    50   Input ~ 0
+5V_DRV_1
+Text HLabel 4800 2450 0    50   Input ~ 0
+5V_DRV_2
+Text HLabel 4800 2550 0    50   Input ~ 0
+5V_DRV_3
+Text HLabel 4800 2650 0    50   Input ~ 0
+5V_DRV_4
+$Comp
+L power:GND #PWR0109
+U 1 1 5DD4C0A9
+P 4950 4100
+F 0 "#PWR0109" H 4950 3850 50  0001 C CNN
+F 1 "GND" H 4955 3927 50  0000 C CNN
+F 2 "" H 4950 4100 50  0001 C CNN
+F 3 "" H 4950 4100 50  0001 C CNN
+	1    4950 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4550 4200 4700 4200
+Wire Wire Line
+	4700 4200 4700 4100
+Wire Wire Line
+	4700 4000 4950 4000
+Wire Wire Line
+	4950 4000 4950 4100
+Wire Wire Line
+	4550 4100 4700 4100
+Connection ~ 4700 4100
+Wire Wire Line
+	4700 4100 4700 4000
+Text HLabel 6525 2150 2    50   Input ~ 0
+5V_DRV_NFAULT
+Wire Wire Line
+	6150 2150 6350 2150
+Wire Wire Line
+	6350 2150 6350 2075
+Connection ~ 6350 2150
+Wire Wire Line
+	6350 2150 6525 2150
+Wire Wire Line
+	6350 1875 6350 1750
+$Comp
+L Device:R_Small R9
+U 1 1 5DD63F1E
+P 5250 4225
+F 0 "R9" V 5054 4225 50  0000 C CNN
+F 1 "10k" V 5145 4225 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 5250 4225 50  0001 C CNN
+F 3 "~" H 5250 4225 50  0001 C CNN
+	1    5250 4225
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:VCC #PWR0110
+U 1 1 5DD63F2B
+P 5250 4000
+F 0 "#PWR0110" H 5250 3850 50  0001 C CNN
+F 1 "VCC" H 5267 4173 50  0000 C CNN
+F 2 "" H 5250 4000 50  0001 C CNN
+F 3 "" H 5250 4000 50  0001 C CNN
+	1    5250 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 4125 5250 4000
+Wire Wire Line
+	5250 4400 5250 4325
+Wire Wire Line
+	4550 4400 5250 4400
+Text HLabel 5550 4400 2    50   Input ~ 0
+DRV1_NFAULT
+Wire Wire Line
+	5250 4400 5550 4400
+Connection ~ 5250 4400
+$Comp
+L Connector:Screw_Terminal_01x02 J7
+U 1 1 5DD6A4A7
+P 5250 4600
+F 0 "J7" H 5330 4592 50  0000 L CNN
+F 1 "DRV1_MTR1" H 5330 4501 50  0000 L CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal" H 5250 4600 50  0001 C CNN
+F 3 "~" H 5250 4600 50  0001 C CNN
+	1    5250 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J8
+U 1 1 5DD6DA98
+P 5250 4800
+F 0 "J8" H 5330 4792 50  0000 L CNN
+F 1 "DRV1_MTR2" H 5330 4701 50  0000 L CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal" H 5250 4800 50  0001 C CNN
+F 3 "~" H 5250 4800 50  0001 C CNN
+	1    5250 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4550 4600 5050 4600
+Wire Wire Line
+	4550 4700 5050 4700
+Wire Wire Line
+	4550 4800 5050 4800
+Wire Wire Line
+	4550 4900 5050 4900
+$Comp
+L Device:R_Small R7
+U 1 1 5DD745CF
+P 3150 4100
+F 0 "R7" V 2954 4100 50  0000 C CNN
+F 1 "10k" V 3045 4100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 3150 4100 50  0001 C CNN
+F 3 "~" H 3150 4100 50  0001 C CNN
+	1    3150 4100
+	0    1    1    0   
+$EndComp
+$Comp
+L power:VCC #PWR0111
+U 1 1 5DD745DC
+P 2850 4100
+F 0 "#PWR0111" H 2850 3950 50  0001 C CNN
+F 1 "VCC" H 2867 4273 50  0000 C CNN
+F 2 "" H 2850 4100 50  0001 C CNN
+F 3 "" H 2850 4100 50  0001 C CNN
+	1    2850 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3050 4100 2850 4100
+Wire Wire Line
+	3350 4100 3250 4100
+$Comp
+L power:GND #PWR0112
+U 1 1 5DD782A6
+P 2650 4450
+F 0 "#PWR0112" H 2650 4200 50  0001 C CNN
+F 1 "GND" H 2655 4277 50  0000 C CNN
+F 2 "" H 2650 4450 50  0001 C CNN
+F 3 "" H 2650 4450 50  0001 C CNN
+	1    2650 4450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 4400 3100 4400
+Wire Wire Line
+	3100 4400 3100 4300
+Wire Wire Line
+	3100 4300 2650 4300
+Wire Wire Line
+	2650 4300 2650 4450
+Wire Wire Line
+	3350 4300 3100 4300
+Connection ~ 3100 4300
+Text GLabel 3950 3500 1    60   Input ~ 0
+V_IN
+Wire Wire Line
+	3950 3800 3950 3600
+Text HLabel 3350 4600 0    50   Input ~ 0
+DRV1_CH1
+Text HLabel 3350 4700 0    50   Input ~ 0
+DRV1_CH2
+Text HLabel 3350 4800 0    50   Input ~ 0
+DRV1_CH3
+Text HLabel 3350 4900 0    50   Input ~ 0
+DRV1_CH4
+$Comp
+L power:GND #PWR0113
+U 1 1 5DD8F2CB
+P 3900 5400
+F 0 "#PWR0113" H 3900 5150 50  0001 C CNN
+F 1 "GND" H 3905 5227 50  0000 C CNN
+F 2 "" H 3900 5400 50  0001 C CNN
+F 3 "" H 3900 5400 50  0001 C CNN
+	1    3900 5400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3900 5200 3900 5300
+Wire Wire Line
+	4050 5200 4050 5300
+Wire Wire Line
+	4050 5300 3900 5300
+Connection ~ 3900 5300
+Wire Wire Line
+	3900 5300 3900 5400
+Wire Wire Line
+	8900 4200 9050 4200
+Wire Wire Line
+	9050 4200 9050 4100
+Wire Wire Line
+	9600 4225 9600 4100
+$Comp
+L favorites:DRV8847 U7
+U 1 1 5DD901A2
+P 8300 4600
+F 0 "U7" H 8000 5150 50  0000 C CNN
+F 1 "DRV8847" H 7900 4000 50  0000 C CNN
+F 2 "Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm" H 6650 5550 50  0001 L CNN
+F 3 "http://www.ti.com/lit/ds/symlink/drv8847.pdf" H 7600 5650 50  0001 C CNN
+F 4 "296-53424-1-ND " H 8300 4600 50  0001 C CNN "OrderN"
+	1    8300 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9050 4100 9300 4100
+Wire Wire Line
+	7450 4500 7450 4400
+Wire Wire Line
+	8900 4800 9400 4800
+Wire Wire Line
+	9050 4300 9050 4200
+Connection ~ 9600 4500
+Wire Wire Line
+	8300 3900 8300 3750
+Wire Wire Line
+	8900 4700 9400 4700
+Wire Wire Line
+	8400 5400 8250 5400
+$Comp
+L Device:R_Small R13
+U 1 1 5DD901B8
+P 7500 4200
+F 0 "R13" V 7304 4200 50  0000 C CNN
+F 1 "10k" V 7395 4200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7500 4200 50  0001 C CNN
+F 3 "~" H 7500 4200 50  0001 C CNN
+	1    7500 4200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7700 4500 7450 4500
+$Comp
+L power:GND #PWR0114
+U 1 1 5DD901C6
+P 9300 4200
+F 0 "#PWR0114" H 9300 3950 50  0001 C CNN
+F 1 "GND" H 9305 4027 50  0000 C CNN
+F 2 "" H 9300 4200 50  0001 C CNN
+F 3 "" H 9300 4200 50  0001 C CNN
+	1    9300 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J16
+U 1 1 5DD901D4
+P 9600 4700
+F 0 "J16" H 9680 4692 50  0000 L CNN
+F 1 "DRV2_MTR1" H 9680 4601 50  0000 L CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal" H 9600 4700 50  0001 C CNN
+F 3 "~" H 9600 4700 50  0001 C CNN
+	1    9600 4700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J17
+U 1 1 5DD901E2
+P 9600 4900
+F 0 "J17" H 9680 4892 50  0000 L CNN
+F 1 "DRV2_MTR2" H 9680 4801 50  0000 L CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal" H 9600 4900 50  0001 C CNN
+F 3 "~" H 9600 4900 50  0001 C CNN
+	1    9600 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0115
+U 1 1 5DD901EF
+P 8250 5500
+F 0 "#PWR0115" H 8250 5250 50  0001 C CNN
+F 1 "GND" H 8255 5327 50  0000 C CNN
+F 2 "" H 8250 5500 50  0001 C CNN
+F 3 "" H 8250 5500 50  0001 C CNN
+	1    8250 5500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8900 4900 9400 4900
+Wire Wire Line
+	9600 4500 9900 4500
+Wire Wire Line
+	8250 5300 8250 5400
+Wire Wire Line
+	8250 5400 8250 5500
+Wire Wire Line
+	7400 4200 7200 4200
+$Comp
+L power:VCC #PWR0116
+U 1 1 5DD90201
+P 9600 4100
+F 0 "#PWR0116" H 9600 3950 50  0001 C CNN
+F 1 "VCC" H 9617 4273 50  0000 C CNN
+F 2 "" H 9600 4100 50  0001 C CNN
+F 3 "" H 9600 4100 50  0001 C CNN
+	1    9600 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8900 4300 9050 4300
+Text GLabel 8300 3600 1    60   Input ~ 0
+V_IN
+Wire Wire Line
+	8400 5300 8400 5400
+$Comp
+L Device:R_Small R18
+U 1 1 5DD90212
+P 9600 4325
+F 0 "R18" V 9404 4325 50  0000 C CNN
+F 1 "10k" V 9495 4325 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 9600 4325 50  0001 C CNN
+F 3 "~" H 9600 4325 50  0001 C CNN
+	1    9600 4325
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	8900 4500 9600 4500
+Connection ~ 9050 4200
+Text HLabel 7700 4900 0    50   Input ~ 0
+DRV2_CH3
+$Comp
+L power:VCC #PWR0117
+U 1 1 5DD90222
+P 7200 4200
+F 0 "#PWR0117" H 7200 4050 50  0001 C CNN
+F 1 "VCC" H 7217 4373 50  0000 C CNN
+F 2 "" H 7200 4200 50  0001 C CNN
+F 3 "" H 7200 4200 50  0001 C CNN
+	1    7200 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9300 4100 9300 4200
+Wire Wire Line
+	7700 4200 7600 4200
+Connection ~ 8250 5400
+Wire Wire Line
+	7000 4400 7000 4550
+$Comp
+L power:GND #PWR0118
+U 1 1 5DD90233
+P 7000 4550
+F 0 "#PWR0118" H 7000 4300 50  0001 C CNN
+F 1 "GND" H 7005 4377 50  0000 C CNN
+F 2 "" H 7000 4550 50  0001 C CNN
+F 3 "" H 7000 4550 50  0001 C CNN
+	1    7000 4550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9600 4500 9600 4425
+Wire Wire Line
+	8900 5000 9400 5000
+Connection ~ 7450 4400
+Text HLabel 7700 4800 0    50   Input ~ 0
+DRV2_CH2
+Text HLabel 7700 4700 0    50   Input ~ 0
+DRV2_CH1
+Text HLabel 7700 5000 0    50   Input ~ 0
+DRV2_CH4
+Text HLabel 9900 4500 2    50   Input ~ 0
+DRV2_NFAULT
+Wire Wire Line
+	7700 4400 7450 4400
+Wire Wire Line
+	7450 4400 7000 4400
+Wire Wire Line
+	4850 1050 5850 1050
+$Comp
+L Device:C_Small C?
+U 1 1 5DD34499
+P 4350 3550
+F 0 "C?" H 4442 3596 50  0000 L CNN
+F 1 "C_Small" H 4442 3505 50  0000 L CNN
+F 2 "" H 4350 3550 50  0001 C CNN
+F 3 "~" H 4350 3550 50  0001 C CNN
+	1    4350 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5DD34EE3
+P 4350 3800
+F 0 "#PWR?" H 4350 3550 50  0001 C CNN
+F 1 "GND" H 4355 3627 50  0000 C CNN
+F 2 "" H 4350 3800 50  0001 C CNN
+F 3 "" H 4350 3800 50  0001 C CNN
+	1    4350 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 3600 4150 3600
+Wire Wire Line
+	4150 3600 4150 3350
+Wire Wire Line
+	4150 3350 4350 3350
+Wire Wire Line
+	4350 3350 4350 3450
+Connection ~ 3950 3600
+Wire Wire Line
+	3950 3600 3950 3500
+Wire Wire Line
+	4350 3650 4350 3800
+$Comp
+L Device:C_Small C?
+U 1 1 5DD3723A
+P 8800 3650
+F 0 "C?" H 8892 3696 50  0000 L CNN
+F 1 "C_Small" H 8892 3605 50  0000 L CNN
+F 2 "" H 8800 3650 50  0001 C CNN
+F 3 "~" H 8800 3650 50  0001 C CNN
+	1    8800 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5DD37A05
+P 8800 3850
+F 0 "#PWR?" H 8800 3600 50  0001 C CNN
+F 1 "GND" H 8805 3677 50  0000 C CNN
+F 2 "" H 8800 3850 50  0001 C CNN
+F 3 "" H 8800 3850 50  0001 C CNN
+	1    8800 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8800 3850 8800 3750
+Wire Wire Line
+	8800 3550 8800 3450
+Wire Wire Line
+	8800 3450 8450 3450
+Wire Wire Line
+	8450 3450 8450 3750
+Wire Wire Line
+	8450 3750 8300 3750
+Connection ~ 8300 3750
+Wire Wire Line
+	8300 3750 8300 3600
 $EndSCHEMATC

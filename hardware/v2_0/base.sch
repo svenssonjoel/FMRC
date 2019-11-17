@@ -886,16 +886,6 @@ Wire Wire Line
 	3400 4600 3200 4600
 Wire Wire Line
 	3400 4700 3200 4700
-Text Notes 2650 4500 3    50   ~ 0
-Temporary!!
-Text GLabel 3200 4400 0    50   Output ~ 0
-DRV_AIN1_2
-Text GLabel 3200 4500 0    50   Output ~ 0
-DRV_AIN2_2
-Text GLabel 3200 4600 0    50   Output ~ 0
-DRV_BIN1_2
-Text GLabel 3200 4700 0    50   Output ~ 0
-DRV_BIN2_2
 Wire Wire Line
 	3400 4800 3200 4800
 Wire Wire Line
@@ -959,14 +949,6 @@ Wire Wire Line
 	10600 5050 10500 5050
 Text Notes 10050 5650 0    50   ~ 0
 UART PINS \nUART4 TX: 14, 51\nUART4 RX: 15, 52 \nUART5 TX: 53\nUART5 RX: 54
-Text GLabel 3400 1000 0    50   Output ~ 0
-DRV_AIN1_1
-Text GLabel 3400 1100 0    50   Output ~ 0
-DRV_AIN2_1
-Text GLabel 3400 1200 0    50   Output ~ 0
-DRV_BIN1_1
-Text GLabel 3400 1300 0    50   Output ~ 0
-DRV_BIN2_1
 NoConn ~ 3200 5000
 NoConn ~ 3200 5100
 Text GLabel 3200 4800 0    50   Input ~ 0
@@ -1185,10 +1167,10 @@ Text GLabel 3400 3500 0    50   Input ~ 0
 NRFSWDIO
 Text GLabel 3400 3600 0    50   Input ~ 0
 NRFSWDCLK
-Text Notes 4000 3150 0    50   ~ 0
-USART3_TX\n
+Text Notes 4000 3200 0    50   ~ 0
+USART3_TX TIM2_CH3\n\n
 Text Notes 4000 3250 0    50   ~ 0
-USART3_RX\n
+USART3_RX TIM2_CH4\n
 Text Notes 2750 1450 0    50   ~ 0
 SPI1_NSS\n
 Text Notes 2750 1550 0    50   ~ 0
@@ -1265,4 +1247,52 @@ Wire Wire Line
 	6400 3400 6400 3550
 Wire Wire Line
 	6400 3750 6400 3900
+Text HLabel 3400 1000 0    50   Input ~ 0
+DRV1_CH1
+Text HLabel 3400 1100 0    50   Input ~ 0
+DRV1_CH2
+Text HLabel 3400 1200 0    50   Input ~ 0
+DRV1_CH3
+Text HLabel 3400 1300 0    50   Input ~ 0
+DRV1_CH4
+Text HLabel 3200 4600 0    50   Input ~ 0
+DRV2_CH3
+Text HLabel 3200 4500 0    50   Input ~ 0
+DRV2_CH2
+Text HLabel 3200 4400 0    50   Input ~ 0
+DRV2_CH1
+Text HLabel 3200 4700 0    50   Input ~ 0
+DRV2_CH4
+Text Notes 4000 4450 0    50   ~ 0
+TIM3/TIM8\n
+Text Notes 3000 950  0    50   ~ 0
+TIM2/TIM5
+Text Notes 4450 1950 0    50   ~ 0
+USART1_TX\n
+Text Notes 4450 2050 0    50   ~ 0
+USART1_RX\n
+Text Notes 4050 4850 0    50   ~ 0
+USART3_TX UART4_TX\n
+Text Notes 4050 5000 0    50   ~ 0
+USART3_RX UART4_RX\n\n
+Text Notes 4350 2450 0    50   ~ 0
+TIM3_CH3
+Text Notes 4350 2550 0    50   ~ 0
+TIM3_CH4\n
+Text Notes 4350 2650 0    50   ~ 0
+TIM3_CH2\n
+Text Notes 5000 2750 0    50   ~ 0
+TIM3_CH1
+Text Notes 4350 1650 0    50   ~ 0
+TIM3_CH1
+Text Notes 4350 1750 0    50   ~ 0
+TIM3_CH2
+Text Notes 4000 3350 0    50   ~ 0
+SPI2_NSS
+Text Notes 4550 3450 0    50   ~ 0
+SPI2_SCK
+Text Notes 4000 3550 0    50   ~ 0
+SPI2_MISO\n
+Text Notes 4000 3650 0    50   ~ 0
+SPI2_MOSI
 $EndSCHEMATC
