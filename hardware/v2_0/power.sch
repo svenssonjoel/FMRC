@@ -272,7 +272,8 @@ P 8100 3500
 F 0 "R11" V 7904 3500 50  0000 C CNN
 F 1 "56k" V 7995 3500 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric" H 8100 3500 50  0001 C CNN
-F 3 "~" H 8100 3500 50  0001 C CNN
+F 3 "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_10.pdf" H 8100 3500 50  0001 C CNN
+F 4 "311-56KHRCT-ND " V 8100 3500 50  0001 C CNN "OrderN"
 	1    8100 3500
 	0    1    1    0   
 $EndComp
@@ -283,9 +284,10 @@ L Device:R_Small R12
 U 1 1 5AF9BA2E
 P 8500 3500
 F 0 "R12" V 8696 3500 50  0000 C CNN
-F 1 "33k" V 8605 3500 50  0000 C CNN
+F 1 "12k" V 8605 3500 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric" H 8500 3500 50  0001 C CNN
-F 3 "~" H 8500 3500 50  0001 C CNN
+F 3 "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_10.pdf" H 8500 3500 50  0001 C CNN
+F 4 " 311-12.0KHRDKR-ND " V 8500 3500 50  0001 C CNN "OrderN"
 	1    8500 3500
 	0    -1   -1   0   
 $EndComp
@@ -309,8 +311,8 @@ Wire Wire Line
 Connection ~ 8300 3500
 Text GLabel 8300 3200 1    50   Input ~ 0
 V_METER
-Text Notes 8600 3150 0    50   ~ 0
-TODO: Calculate the resistances needed here.\n      47k, 31k gives a max output of 3.33V at 8.4V input.\n      51k, 33k gives a max output of 3.3V at 8.4V input.\n      56k, 33k gives a max output of 3.115V at 8.4V input  \n
+Text Notes 8550 2900 0    50   ~ 0
+TODO: Calculate the resistances needed here.\n      47k, 31k gives a max output of 3.33V at 8.4V input.\n      51k, 33k gives a max output of 3.3V at 8.4V input.\n      56k, 33k gives a max output of 3.115V at 8.4V input.\n      56k, 12k  -> 3.176V at 18V input.    
 $Comp
 L Device:C_Small C33
 U 1 1 5AFD4290
@@ -329,8 +331,6 @@ Wire Wire Line
 Connection ~ 8700 3500
 Wire Wire Line
 	8700 3500 8950 3500
-Text Notes 9450 4400 2    50   ~ 0
-E12 serien\n
 Text Notes 4100 5500 2    50   ~ 0
 The DRV8847 can handle 18V max on the VM (motor voltage)
 Wire Wire Line
@@ -1748,6 +1748,18 @@ F 2 "Capacitor_SMD:C_0805_2012Metric" H 2150 4450 50  0001 C CNN
 F 3 "https://www.yuden.co.jp/productdata/catalog/mlcc01_e.pdf" H 2150 4450 50  0001 C CNN
 F 4 " 587-3169-1-ND " H 2150 4450 50  0001 C CNN "OrderN"
 	1    2150 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:USB_A J?
+U 1 1 5DD1C9BB
+P 1950 6350
+F 0 "J?" H 2007 6817 50  0000 C CNN
+F 1 "USB_A" H 2007 6726 50  0000 C CNN
+F 2 "Connector_USB:USB_A_Stewart_SS-52100-001_Horizontal" H 2100 6300 50  0001 C CNN
+F 3 " https://belfuse.com/resources/datasheets/stewartconnector/ds-stw-usb-2.0-and-3.0-connectors.pdf" H 2100 6300 50  0001 C CNN
+F 4 "380-1412-ND" H 1950 6350 50  0001 C CNN "OrderN"
+	1    1950 6350
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
