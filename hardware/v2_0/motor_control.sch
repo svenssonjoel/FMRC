@@ -61,7 +61,7 @@ Wire Wire Line
 	6650 2650 6650 2700
 Wire Wire Line
 	6650 2700 7200 2700
-Text Notes 2750 2200 0    50   ~ 0
+Text Notes 2600 3050 0    50   ~ 0
 AISEN and BISEN directly to \nground means no "current control". 
 Text Notes 6775 1525 0    50   ~ 0
 nFAULT = 0 when overheated.\n        = 1 during normal function.
@@ -10043,4 +10043,64 @@ Wire Wire Line
 Connection ~ 8300 3750
 Wire Wire Line
 	8300 3750 8300 3600
+$Comp
+L Device:Q_NMOS_GSD Q?
+U 1 1 5DD2C2CE
+P 2200 2350
+F 0 "Q?" H 2404 2396 50  0000 L CNN
+F 1 "Q_NMOS_GSD" H 2404 2305 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 2400 2450 50  0001 C CNN
+F 3 "http://www.onsemi.com/pub/Collateral/NTR3C21NZ-D.PDF" H 2200 2350 50  0001 C CNN
+F 4 "NTR3C21NZT1GOSCT-ND" H 2200 2350 50  0001 C CNN "OrderN"
+	1    2200 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Schottky D?
+U 1 1 5DD2E4E5
+P 2300 1700
+F 0 "D?" V 2254 1779 50  0000 L CNN
+F 1 "D_Schottky" V 2345 1779 50  0000 L CNN
+F 2 "" H 2300 1700 50  0001 C CNN
+F 3 "~" H 2300 1700 50  0001 C CNN
+	1    2300 1700
+	0    1    1    0   
+$EndComp
+Text HLabel 1650 2350 0    50   Input ~ 0
+LIDAR_MTR_PWM
+$Comp
+L power:GND #PWR?
+U 1 1 5DD2F050
+P 2300 2750
+F 0 "#PWR?" H 2300 2500 50  0001 C CNN
+F 1 "GND" H 2305 2577 50  0000 C CNN
+F 2 "" H 2300 2750 50  0001 C CNN
+F 3 "" H 2300 2750 50  0001 C CNN
+	1    2300 2750
+	1    0    0    -1  
+$EndComp
+Text GLabel 2300 1350 1    60   Input ~ 0
+V_IN
+$Comp
+L Connector:Conn_01x02_Male J?
+U 1 1 5DD2F4E8
+P 3200 1750
+F 0 "J?" H 3172 1632 50  0000 R CNN
+F 1 "Conn_01x02_Male" H 3172 1723 50  0000 R CNN
+F 2 "" H 3200 1750 50  0001 C CNN
+F 3 "~" H 3200 1750 50  0001 C CNN
+	1    3200 1750
+	-1   0    0    1   
+$EndComp
+$Comp
+L Driver_Motor:DRV8848 U?
+U 1 1 5DD2B5FF
+P 3900 6700
+F 0 "U?" H 3900 7481 50  0000 C CNN
+F 1 "DRV8848" H 3900 7390 50  0000 C CNN
+F 2 "Package_SO:TSSOP-16-1EP_4.4x5mm_P0.65mm" H 3900 6000 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/drv8848.pdf" H 2750 8050 50  0001 C CNN
+	1    3900 6700
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

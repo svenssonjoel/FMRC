@@ -1,0 +1,8 @@
+(sym_lib_table
+  (lib (name "BMD-340-A-R")(type "Legacy")(uri "${KIPRJMOD}/Lib/BMD-340-A-R.lib")(options "")(descr ""))
+  (lib (name "bmi160")(type "Legacy")(uri "${KIPRJMOD}/Lib/bmi160.lib")(options "")(descr ""))
+  (lib (name "crf_1")(type "Legacy")(uri "${KIPRJMOD}/Lib/crf_1.lib")(options "")(descr ""))
+  (lib (name "drv8833_hack")(type "Legacy")(uri "${KIPRJMOD}/Lib/drv8833_hack.lib")(options "")(descr ""))
+  (lib (name "favorites")(type "Legacy")(uri "${KIPRJMOD}/Lib/favorites.lib")(options "")(descr ""))
+  (lib (name "RF_Module")(type "Legacy")(uri "${KIPRJMOD}/Lib/RF_Module.lib")(options "")(descr ""))
+)
