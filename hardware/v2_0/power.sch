@@ -1528,7 +1528,7 @@ U 1 1 5DCEFD9A
 P 3700 4300
 F 0 "R17" H 3759 4346 50  0000 L CNN
 F 1 "100k" H 3759 4255 50  0000 L CNN
-F 2 "" H 3700 4300 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 3700 4300 50  0001 C CNN
 F 3 "~" H 3700 4300 50  0001 C CNN
 	1    3700 4300
 	1    0    0    -1  
@@ -1539,7 +1539,7 @@ U 1 1 5DCF1277
 P 5500 4100
 F 0 "C35" H 5592 4146 50  0000 L CNN
 F 1 "0.1uF" H 5592 4055 50  0000 L CNN
-F 2 "" H 5500 4100 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 5500 4100 50  0001 C CNN
 F 3 "~" H 5500 4100 50  0001 C CNN
 	1    5500 4100
 	1    0    0    -1  
@@ -1690,10 +1690,10 @@ Wire Wire Line
 	6800 4400 6400 4400
 Connection ~ 6400 4400
 $Comp
-L Device:C_Small C?
+L Device:C_Small C24
 U 1 1 5DD3C698
 P 3100 4150
-F 0 "C?" H 2900 4050 50  0000 L CNN
+F 0 "C24" H 2900 4050 50  0000 L CNN
 F 1 "10uF" H 2800 4150 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 3100 4150 50  0001 C CNN
 F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1059.pdf" H 3100 4150 50  0001 C CNN
@@ -1715,22 +1715,22 @@ Wire Wire Line
 Wire Wire Line
 	3100 4000 3100 4050
 $Comp
-L Device:CP_Small C?
+L Device:CP_Small C20
 U 1 1 5DD1A7FA
 P 1700 4450
-F 0 "C?" H 1788 4496 50  0000 L CNN
-F 1 "47uF" H 1788 4405 50  0000 L CNN
+F 0 "C20" H 1788 4496 50  0000 L CNN
+F 1 "100uF" H 1788 4405 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 1700 4450 50  0001 C CNN
-F 3 "http://www.chemi-con.co.jp/cgi-bin/CAT_DB/SEARCH/cat_db_al.cgi?e=e&j=p&pdfname=ky" H 1700 4450 50  0001 C CNN
-F 4 " 565-4258-1-ND " H 1700 4450 50  0001 C CNN "orderN"
+F 3 "" H 1700 4450 50  0001 C CNN
+F 4 "493-11829-1-ND" H 1700 4450 50  0001 C CNN "orderN"
 	1    1700 4450
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C?
+L Device:C_Small C26
 U 1 1 5DD23EDB
 P 6850 4900
-F 0 "C?" H 6942 4946 50  0000 L CNN
+F 0 "C26" H 6942 4946 50  0000 L CNN
 F 1 "47uF" H 6942 4855 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric" H 6850 4900 50  0001 C CNN
 F 3 "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61A476ME15-01.pdf" H 6850 4900 50  0001 C CNN
@@ -1739,10 +1739,10 @@ F 4 "490-9961-1-ND  " H 6850 4900 50  0001 C CNN "OrderN"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C?
+L Device:C_Small C22
 U 1 1 5DD263D0
 P 2150 4450
-F 0 "C?" H 2242 4496 50  0000 L CNN
+F 0 "C22" H 2242 4496 50  0000 L CNN
 F 1 "2.2uF" H 2242 4405 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric" H 2150 4450 50  0001 C CNN
 F 3 "https://www.yuden.co.jp/productdata/catalog/mlcc01_e.pdf" H 2150 4450 50  0001 C CNN
@@ -1751,15 +1751,27 @@ F 4 " 587-3169-1-ND " H 2150 4450 50  0001 C CNN "OrderN"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:USB_A J?
+L Connector:USB_A J18
 U 1 1 5DD1C9BB
 P 1950 6350
-F 0 "J?" H 2007 6817 50  0000 C CNN
+F 0 "J18" H 2007 6817 50  0000 C CNN
 F 1 "USB_A" H 2007 6726 50  0000 C CNN
 F 2 "Connector_USB:USB_A_Stewart_SS-52100-001_Horizontal" H 2100 6300 50  0001 C CNN
 F 3 " https://belfuse.com/resources/datasheets/stewartconnector/ds-stw-usb-2.0-and-3.0-connectors.pdf" H 2100 6300 50  0001 C CNN
 F 4 "380-1412-ND" H 1950 6350 50  0001 C CNN "OrderN"
 	1    1950 6350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C30
+U 1 1 5DD2EDA2
+P 2150 4800
+F 0 "C30" H 2242 4846 50  0000 L CNN
+F 1 "10uF" H 2242 4755 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 2150 4800 50  0001 C CNN
+F 3 "~" H 2150 4800 50  0001 C CNN
+F 4 "1276-6736-1-ND " H 2150 4800 50  0001 C CNN "OrderN"
+	1    2150 4800
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
