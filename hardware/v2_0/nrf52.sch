@@ -18,8 +18,6 @@ Comment7 ""
 Comment8 ""
 Comment9 ""
 $EndDescr
-Text GLabel 6850 1150 1    50   Input ~ 0
-5V
 Text Notes 5750 1850 0    50   ~ 0
 USB power\n
 $Comp
@@ -223,9 +221,9 @@ NoConn ~ 5350 3300
 NoConn ~ 5350 3200
 NoConn ~ 5350 2700
 Wire Wire Line
-	6450 1800 6850 1800
+	6450 1800 6900 1800
 Wire Wire Line
-	6850 1800 6850 1150
+	6900 1800 6900 1200
 NoConn ~ 6450 2000
 NoConn ~ 6450 2100
 NoConn ~ 6450 2200
@@ -368,8 +366,6 @@ F 3 "" H 8050 4100 50  0001 C CNN
 	1    8050 4100
 	1    0    0    -1  
 $EndComp
-Text GLabel 7650 3450 0    50   Input ~ 0
-5V
 Wire Wire Line
 	8050 4050 8050 4100
 NoConn ~ 7650 3850
@@ -440,4 +436,28 @@ NoConn ~ 5350 3800
 Text GLabel 6450 3900 2    50   Input ~ 0
 SCL
 Connection ~ 8050 4100
+$Comp
+L power:+5V #PWR0125
+U 1 1 5DDBAE5D
+P 6900 1200
+F 0 "#PWR0125" H 6900 1050 50  0001 C CNN
+F 1 "+5V" H 6915 1373 50  0000 C CNN
+F 2 "" H 6900 1200 50  0001 C CNN
+F 3 "" H 6900 1200 50  0001 C CNN
+	1    6900 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0126
+U 1 1 5DDBAE5E
+P 7400 3450
+F 0 "#PWR0126" H 7400 3300 50  0001 C CNN
+F 1 "+5V" H 7415 3623 50  0000 C CNN
+F 2 "" H 7400 3450 50  0001 C CNN
+F 3 "" H 7400 3450 50  0001 C CNN
+	1    7400 3450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7400 3450 7650 3450
 $EndSCHEMATC

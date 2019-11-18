@@ -332,7 +332,7 @@ Connection ~ 8700 3500
 Wire Wire Line
 	8700 3500 8950 3500
 Text Notes 4100 5500 2    50   ~ 0
-The DRV8847 can handle 18V max on the VM (motor voltage)
+The DRV8848 can handle 18V max on the VM (motor voltage)
 Wire Wire Line
 	8600 3850 8700 3850
 Wire Wire Line
@@ -1473,18 +1473,6 @@ AE 5C D9 CB CB AB 7B F7 EE C2 44 B8 50 B6 79 79 79 55 AD 5A 75 CE 9C 39 3A F3 54
 EndData
 $EndBitmap
 $Comp
-L Device:C_Small C34
-U 1 1 5DCE5F0E
-P 3500 4150
-F 0 "C34" H 3300 4050 50  0000 L CNN
-F 1 "10uF" H 3200 4150 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 3500 4150 50  0001 C CNN
-F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1059.pdf" H 3500 4150 50  0001 C CNN
-F 4 "P997-ND " H 3500 4150 50  0001 C CNN "OrderN"
-	1    3500 4150
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:C_Small C36
 U 1 1 5DCEAC35
 P 6400 4300
@@ -1552,6 +1540,7 @@ F 0 "U9" H 4650 4667 50  0000 C CNN
 F 1 "ADP2303ARDZ-5.0" H 4650 4576 50  0000 C CNN
 F 2 "Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm" H 4800 3850 50  0001 L CNN
 F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/ADP2302_2303.pdf" H 4450 4800 50  0001 C CNN
+F 4 "ADP2303ARDZ-5.0-R7CT-ND " H 4650 4200 50  0001 C CNN "OrderN"
 	1    4650 4200
 	1    0    0    -1  
 $EndComp
@@ -1589,8 +1578,6 @@ Wire Wire Line
 	4750 4700 4650 4700
 Wire Wire Line
 	3500 4700 3500 4750
-Wire Wire Line
-	3500 4250 3500 4300
 Connection ~ 3500 4700
 Wire Wire Line
 	4650 4600 4650 4700
@@ -1672,106 +1659,88 @@ F 3 "" H 3650 1850 50  0001 C CNN
 	1    3650 1850
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:C_Small C18
-U 1 1 5DD9CCB8
-P 6800 4300
-F 0 "C18" H 6892 4346 50  0000 L CNN
-F 1 "47uF" H 6892 4255 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 6800 4300 50  0001 C CNN
-F 3 "https://www.nichicon.co.jp/english/products/pdfs/e-uma.pdf" H 6800 4300 50  0001 C CNN
-F 4 " 493-10439-1-ND " H 6800 4300 50  0001 C CNN "OrderN"
-	1    6800 4300
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6400 4200 6800 4200
-Wire Wire Line
-	6800 4400 6400 4400
-Connection ~ 6400 4400
-$Comp
-L Device:C_Small C24
-U 1 1 5DD3C698
-P 3100 4150
-F 0 "C24" H 2900 4050 50  0000 L CNN
-F 1 "10uF" H 2800 4150 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 3100 4150 50  0001 C CNN
-F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1059.pdf" H 3100 4150 50  0001 C CNN
-F 4 "P997-ND " H 3100 4150 50  0001 C CNN "OrderN"
-	1    3100 4150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3500 4300 3100 4300
-Wire Wire Line
-	3100 4300 3100 4250
-Connection ~ 3500 4300
-Wire Wire Line
-	3500 4300 3500 4700
 Wire Wire Line
 	3500 4000 3500 4050
-Wire Wire Line
-	3500 4000 3100 4000
-Wire Wire Line
-	3100 4000 3100 4050
 $Comp
 L Device:CP_Small C20
 U 1 1 5DD1A7FA
-P 1700 4450
-F 0 "C20" H 1788 4496 50  0000 L CNN
-F 1 "100uF" H 1788 4405 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 1700 4450 50  0001 C CNN
-F 3 "" H 1700 4450 50  0001 C CNN
-F 4 "493-11829-1-ND" H 1700 4450 50  0001 C CNN "orderN"
-	1    1700 4450
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C_Small C26
-U 1 1 5DD23EDB
-P 6850 4900
-F 0 "C26" H 6942 4946 50  0000 L CNN
-F 1 "47uF" H 6942 4855 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 6850 4900 50  0001 C CNN
-F 3 "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61A476ME15-01.pdf" H 6850 4900 50  0001 C CNN
-F 4 "490-9961-1-ND  " H 6850 4900 50  0001 C CNN "OrderN"
-	1    6850 4900
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C_Small C22
-U 1 1 5DD263D0
-P 2150 4450
-F 0 "C22" H 2242 4496 50  0000 L CNN
-F 1 "2.2uF" H 2242 4405 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 2150 4450 50  0001 C CNN
-F 3 "https://www.yuden.co.jp/productdata/catalog/mlcc01_e.pdf" H 2150 4450 50  0001 C CNN
-F 4 " 587-3169-1-ND " H 2150 4450 50  0001 C CNN "OrderN"
-	1    2150 4450
+P 3500 4150
+F 0 "C20" H 3300 4250 50  0000 L CNN
+F 1 "100uF" H 3250 4050 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 3500 4150 50  0001 C CNN
+F 3 "" H 3500 4150 50  0001 C CNN
+F 4 "493-11829-1-ND" H 3500 4150 50  0001 C CNN "orderN"
+	1    3500 4150
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:USB_A J18
 U 1 1 5DD1C9BB
-P 1950 6350
-F 0 "J18" H 2007 6817 50  0000 C CNN
-F 1 "USB_A" H 2007 6726 50  0000 C CNN
-F 2 "Connector_USB:USB_A_Stewart_SS-52100-001_Horizontal" H 2100 6300 50  0001 C CNN
-F 3 " https://belfuse.com/resources/datasheets/stewartconnector/ds-stw-usb-2.0-and-3.0-connectors.pdf" H 2100 6300 50  0001 C CNN
-F 4 "380-1412-ND" H 1950 6350 50  0001 C CNN "OrderN"
-	1    1950 6350
-	1    0    0    -1  
+P 9300 5250
+F 0 "J18" H 9357 5717 50  0000 C CNN
+F 1 "USB_A" H 9357 5626 50  0000 C CNN
+F 2 "Connector_USB:USB_A_Stewart_SS-52100-001_Horizontal" H 9450 5200 50  0001 C CNN
+F 3 " https://belfuse.com/resources/datasheets/stewartconnector/ds-stw-usb-2.0-and-3.0-connectors.pdf" H 9450 5200 50  0001 C CNN
+F 4 "380-1412-ND" H 9300 5250 50  0001 C CNN "OrderN"
+	1    9300 5250
+	-1   0    0    1   
 $EndComp
 $Comp
 L Device:C_Small C30
 U 1 1 5DD2EDA2
-P 2150 4800
-F 0 "C30" H 2242 4846 50  0000 L CNN
-F 1 "10uF" H 2242 4755 50  0000 L CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric" H 2150 4800 50  0001 C CNN
-F 3 "~" H 2150 4800 50  0001 C CNN
-F 4 "1276-6736-1-ND " H 2150 4800 50  0001 C CNN "OrderN"
-	1    2150 4800
+P 6800 4300
+F 0 "C30" H 6892 4346 50  0000 L CNN
+F 1 "10uF" H 6892 4255 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 6800 4300 50  0001 C CNN
+F 3 "~" H 6800 4300 50  0001 C CNN
+F 4 "1276-6736-1-ND " H 6800 4300 50  0001 C CNN "OrderN"
+	1    6800 4300
 	1    0    0    -1  
 $EndComp
+$Comp
+L power:+5V #PWR0101
+U 1 1 5DD663F4
+P 8750 5300
+F 0 "#PWR0101" H 8750 5150 50  0001 C CNN
+F 1 "+5V" H 8765 5473 50  0000 C CNN
+F 2 "" H 8750 5300 50  0001 C CNN
+F 3 "" H 8750 5300 50  0001 C CNN
+	1    8750 5300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8750 5300 8750 5450
+Wire Wire Line
+	8750 5450 9000 5450
+NoConn ~ 9000 5250
+NoConn ~ 9000 5150
+$Comp
+L power:GND #PWR0108
+U 1 1 5DD6E18C
+P 8750 4800
+F 0 "#PWR0108" H 8750 4550 50  0001 C CNN
+F 1 "GND" H 8755 4627 50  0000 C CNN
+F 2 "" H 8750 4800 50  0001 C CNN
+F 3 "" H 8750 4800 50  0001 C CNN
+	1    8750 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9400 4850 9400 4700
+Wire Wire Line
+	9400 4700 9300 4700
+Wire Wire Line
+	8750 4700 8750 4800
+Wire Wire Line
+	9300 4850 9300 4700
+Connection ~ 9300 4700
+Wire Wire Line
+	9300 4700 8750 4700
+Wire Wire Line
+	3500 4250 3500 4700
+Wire Wire Line
+	6400 4200 6800 4200
+Wire Wire Line
+	6400 4400 6800 4400
+Connection ~ 6400 4400
 $EndSCHEMATC
