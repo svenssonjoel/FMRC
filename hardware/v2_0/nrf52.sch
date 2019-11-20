@@ -158,58 +158,10 @@ Text GLabel 6450 4200 2    50   Input ~ 0
 NRFRX
 Text GLabel 6450 4300 2    50   Input ~ 0
 NRFTX
-Text GLabel 5350 2200 0    50   Input ~ 0
+Text GLabel 2500 2150 0    50   Input ~ 0
 NRFSWDIO
-Text GLabel 5350 2000 0    50   Input ~ 0
+Text GLabel 2500 1950 0    50   Input ~ 0
 NRFSWDCLK
-$Comp
-L Connector:Conn_01x01_Male J11
-U 1 1 5CF97ACE
-P 3350 1900
-F 0 "J11" H 3500 2050 50  0000 C CNN
-F 1 "NRFSWDCLK" H 3100 1900 50  0000 C CNN
-F 2 "TestPoint:TestPoint_Pad_1.5x1.5mm" H 3350 1900 50  0001 C CNN
-F 3 "~" H 3350 1900 50  0001 C CNN
-	1    3350 1900
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector:Conn_01x01_Male J12
-U 1 1 5CF986AE
-P 3350 2250
-F 0 "J12" H 3500 2400 50  0000 C CNN
-F 1 "NRFSWDIO" H 3100 2250 50  0000 C CNN
-F 2 "TestPoint:TestPoint_Pad_1.5x1.5mm" H 3350 2250 50  0001 C CNN
-F 3 "~" H 3350 2250 50  0001 C CNN
-	1    3350 2250
-	1    0    0    -1  
-$EndComp
-Text GLabel 3550 2250 2    50   Input ~ 0
-NRFSWDIO
-Text GLabel 3550 1900 2    50   Input ~ 0
-NRFSWDCLK
-$Comp
-L Connector:Conn_01x01_Male J13
-U 1 1 5CFADE50
-P 3350 2600
-F 0 "J13" H 3458 2781 50  0000 C CNN
-F 1 "GND" H 3150 2600 50  0000 C CNN
-F 2 "TestPoint:TestPoint_Pad_1.5x1.5mm" H 3350 2600 50  0001 C CNN
-F 3 "~" H 3350 2600 50  0001 C CNN
-	1    3350 2600
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR022
-U 1 1 5CFB0C7F
-P 3550 2600
-F 0 "#PWR022" H 3550 2350 50  0001 C CNN
-F 1 "GND" H 3555 2427 50  0000 C CNN
-F 2 "" H 3550 2600 50  0001 C CNN
-F 3 "" H 3550 2600 50  0001 C CNN
-	1    3550 2600
-	1    0    0    -1  
-$EndComp
 NoConn ~ 6450 4600
 NoConn ~ 6450 4500
 NoConn ~ 6450 4400
@@ -384,9 +336,9 @@ F 3 "~" H 8100 3600 50  0001 C CNN
 	1    7950 3650
 	-1   0    0    -1  
 $EndComp
-Text GLabel 7650 3750 0    50   BiDi ~ 0
+Text GLabel 7350 3750 0    50   BiDi ~ 0
 NRFUSBD-
-Text GLabel 7650 3650 0    50   BiDi ~ 0
+Text GLabel 7350 3650 0    50   BiDi ~ 0
 NRFUSBD+
 Text GLabel 5350 2300 0    50   BiDi ~ 0
 NRFUSBD+
@@ -460,4 +412,82 @@ F 3 "" H 7400 3450 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	7400 3450 7650 3450
+Text HLabel 5350 2200 0    50   Input ~ 0
+NRFSWDIO
+Text HLabel 5350 2000 0    50   Input ~ 0
+NRFSWDCLK
+$Comp
+L Device:R_Small R21
+U 1 1 5DDE3F2B
+P 7500 3650
+F 0 "R21" V 7304 3650 50  0000 C CNN
+F 1 "22R" V 7395 3650 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7500 3650 50  0001 C CNN
+F 3 "~" H 7500 3650 50  0001 C CNN
+	1    7500 3650
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R22
+U 1 1 5DDE4498
+P 7500 3750
+F 0 "R22" V 7700 3750 50  0000 C CNN
+F 1 "22R" V 7600 3700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7500 3750 50  0001 C CNN
+F 3 "~" H 7500 3750 50  0001 C CNN
+	1    7500 3750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7650 3650 7600 3650
+Wire Wire Line
+	7650 3750 7600 3750
+Wire Wire Line
+	7400 3650 7350 3650
+Wire Wire Line
+	7400 3750 7350 3750
+$Comp
+L Connector:Conn_01x06_Female P2
+U 1 1 5DDF6FBB
+P 2700 2150
+F 0 "P2" H 2700 2500 50  0000 C CNN
+F 1 "SWD" V 2800 2150 50  0000 C CNN
+F 2 "Connector_JST:JST_PH_B6B-PH-K_1x06_P2.00mm_Vertical" H 2700 2150 60  0001 C CNN
+F 3 "" H 2700 2150 60  0000 C CNN
+F 4 "455-1704-ND " H 2700 2150 50  0001 C CNN "OrderN"
+	1    2700 2150
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	1700 2050 1700 2350
+Wire Wire Line
+	2500 1850 2150 1850
+Wire Wire Line
+	2150 1850 2150 1800
+NoConn ~ 2500 2350
+Wire Wire Line
+	2500 2050 1700 2050
+$Comp
+L power:VCC #PWR0135
+U 1 1 5DDF6FD6
+P 2150 1800
+F 0 "#PWR0135" H 2150 1650 50  0001 C CNN
+F 1 "VCC" H 2150 1950 50  0000 C CNN
+F 2 "" H 2150 1800 60  0000 C CNN
+F 3 "" H 2150 1800 60  0000 C CNN
+	1    2150 1800
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0136
+U 1 1 5DDF6FC9
+P 1700 2350
+F 0 "#PWR0136" H 1700 2100 50  0001 C CNN
+F 1 "GND" H 1700 2200 50  0000 C CNN
+F 2 "" H 1700 2350 60  0000 C CNN
+F 3 "" H 1700 2350 60  0000 C CNN
+	1    1700 2350
+	-1   0    0    -1  
+$EndComp
+NoConn ~ 2500 2250
 $EndSCHEMATC
