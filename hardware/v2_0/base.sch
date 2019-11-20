@@ -1378,4 +1378,49 @@ F 3 "" H 4450 6100 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4450 6300 4450 6100
+$Comp
+L Connector:Conn_01x03_Male J?
+U 1 1 5DD3D1BA
+P 1050 3550
+F 0 "J?" H 1158 3831 50  0000 C CNN
+F 1 "SERV1" H 1158 3740 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 1050 3550 50  0001 C CNN
+F 3 "~" H 1050 3550 50  0001 C CNN
+	1    1050 3550
+	1    0    0    -1  
+$EndComp
+Text Label 1450 3450 0    50   ~ 0
+s1
+$Comp
+L power:+5V #PWR?
+U 1 1 5DD40F52
+P 1650 3450
+F 0 "#PWR?" H 1650 3300 50  0001 C CNN
+F 1 "+5V" H 1665 3623 50  0000 C CNN
+F 2 "" H 1650 3450 50  0001 C CNN
+F 3 "" H 1650 3450 50  0001 C CNN
+	1    1650 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5DD412FC
+P 1400 3750
+F 0 "#PWR?" H 1400 3500 50  0001 C CNN
+F 1 "GND" H 1405 3577 50  0000 C CNN
+F 2 "" H 1400 3750 50  0001 C CNN
+F 3 "" H 1400 3750 50  0001 C CNN
+	1    1400 3750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 3450 1450 3450
+Wire Wire Line
+	1250 3650 1400 3650
+Wire Wire Line
+	1400 3650 1400 3750
+Wire Wire Line
+	1250 3550 1650 3550
+Wire Wire Line
+	1650 3550 1650 3450
 $EndSCHEMATC
