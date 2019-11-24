@@ -1,6 +1,10 @@
 # FMRC (Work in progress)
 Four Motor Robot Controller.
 
+## General videos
+
+[FMRC: UART communication between NRF52 and STM32!](https://youtu.be/KaF7SMBezBs)
+
 ## Firmware
 
 ### STM32F4 
