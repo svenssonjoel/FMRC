@@ -34,6 +34,8 @@
 #include <bluetooth/services/bas.h>
 #include <bluetooth/services/hrs.h>
 
+#include <uart.h>
+
 /* 
    pin 6 | p0.25 UART TX to STM32       -> PA10 on STM32 (USART1_RX)
    pin 7 | p0.26 UART RX from STM32     -> PA9 on STM32  (USART1_TX)
@@ -364,6 +366,16 @@ static void bt_ready(int err)
 	printk("Advertising successfully started\n");
 }
 
+
+
+static void uart_tx(struct device *uart, char *str, int n) {
+
+  for (int i = 0; i < n; i ++) {
+    uart_poll_out(uart, str[i]); 
+  }
+  
+}
+
 void main(void)
 {
 
@@ -371,6 +383,13 @@ void main(void)
   int ret;
   int err;
 
+  struct device *uart;
+
+  uart = device_get_binding("UART_0");
+  if (!uart) {
+    return;
+  }
+  
   dev = device_get_binding("CDC_ACM_0");
   if (!dev) {
     return;
@@ -435,7 +454,9 @@ void main(void)
   int cnt = 0; 
   while (true) {
 
-    usb_printf("APA"); 
+    usb_printf("APA");
+    uart_tx(uart,"APA", 3);
+    
 
     gpio_pin_write(d_led0, DT_ALIAS_LED0_GPIOS_PIN, cnt % 2);
     gpio_pin_write(d_led1, DT_ALIAS_LED1_GPIOS_PIN, cnt % 2);

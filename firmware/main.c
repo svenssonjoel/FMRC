@@ -60,6 +60,13 @@ typedef enum {
   turning 
 } state_enum;
 
+static SerialConfig serial_cfg = {
+  115200,
+  0,
+  USART_CR2_STOP1_BITS,
+  0
+};
+
 int main(void) {
 	halInit();
 	chSysInit();
@@ -67,6 +74,11 @@ int main(void) {
 	drv_init();
 	led_init();
 	imu_init();
+
+	sdStart(&SD1, &serial_cfg);
+	palSetPadMode(GPIOA, 9, PAL_MODE_ALTERNATE(7));
+	palSetPadMode(GPIOA, 10, PAL_MODE_ALTERNATE(7));
+
 	
 	sduObjectInit(&SDU1);
 	sduStart(&SDU1, &serusbcfg);
@@ -91,11 +103,21 @@ int main(void) {
 	 */
 
 	
-
+	uint8_t buffer[256];
 	while (true) {
 
+	  int num = 0;  
 
-	   chThdSleepMilliseconds(100);
+	  while ((num = sdReadTimeout(&SD1, buffer, 255, 100)) > 0)  {
+	    
+	    buffer[num+1] = 0; 
+	   
+	    chprintf((BaseSequentialStream *)&SDU1,"%d %s\n\r", num, buffer);
+	    memset(buffer, 0, 256);
+	  }
+  
+
+	  chThdSleepMilliseconds(100);
 	}
 	
 	/*
