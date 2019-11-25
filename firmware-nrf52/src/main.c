@@ -211,9 +211,11 @@ static u8_t bt_uart_read_buf[20] = "apa";
 static ssize_t bt_uart_write(struct bt_conn *conn, const struct bt_gatt_attr *attr,
 			     const void *buf, u16_t len, u16_t offset,
 			     u8_t flags) {
-  
+
+  //k_mutex_lock(&ble_uart_mutex, K_FOREVER);
   int n = ring_buf_put(&ble_in_ringbuf,buf, len);
 
+  //k_mutex_unlock(&ble_uart_mutex);
   return n;
 }
 
@@ -253,9 +255,11 @@ int ble_get_char(void) {
 
   int n = 0; 
   u8_t c;
+  //k_mutex_lock(&ble_uart_mutex, K_FOREVER);  
   
   n = ring_buf_get(&ble_in_ringbuf, &c, 1);
-  
+
+  //k_mutex_unlock(&ble_uart_mutex);
   if (n == 1) {
     return c;
   }
@@ -302,16 +306,17 @@ int ble_inputline(char *buffer, int size) {
       if (n > 0)
         n--;
       buffer[n] = 0;
-      ble_put_char('\b'); /* output backspace character */
+      //ble_put_char('\b'); /* output backspace character */
       n--; /* set up next iteration to deal with preceding char location */
       break;
     case '\n': /* fall through to \r */
     case '\r':
-      buffer[n] = 0;
+      buffer[n] = c;
+      buffer[n+1] = 0;
       return n;
     default:
       if (c != -1 && c < 256) {
-	ble_put_char(c);
+	//ble_put_char(c);
 	buffer[n] = c;
       } else {
 	n --;
@@ -454,14 +459,24 @@ void main(void)
   int cnt = 0; 
   while (true) {
 
-    usb_printf("APA");
-    uart_tx(uart,"APA", 3);
+    unsigned char c[256];
+
+    memset(c,0,256);
+
+    cnt = ble_inputline(c, 256);    
+    
+    
+    usb_printf("%s", c);
+
+    
+    uart_tx(uart,c, cnt+1);
+    
     
 
-    gpio_pin_write(d_led0, DT_ALIAS_LED0_GPIOS_PIN, cnt % 2);
-    gpio_pin_write(d_led1, DT_ALIAS_LED1_GPIOS_PIN, cnt % 2);
-    cnt ++; 
+    //gpio_pin_write(d_led0, DT_ALIAS_LED0_GPIOS_PIN, cnt % 2);
+    //gpio_pin_write(d_led1, DT_ALIAS_LED1_GPIOS_PIN, cnt % 2);
+    //cnt ++; 
 
-    k_sleep(1000);
+    //k_sleep(1);
   }
 }

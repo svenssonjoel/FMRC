@@ -24,6 +24,21 @@ Controller::Controller(QWidget *parent) : QWidget(parent)
     repaint();
 }
 
+void Controller::getCTRL(double *ang, double *mag)
+{
+    QPoint pos = mMousePos;
+
+    *ang = atan2(pos.x(), pos.y());
+
+    double len = sqrt(pos.x()*pos.x() + pos.y()*pos.y());
+
+    if (mInnerRad > 0) {
+        *mag = len / mInnerRad;
+    } else {
+        *mag = 0; // zero speed
+    }
+}
+
 void Controller::mouseMoveEvent(QMouseEvent *event)
 {
     static int count = 0;
@@ -35,13 +50,13 @@ void Controller::mouseMoveEvent(QMouseEvent *event)
 
 void Controller::enterEvent(QEvent *event)
 {
-    qDebug() << "ENTERING WIDGET";
+    //qDebug() << "ENTERING WIDGET";
     repaint();
 }
 
 void Controller::leaveEvent(QEvent *event)
 {
-    qDebug() << "LEAVE EVENT";
+    //qDebug() << "LEAVE EVENT";
     mMousePos = QPoint(0,0);
     repaint();
 }
@@ -77,7 +92,7 @@ bool Controller::event(QEvent *event)
 
     switch (event->type()) {
     case QEvent::TouchBegin:
-        qDebug() << "BEGIN";
+        //qDebug() << "BEGIN";
     case QEvent::TouchUpdate: {
 
         QTouchEvent *te = static_cast<QTouchEvent*>(event);
@@ -104,7 +119,7 @@ bool Controller::event(QEvent *event)
     case QEvent::TouchEnd:{
         setMousePos(QPointF(0,0));
         event->accept();
-        qDebug() << "END";
+        //qDebug() << "END";
         QTouchEvent *te = static_cast<QTouchEvent*>(event);
         QList<QTouchEvent::TouchPoint> tps = te->touchPoints();
         for (auto e : tps) {
@@ -156,8 +171,7 @@ void Controller::setMousePos(QPointF p)
         mMousePos.setY(0);
     }
 
-    qDebug() << "RAW" << p.x() << " " << p.y();
-    qDebug() << "PRS" << mMousePos.x() << " " << mMousePos.y();
+    //qDebug() << "RAW" << p.x() << " " << p.y();
+    //qDebug() << "PRS" << mMousePos.x() << " " << mMousePos.y();
     repaint();
 }
-

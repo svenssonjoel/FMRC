@@ -67,6 +67,53 @@ static SerialConfig serial_cfg = {
   0
 };
 
+int uart_get_char(void) {
+  int n = 0;
+  uint8_t c;
+
+  n = sdRead(&SD1, &c, 1);
+
+  if (n == 1) {
+    return c;
+  }
+  return -1;
+}
+
+int uart_inputline(char *buffer, int size) {
+  int n = 0;
+  int c;
+  for (n = 0; n < size - 1; n++) {
+
+    c = uart_get_char();
+    switch (c) {
+    case 127: /* fall through to below */
+    case '\b': /* backspace character received */
+      if (n > 0)
+        n--;
+      buffer[n] = 0;
+      //uart_put_char('\b'); /* output backspace character */
+      n--; /* set up next iteration to deal with preceding char location */
+      break;
+    case '\n': /* fall through to \r */
+    case '\r':
+      buffer[n] = 0;
+      return n;
+    default:
+      if (c != -1 && c < 256) {
+	//ble_put_char(c);
+	buffer[n] = c;
+      } else {
+	n --;
+      }
+
+      break;
+    }
+  }
+  buffer[size - 1] = 0;
+  return 0; // Filled up buffer without reading a linebreak
+}
+
+
 int main(void) {
 	halInit();
 	chSysInit();
@@ -101,23 +148,86 @@ int main(void) {
 	/*
 	 *  Main thread activity...
 	 */
-
-	
-	uint8_t buffer[256];
 	while (true) {
 
 	  int num = 0;  
 
-	  while ((num = sdReadTimeout(&SD1, buffer, 255, 100)) > 0)  {
-	    
-	    buffer[num+1] = 0; 
-	   
-	    chprintf((BaseSequentialStream *)&SDU1,"%d %s\n\r", num, buffer);
-	    memset(buffer, 0, 256);
-	  }
+	  char buffer[256];
+	  memset(buffer, 0, 256);
+	  uart_inputline(buffer,256);
+	  
   
+	  float ang = 0;
+	  float mag = 0;
 
-	  chThdSleepMilliseconds(100);
+	  int r = 0;
+
+	  
+	  r = sscanf(buffer, "%f ; %f\n", &ang, &mag);
+
+	  chprintf((BaseSequentialStream *)&SDU1,"angmag: %d %d\n\r",(int)(10000*ang), (int)(10000*mag));
+
+	  
+	  float duty_l;
+	  float duty_r; 
+	  
+	  if (r == 2) {
+	    
+	    if (ang > 0.0) { //left side
+
+	      if (ang > 3.14/2) { // top
+		float a = ang - 3.14/2; 
+		duty_l = mag * (20000 * (a / (3.14/2)) - 10000);
+		duty_r = mag * 10000;
+
+	      } else { // bottom
+		duty_r = mag * (20000 * (fabs(ang) / (3.14/2)) - 10000);
+		duty_l = -mag * 10000;
+	      }
+	      
+	    } else { // right side 
+
+	      if (fabs(ang) > 3.14/2) { // top
+		float a = fabs(ang) - 3.14/2; 
+		duty_r = mag * (20000 * (a / (3.14/2)) - 10000);
+		duty_l = mag * 10000;
+		
+	      } else { // bottom
+		duty_l = mag * (20000 * (fabs(ang) / (3.14/2)) - 10000);
+		duty_r = -mag * 10000;
+	      }	
+	    }
+	  }
+
+	  chprintf((BaseSequentialStream *)&SDU1,"%d %d\n\r",(int) duty_r, (int) duty_l);
+
+	  
+	  pwmEnableChannel(&PWMD3, 2, 0);
+	  pwmEnableChannel(&PWMD3, 3, 0);
+	  pwmEnableChannel(&PWMD2, 0, 0);
+	  pwmEnableChannel(&PWMD2, 1, 0);
+
+	  if (duty_r > 0) {
+	    pwmEnableChannel(&PWMD3, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, (int)duty_r));
+	    pwmEnableChannel(&PWMD3, 3, 0);
+	    
+	  } else {
+	    pwmEnableChannel(&PWMD3, 2, 0);
+	    pwmEnableChannel(&PWMD3, 3, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, (int)(-duty_r)));
+	  }
+
+	  if (duty_l > 0) {
+	    pwmEnableChannel(&PWMD2, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD2, (int)duty_l));
+	    pwmEnableChannel(&PWMD2, 1, 0);
+	  }
+	  else {
+	    pwmEnableChannel(&PWMD2, 0, 0);
+	    pwmEnableChannel(&PWMD2, 1, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, (int)-duty_l));	    
+	  }
+	  
+	 
+	  
+	  chThdSleepMilliseconds(1);
 	}
 	
 	/*

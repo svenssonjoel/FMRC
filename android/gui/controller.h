@@ -10,6 +10,8 @@ class Controller : public QWidget
 public:
     explicit Controller(QWidget *parent = nullptr);
 
+    void getCTRL(double *ang, double *mag);
+
 signals:
 
 public slots:    
