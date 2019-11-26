@@ -117,8 +117,8 @@ void MainWindow::timeout()
             QByteArray ba = str.toLocal8Bit();
             while (ba.size() > 0) {
                 //qDebug() << "ba = " << QString(ba);
-                mUartService->writeCharacteristic(tx, ba.mid(0,8), QLowEnergyService::WriteWithoutResponse);
-                ba = ba.mid(8,-1);
+                mUartService->writeCharacteristic(tx, ba.mid(0,20), QLowEnergyService::WriteWithoutResponse);
+                ba = ba.mid(20,-1);
             }
 
         } else {

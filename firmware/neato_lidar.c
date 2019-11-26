@@ -222,9 +222,9 @@ int neato_lidar_distance(int ix) {
 
 void neato_lidar_init(void) {
 
-  sdStart(&SD3, &serial_cfg);
   palSetPadMode(GPIOC, 10, PAL_MODE_ALTERNATE(7));
   palSetPadMode(GPIOC, 11, PAL_MODE_ALTERNATE(7));
+  sdStart(&SD3, &serial_cfg);
 
   // spin up motor
   if (!calibrate_lidar_motor()) {

@@ -212,10 +212,10 @@ static ssize_t bt_uart_write(struct bt_conn *conn, const struct bt_gatt_attr *at
 			     const void *buf, u16_t len, u16_t offset,
 			     u8_t flags) {
 
-  //k_mutex_lock(&ble_uart_mutex, K_FOREVER);
+  k_mutex_lock(&ble_uart_mutex, K_FOREVER);
   int n = ring_buf_put(&ble_in_ringbuf,buf, len);
 
-  //k_mutex_unlock(&ble_uart_mutex);
+  k_mutex_unlock(&ble_uart_mutex);
   return n;
 }
 
@@ -255,11 +255,11 @@ int ble_get_char(void) {
 
   int n = 0; 
   u8_t c;
-  //k_mutex_lock(&ble_uart_mutex, K_FOREVER);  
+  k_mutex_lock(&ble_uart_mutex, K_FOREVER);  
   
   n = ring_buf_get(&ble_in_ringbuf, &c, 1);
 
-  //k_mutex_unlock(&ble_uart_mutex);
+  k_mutex_unlock(&ble_uart_mutex);
   if (n == 1) {
     return c;
   }
@@ -332,15 +332,15 @@ int ble_inputline(char *buffer, int size) {
 static void connected(struct bt_conn *conn, u8_t err)
 {
 	if (err) {
-		usb_printf("Connection failed (err 0x%02x)\n\r", err);
+	  //usb_printf("Connection failed (err 0x%02x)\n\r", err);
 	} else {
-		usb_printf("Connected\n\r");
+	  //usb_printf("Connected\n\r");
 	}
 }
 
 static void disconnected(struct bt_conn *conn, u8_t reason)
 {
-	usb_printf("Disconnected (reason 0x%02x)\n\r", reason);
+  //usb_printf("Disconnected (reason 0x%02x)\n\r", reason);
 }
 
 static struct bt_conn_cb conn_callbacks = {
@@ -352,11 +352,11 @@ static struct bt_conn_cb conn_callbacks = {
 static void bt_ready(int err)
 {
 	if (err) {
-           usb_printf("Bluetooth init failed (err %d)\n", err);
+	  //usb_printf("Bluetooth init failed (err %d)\n", err);
 	   return;
 	}
 
-	usb_printf("Bluetooth initialized\n");
+	//usb_printf("Bluetooth initialized\n");
 
 	if (IS_ENABLED(CONFIG_SETTINGS)) {
 		settings_load();
@@ -364,11 +364,11 @@ static void bt_ready(int err)
 
 	err = bt_le_adv_start(BT_LE_ADV_CONN_NAME, ad, ARRAY_SIZE(ad), NULL, 0);
 	if (err) {
-		usb_printf("Advertising failed to start (err %d)\n", err);
+	  //usb_printf("Advertising failed to start (err %d)\n", err);
 		return;
 	}
 
-	printk("Advertising successfully started\n");
+	//printk("Advertising successfully started\n");
 }
 
 
@@ -394,15 +394,19 @@ void main(void)
   if (!uart) {
     return;
   }
+
   
   dev = device_get_binding("CDC_ACM_0");
   if (!dev) {
     return;
   }
+  
+  
 
   ring_buf_init(&in_ringbuf, sizeof(in_ring_buffer), in_ring_buffer);
   ring_buf_init(&out_ringbuf, sizeof(out_ring_buffer), out_ring_buffer);
   ring_buf_init(&ble_in_ringbuf, sizeof(ble_in_ring_buffer), ble_in_ring_buffer);
+
   
   while (true) {
     uart_line_ctrl_get(dev, LINE_CTRL_DTR, &dtr);
@@ -437,7 +441,7 @@ void main(void)
   
   uart_irq_rx_enable(dev);
   
-
+  
   err = bt_enable(bt_ready);
 
   if (err) {
@@ -459,17 +463,27 @@ void main(void)
   int cnt = 0; 
   while (true) {
 
+
+    u32_t ringbuf_left = ring_buf_space_get(&ble_in_ringbuf);
+
+    if ( ringbuf_left < 10 ) {
+      gpio_pin_write(d_led0, DT_ALIAS_LED0_GPIOS_PIN, 1);
+      gpio_pin_write(d_led1, DT_ALIAS_LED1_GPIOS_PIN, 1);
+    }
+
+    
     unsigned char c[256];
 
     memset(c,0,256);
 
     cnt = ble_inputline(c, 256);    
     
-    
-    usb_printf("%s", c);
+    usb_printf("OUTPUT: %d -- %s", cnt, c);
 
     
     uart_tx(uart,c, cnt+1);
+
+    //ring_buf_reset(&ble_in_ringbuf);
     
     
 
@@ -477,6 +491,6 @@ void main(void)
     //gpio_pin_write(d_led1, DT_ALIAS_LED1_GPIOS_PIN, cnt % 2);
     //cnt ++; 
 
-    //k_sleep(1);
+    k_sleep(1);
   }
 }

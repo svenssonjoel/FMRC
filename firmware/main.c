@@ -71,7 +71,9 @@ int uart_get_char(void) {
   int n = 0;
   uint8_t c;
 
-  n = sdRead(&SD1, &c, 1);
+  while ( n <= 0 ) {
+    n = sdReadTimeout(&SD1, &c, 1, 10);
+  }
 
   if (n == 1) {
     return c;
@@ -122,7 +124,6 @@ int main(void) {
 	led_init();
 	imu_init();
 
-	sdStart(&SD1, &serial_cfg);
 	palSetPadMode(GPIOA, 9, PAL_MODE_ALTERNATE(7));
 	palSetPadMode(GPIOA, 10, PAL_MODE_ALTERNATE(7));
 
@@ -141,9 +142,12 @@ int main(void) {
 	usbConnectBus(serusbcfg.usbp);
 	chThdSleepMilliseconds(500);
         
+
 	//neato_lidar_init();
 
-	createReplThread((BaseSequentialStream *)&SDU1);
+	//createReplThread((BaseSequentialStream *)&SDU1);
+
+	sdStart(&SD1, &serial_cfg);		
 
 	/*
 	 *  Main thread activity...
@@ -199,15 +203,21 @@ int main(void) {
 	    }
 	  }
 
-	  chprintf((BaseSequentialStream *)&SDU1,"%d %d\n\r",(int) duty_r, (int) duty_l);
-
+	  //chprintf((BaseSequentialStream *)&SDU1,"%d %d\n\r",(int) duty_r, (int) duty_l);
 	  
 	  pwmEnableChannel(&PWMD3, 2, 0);
 	  pwmEnableChannel(&PWMD3, 3, 0);
 	  pwmEnableChannel(&PWMD2, 0, 0);
 	  pwmEnableChannel(&PWMD2, 1, 0);
 
+	  if (duty_r > 10000) duty_r = 10000;
+	  if (duty_r < -10000) duty_r = -10000;
+	  if (duty_l > 10000) duty_l = 10000;
+	  if (duty_l < -10000) duty_l = -10000;
+	  
+	  
 	  if (duty_r > 0) {
+	    
 	    pwmEnableChannel(&PWMD3, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, (int)duty_r));
 	    pwmEnableChannel(&PWMD3, 3, 0);
 	    
