@@ -19,6 +19,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <math.h>
 
 #include "ch.h"
 #include "hal.h"
@@ -179,25 +180,25 @@ int main(void) {
 	    
 	    if (ang > 0.0) { //left side
 
-	      if (ang > 3.14/2) { // top
-		float a = ang - 3.14/2; 
-		duty_l = mag * (20000 * (a / (3.14/2)) - 10000);
+	      if (ang > M_PI/2) { // top
+		float a = ang - M_PI/2; 
+		duty_l = mag * (20000 * (a / (M_PI/2)) - 10000);
 		duty_r = mag * 10000;
 
 	      } else { // bottom
-		duty_r = mag * (20000 * (fabs(ang) / (3.14/2)) - 10000);
+		duty_r = mag * (20000 * (fabs(ang) / (M_PI/2)) - 10000);
 		duty_l = -mag * 10000;
 	      }
 	      
 	    } else { // right side 
 
-	      if (fabs(ang) > 3.14/2) { // top
-		float a = fabs(ang) - 3.14/2; 
+	      if (fabs(ang) > M_PI/2) { // top
+		float a = fabs(ang) - M_PI/2; 
 		duty_r = mag * (20000 * (a / (3.14/2)) - 10000);
 		duty_l = mag * 10000;
 		
 	      } else { // bottom
-		duty_l = mag * (20000 * (fabs(ang) / (3.14/2)) - 10000);
+		duty_l = mag * (20000 * (fabs(ang) / (M_PI/2)) - 10000);
 		duty_r = -mag * 10000;
 	      }	
 	    }
