@@ -106,7 +106,8 @@ void MainWindow::timeout()
     QString str;
 
     str.append(sang).append(" ; ").append(smag).append("\n");
-    ui->statusLabel->setText(str);
+    ui->angMagLabel->setText(str);
+    //ui->statusLabel->setText(str);
 
     if (mUartFound) {
         QLowEnergyCharacteristic tx;
@@ -122,9 +123,14 @@ void MainWindow::timeout()
             }
 
         } else {
-
-            ui->statusLabel->setText("UART_TX_INVALID");
+            mUartFound = false;
         }
+    } else {
+        connectToBLEUart();
+
+        QString str = QString("Reconnecting: %1").arg(mAttempts);
+
+        ui->statusLabel->setText(str);
     }
 
     //ui->statusLabel->setText(str);
@@ -168,19 +174,38 @@ void MainWindow::on_connectUartPushButton_clicked()
 
     mControl = QLowEnergyController::createCentral(info,this);
 
+    connectToBLEUart();
+
+}
+
+void MainWindow::connectToBLEUart()
+{
+    if (mUartConnecting || !mControl) {
+        return;
+    }
+    mAttempts ++;
+    mUartConnecting = true;
+
+
+
+    if (mControl->state() == QLowEnergyController::ConnectedState) {
+        mControl->disconnectFromDevice();
+        mControl->connectToDevice();
+    }
+
     connect(mControl, &QLowEnergyController::serviceDiscovered,
             this, [this](QBluetoothUuid uuid)
     {
         //qDebug() << mControl->remoteName() << " - " << uuid.toString();
         if (uuid == QBluetoothUuid::fromString(uart_service)) {
-
-            mUartService = mControl->createServiceObject(uuid);
+            mUartService = mControl->createServiceObject(uuid,this);
 
             connect(mUartService, &QLowEnergyService::stateChanged,
                     this, [this](QLowEnergyService::ServiceState state)
             {
                 switch(state) {
                 case QLowEnergyService::InvalidService:
+                    mUartConnecting = false;
                     ui->statusLabel->setText("Invalid Service");
                 break;
                 case QLowEnergyService::DiscoveryRequired:
@@ -190,8 +215,11 @@ void MainWindow::on_connectUartPushButton_clicked()
                 case QLowEnergyService::ServiceDiscovered:
                     ui->statusLabel->setText("UART Discovered!");
                     mUartFound = true;
+                    mUartConnecting = false;
+                    mAttempts = 0;
                     break;
                 case QLowEnergyService::LocalService:
+                    mUartConnecting = false;
                     break;
                 }
             });
@@ -204,5 +232,15 @@ void MainWindow::on_connectUartPushButton_clicked()
         mControl->discoverServices();
     });
 
+    connect(mControl, QOverload<QLowEnergyController::Error>::of(&QLowEnergyController::error),
+          [=](QLowEnergyController::Error newError){
+        (void) this;
+        mUartConnecting = false;
+        mUartFound = false;
+        QString str = QString("Error %1").arg(newError);
+        ui->statusLabel->setText(str);
+    });
+
     mControl->connectToDevice();
+
 }

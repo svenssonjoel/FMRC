@@ -39,7 +39,11 @@ private slots:
 protected:
 
 private:
+    void connectToBLEUart();
+
     bool mUartFound = false;
+    bool mUartConnecting = false;
+    int mAttempts = 0;
     QBluetoothDeviceInfo mUartDevice;
     QLowEnergyService *mUartService;
 
@@ -48,5 +52,6 @@ private:
     QBluetoothDeviceDiscoveryAgent *mDiscoveryAgent = nullptr;
     QLowEnergyController *mControl = nullptr;
     QTimer *mTimer = nullptr;
+
 };
 #endif // MAINWINDOW_H

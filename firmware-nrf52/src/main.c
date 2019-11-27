@@ -395,19 +395,19 @@ void main(void)
     return;
   }
 
-  
+  /*  
   dev = device_get_binding("CDC_ACM_0");
   if (!dev) {
     return;
   }
-  
+  */
   
 
   ring_buf_init(&in_ringbuf, sizeof(in_ring_buffer), in_ring_buffer);
   ring_buf_init(&out_ringbuf, sizeof(out_ring_buffer), out_ring_buffer);
   ring_buf_init(&ble_in_ringbuf, sizeof(ble_in_ring_buffer), ble_in_ring_buffer);
 
-  
+  /*
   while (true) {
     uart_line_ctrl_get(dev, LINE_CTRL_DTR, &dtr);
     if (dtr) {
@@ -440,7 +440,7 @@ void main(void)
   uart_irq_callback_set(dev, interrupt_handler);
   
   uart_irq_rx_enable(dev);
-  
+  */
   
   err = bt_enable(bt_ready);
 
@@ -478,7 +478,7 @@ void main(void)
 
     cnt = ble_inputline(c, 256);    
     
-    usb_printf("OUTPUT: %d -- %s", cnt, c);
+    //usb_printf("OUTPUT: %d -- %s", cnt, c);
 
     
     uart_tx(uart,c, cnt+1);

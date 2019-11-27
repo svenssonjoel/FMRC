@@ -60,7 +60,7 @@ typedef enum {
   turning 
 } state_enum;
 
-static SerialConfig serial_cfg = {
+static SerialConfig ctrl_serial = {
   115200,
   0,
   USART_CR2_STOP1_BITS,
@@ -128,26 +128,25 @@ int main(void) {
 	palSetPadMode(GPIOA, 10, PAL_MODE_ALTERNATE(7));
 
 	
-	sduObjectInit(&SDU1);
-	sduStart(&SDU1, &serusbcfg);
+	//sduObjectInit(&SDU1);
+	//sduStart(&SDU1, &serusbcfg);
 
 	/*
 	 * Activates the USB driver and then the USB bus pull-up on D+.
 	 * Note, a delay is inserted in order to not have to disconnect the cable
 	 * after a reset.
 	 */
-	usbDisconnectBus(serusbcfg.usbp);
-	chThdSleepMilliseconds(1500);
-	usbStart(serusbcfg.usbp, &usbcfg);
-	usbConnectBus(serusbcfg.usbp);
-	chThdSleepMilliseconds(500);
+	//usbDisconnectBus(serusbcfg.usbp);
+	//chThdSleepMilliseconds(1500);
+	//usbStart(serusbcfg.usbp, &usbcfg);
+	//usbConnectBus(serusbcfg.usbp);
+	//chThdSleepMilliseconds(500);
         
-
 	//neato_lidar_init();
 
 	//createReplThread((BaseSequentialStream *)&SDU1);
 
-	sdStart(&SD1, &serial_cfg);		
+	sdStart(&SD1, &ctrl_serial);		
 
 	/*
 	 *  Main thread activity...
@@ -169,38 +168,41 @@ int main(void) {
 	  
 	  r = sscanf(buffer, "%f ; %f\n", &ang, &mag);
 
-	  chprintf((BaseSequentialStream *)&SDU1,"angmag: %d %d\n\r",(int)(10000*ang), (int)(10000*mag));
+	  //chprintf((BaseSequentialStream *)&SDU1,"angmag: %d %d\r\n",(int)(10000*ang), (int)(10000*mag));
 
 	  
 	  float duty_l;
 	  float duty_r; 
+
+	  if (r != 2)  {
+	    ang = 0;
+	    mag = 0;
+	  }
 	  
-	  if (r == 2) {
 	    
-	    if (ang > 0.0) { //left side
+	  if (ang > 0.0) { //left side
 
-	      if (ang > 3.14/2) { // top
-		float a = ang - 3.14/2; 
-		duty_l = mag * (20000 * (a / (3.14/2)) - 10000);
-		duty_r = mag * 10000;
+	    if (ang > 3.14/2) { // top
+	      float a = ang - 3.14/2; 
+	      duty_l = mag * (20000 * (a / (3.14/2)) - 10000);
+	      duty_r = mag * 10000;
 
-	      } else { // bottom
-		duty_r = mag * (20000 * (fabs(ang) / (3.14/2)) - 10000);
-		duty_l = -mag * 10000;
-	      }
-	      
-	    } else { // right side 
-
-	      if (fabs(ang) > 3.14/2) { // top
-		float a = fabs(ang) - 3.14/2; 
-		duty_r = mag * (20000 * (a / (3.14/2)) - 10000);
-		duty_l = mag * 10000;
-		
-	      } else { // bottom
-		duty_l = mag * (20000 * (fabs(ang) / (3.14/2)) - 10000);
-		duty_r = -mag * 10000;
-	      }	
+	    } else { // bottom
+	      duty_r = mag * (20000 * (fabs(ang) / (3.14/2)) - 10000);
+	      duty_l = -mag * 10000;
 	    }
+	      
+	  } else { // right side 
+
+	    if (fabs(ang) > 3.14/2) { // top
+	      float a = fabs(ang) - 3.14/2; 
+	      duty_r = mag * (20000 * (a / (3.14/2)) - 10000);
+	      duty_l = mag * 10000;
+		
+	    } else { // bottom
+	      duty_l = mag * (20000 * (fabs(ang) / (3.14/2)) - 10000);
+	      duty_r = -mag * 10000;
+	    }	
 	  }
 
 	  //chprintf((BaseSequentialStream *)&SDU1,"%d %d\n\r",(int) duty_r, (int) duty_l);
