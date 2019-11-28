@@ -19,6 +19,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <math.h>
 
 #include "ch.h"
 #include "hal.h"
@@ -71,9 +72,7 @@ int uart_get_char(void) {
   int n = 0;
   uint8_t c;
 
-  while ( n <= 0 ) {
-    n = sdReadTimeout(&SD1, &c, 1, 10);
-  }
+  n = sdReadTimeout(&SD1, &c, 1, 10);
 
   if (n == 1) {
     return c;
@@ -87,6 +86,8 @@ int uart_inputline(char *buffer, int size) {
   for (n = 0; n < size - 1; n++) {
 
     c = uart_get_char();
+    if (c == -1) return c;
+
     switch (c) {
     case 127: /* fall through to below */
     case '\b': /* backspace character received */
@@ -153,11 +154,12 @@ int main(void) {
 	 */
 	while (true) {
 
-	  int num = 0;  
+	  int num = 0;
+	  int timeout = 0;
 
 	  char buffer[256];
 	  memset(buffer, 0, 256);
-	  uart_inputline(buffer,256);
+	  timeout = uart_inputline(buffer,256);
 	  
   
 	  float ang = 0;
@@ -165,10 +167,14 @@ int main(void) {
 
 	  int r = 0;
 
-	  
-	  r = sscanf(buffer, "%f ; %f\n", &ang, &mag);
-
-	  //chprintf((BaseSequentialStream *)&SDU1,"angmag: %d %d\r\n",(int)(10000*ang), (int)(10000*mag));
+	  if (timeout != -1) { 
+	    r = sscanf(buffer, "%f ; %f\n", &ang, &mag);
+	  } else {
+	    ang = 0;
+	    mag = 0;
+	  }
+	    
+	  //chprintf((BaseSequentialStream *)&SDU1,"angmag: %d %d\n\r",(int)(10000*ang), (int)(10000*mag));
 
 	  
 	  float duty_l;
@@ -182,27 +188,28 @@ int main(void) {
 	    
 	  if (ang > 0.0) { //left side
 
-	    if (ang > 3.14/2) { // top
-	      float a = ang - 3.14/2; 
-	      duty_l = mag * (20000 * (a / (3.14/2)) - 10000);
-	      duty_r = mag * 10000;
+	      if (ang > M_PI/2) { // top
+		float a = ang - M_PI/2; 
+		duty_l = mag * (20000 * (a / (M_PI/2)) - 10000);
+		duty_r = mag * 10000;
 
-	    } else { // bottom
-	      duty_r = mag * (20000 * (fabs(ang) / (3.14/2)) - 10000);
-	      duty_l = -mag * 10000;
-	    }
+	      } else { // bottom
+		duty_r = mag * (20000 * (fabs(ang) / (M_PI/2)) - 10000);
+		duty_l = -mag * 10000;
+	      }
 	      
 	  } else { // right side 
 
-	    if (fabs(ang) > 3.14/2) { // top
-	      float a = fabs(ang) - 3.14/2; 
-	      duty_r = mag * (20000 * (a / (3.14/2)) - 10000);
-	      duty_l = mag * 10000;
+	      if (fabs(ang) > M_PI/2) { // top
+		float a = fabs(ang) - M_PI/2; 
+		duty_r = mag * (20000 * (a / (3.14/2)) - 10000);
+		duty_l = mag * 10000;
 		
-	    } else { // bottom
-	      duty_l = mag * (20000 * (fabs(ang) / (3.14/2)) - 10000);
-	      duty_r = -mag * 10000;
-	    }	
+	      } else { // bottom
+		duty_l = mag * (20000 * (fabs(ang) / (M_PI/2)) - 10000);
+		duty_r = -mag * 10000;
+	      }	
+	    }
 	  }
 
 	  //chprintf((BaseSequentialStream *)&SDU1,"%d %d\n\r",(int) duty_r, (int) duty_l);

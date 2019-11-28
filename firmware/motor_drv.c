@@ -9,8 +9,8 @@
 #define GPIO_AF_TIM3          ((uint8_t)0x02)
 
 static PWMConfig pwmcfg1 = {
-  500000,
-  1000,
+  84000000,
+  4200,
   NULL,
   { // per channel conf
     {PWM_OUTPUT_ACTIVE_HIGH, NULL},
@@ -23,8 +23,8 @@ static PWMConfig pwmcfg1 = {
 };
 
 static PWMConfig pwmcfg2 = {
-  500000,
-  1000,
+  84000000,
+  4200, 
   NULL,
   { // per channel conf
     {PWM_OUTPUT_ACTIVE_HIGH, NULL},
