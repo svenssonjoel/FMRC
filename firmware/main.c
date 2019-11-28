@@ -118,199 +118,198 @@ int uart_inputline(char *buffer, int size) {
 
 
 int main(void) {
-	halInit();
-	chSysInit();
+  halInit();
+  chSysInit();
 
-	drv_init();
-	led_init();
-	imu_init();
+  drv_init();
+  led_init();
+  imu_init();
 
-	palSetPadMode(GPIOA, 9, PAL_MODE_ALTERNATE(7));
-	palSetPadMode(GPIOA, 10, PAL_MODE_ALTERNATE(7));
+  palSetPadMode(GPIOA, 9, PAL_MODE_ALTERNATE(7));
+  palSetPadMode(GPIOA, 10, PAL_MODE_ALTERNATE(7));
 
 	
-	//sduObjectInit(&SDU1);
-	//sduStart(&SDU1, &serusbcfg);
+  //sduObjectInit(&SDU1);
+  //sduStart(&SDU1, &serusbcfg);
 
-	/*
-	 * Activates the USB driver and then the USB bus pull-up on D+.
-	 * Note, a delay is inserted in order to not have to disconnect the cable
-	 * after a reset.
-	 */
-	//usbDisconnectBus(serusbcfg.usbp);
-	//chThdSleepMilliseconds(1500);
-	//usbStart(serusbcfg.usbp, &usbcfg);
-	//usbConnectBus(serusbcfg.usbp);
-	//chThdSleepMilliseconds(500);
+  /*
+   * Activates the USB driver and then the USB bus pull-up on D+.
+   * Note, a delay is inserted in order to not have to disconnect the cable
+   * after a reset.
+   */
+  //usbDisconnectBus(serusbcfg.usbp);
+  //chThdSleepMilliseconds(1500);
+  //usbStart(serusbcfg.usbp, &usbcfg);
+  //usbConnectBus(serusbcfg.usbp);
+  //chThdSleepMilliseconds(500);
         
-	//neato_lidar_init();
+  //neato_lidar_init();
 
-	//createReplThread((BaseSequentialStream *)&SDU1);
+  //createReplThread((BaseSequentialStream *)&SDU1);
 
-	sdStart(&SD1, &ctrl_serial);		
+  sdStart(&SD1, &ctrl_serial);		
 
-	/*
-	 *  Main thread activity...
-	 */
-	while (true) {
+  /*
+   *  Main thread activity...
+   */
+  while (true) {
 
-	  int num = 0;
-	  int timeout = 0;
+    int num = 0;
+    int timeout = 0;
 
-	  char buffer[256];
-	  memset(buffer, 0, 256);
-	  timeout = uart_inputline(buffer,256);
+    char buffer[256];
+    memset(buffer, 0, 256);
+    timeout = uart_inputline(buffer,256);
 	  
   
-	  float ang = 0;
-	  float mag = 0;
+    float ang = 0;
+    float mag = 0;
 
-	  int r = 0;
+    int r = 0;
 
-	  if (timeout != -1) { 
-	    r = sscanf(buffer, "%f ; %f\n", &ang, &mag);
-	  } else {
-	    ang = 0;
-	    mag = 0;
-	  }
+    if (timeout != -1) { 
+      r = sscanf(buffer, "%f ; %f\n", &ang, &mag);
+    } else {
+      ang = 0;
+      mag = 0;
+    }
 	    
-	  //chprintf((BaseSequentialStream *)&SDU1,"angmag: %d %d\n\r",(int)(10000*ang), (int)(10000*mag));
+    //chprintf((BaseSequentialStream *)&SDU1,"angmag: %d %d\n\r",(int)(10000*ang), (int)(10000*mag));
 
 	  
-	  float duty_l;
-	  float duty_r; 
+    float duty_l;
+    float duty_r; 
 
-	  if (r != 2)  {
-	    ang = 0;
-	    mag = 0;
-	  }
+    if (r != 2)  {
+      ang = 0;
+      mag = 0;
+    }
 	  
 	    
-	  if (ang > 0.0) { //left side
+    if (ang > 0.0) { //left side
 
-	      if (ang > M_PI/2) { // top
-		float a = ang - M_PI/2; 
-		duty_l = mag * (20000 * (a / (M_PI/2)) - 10000);
-		duty_r = mag * 10000;
+      if (ang > M_PI/2) { // top
+	float a = ang - M_PI/2; 
+	duty_l = mag * (20000 * (a / (M_PI/2)) - 10000);
+	duty_r = mag * 10000;
 
-	      } else { // bottom
-		duty_r = mag * (20000 * (fabs(ang) / (M_PI/2)) - 10000);
-		duty_l = -mag * 10000;
-	      }
+      } else { // bottom
+	duty_r = mag * (20000 * (fabs(ang) / (M_PI/2)) - 10000);
+	duty_l = -mag * 10000;
+      }
 	      
-	  } else { // right side 
+    } else { // right side 
 
-	      if (fabs(ang) > M_PI/2) { // top
-		float a = fabs(ang) - M_PI/2; 
-		duty_r = mag * (20000 * (a / (3.14/2)) - 10000);
-		duty_l = mag * 10000;
+      if (fabs(ang) > M_PI/2) { // top
+	float a = fabs(ang) - M_PI/2; 
+	duty_r = mag * (20000 * (a / (3.14/2)) - 10000);
+	duty_l = mag * 10000;
 		
-	      } else { // bottom
-		duty_l = mag * (20000 * (fabs(ang) / (M_PI/2)) - 10000);
-		duty_r = -mag * 10000;
-	      }	
-	    }
-	  }
+      } else { // bottom
+	duty_l = mag * (20000 * (fabs(ang) / (M_PI/2)) - 10000);
+	duty_r = -mag * 10000;
+      }	
+    }
 
-	  //chprintf((BaseSequentialStream *)&SDU1,"%d %d\n\r",(int) duty_r, (int) duty_l);
+    //chprintf((BaseSequentialStream *)&SDU1,"%d %d\n\r",(int) duty_r, (int) duty_l);
 	  
-	  pwmEnableChannel(&PWMD3, 2, 0);
-	  pwmEnableChannel(&PWMD3, 3, 0);
-	  pwmEnableChannel(&PWMD2, 0, 0);
-	  pwmEnableChannel(&PWMD2, 1, 0);
+    pwmEnableChannel(&PWMD3, 2, 0);
+    pwmEnableChannel(&PWMD3, 3, 0);
+    pwmEnableChannel(&PWMD2, 0, 0);
+    pwmEnableChannel(&PWMD2, 1, 0);
 
-	  if (duty_r > 10000) duty_r = 10000;
-	  if (duty_r < -10000) duty_r = -10000;
-	  if (duty_l > 10000) duty_l = 10000;
-	  if (duty_l < -10000) duty_l = -10000;
+    if (duty_r > 10000) duty_r = 10000;
+    if (duty_r < -10000) duty_r = -10000;
+    if (duty_l > 10000) duty_l = 10000;
+    if (duty_l < -10000) duty_l = -10000;
 	  
 	  
-	  if (duty_r > 0) {
+    if (duty_r > 0) {
 	    
-	    pwmEnableChannel(&PWMD3, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, (int)duty_r));
-	    pwmEnableChannel(&PWMD3, 3, 0);
+      pwmEnableChannel(&PWMD3, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, (int)duty_r));
+      pwmEnableChannel(&PWMD3, 3, 0);
 	    
-	  } else {
-	    pwmEnableChannel(&PWMD3, 2, 0);
-	    pwmEnableChannel(&PWMD3, 3, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, (int)(-duty_r)));
-	  }
+    } else {
+      pwmEnableChannel(&PWMD3, 2, 0);
+      pwmEnableChannel(&PWMD3, 3, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, (int)(-duty_r)));
+    }
 
-	  if (duty_l > 0) {
-	    pwmEnableChannel(&PWMD2, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD2, (int)duty_l));
-	    pwmEnableChannel(&PWMD2, 1, 0);
-	  }
-	  else {
-	    pwmEnableChannel(&PWMD2, 0, 0);
-	    pwmEnableChannel(&PWMD2, 1, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, (int)-duty_l));	    
-	  }
+    if (duty_l > 0) {
+      pwmEnableChannel(&PWMD2, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD2, (int)duty_l));
+      pwmEnableChannel(&PWMD2, 1, 0);
+    }
+    else {
+      pwmEnableChannel(&PWMD2, 0, 0);
+      pwmEnableChannel(&PWMD2, 1, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, (int)-duty_l));	    
+    }
 	  
 	 
 	  
-	  chThdSleepMilliseconds(1);
-	}
+    chThdSleepMilliseconds(1);
+  }
 	
-	/*
+/*
 
-	state_enum state = go;
-	while (true) {
-	  led_write(LED_RED, 0);
-	  led_write(LED_GREEN,1);
+  state_enum state = go;
+  while (true) {
+  led_write(LED_RED, 0);
+  led_write(LED_GREEN,1);
 
-	  int sum = 0;
-	  int readings = 0;
+  int sum = 0;
+  int readings = 0;
 	  
-	  for (int i = 0; i < 20; i ++) {
+  for (int i = 0; i < 20; i ++) {
 
-	    int d0 = neato_lidar_distance(359 - i);
-	    int d1 = neato_lidar_distance(i);
+  int d0 = neato_lidar_distance(359 - i);
+  int d1 = neato_lidar_distance(i);
 	    
-	    if ( d0 != -1) {
-	      sum += d0;
-	      readings++;
-	    }
+  if ( d0 != -1) {
+  sum += d0;
+  readings++;
+  }
 
-	    if ( d1 != -1) {
-	      sum += d1;
-	      readings++; 
-	    }
-	  }
+  if ( d1 != -1) {
+  sum += d1;
+  readings++; 
+  }
+  }
 
-	  if (readings == 0) {
+  if (readings == 0) {
 
-	    if (state == go) {
-	      stop();
-	      state = turning;
-	    } else if (state == turning) {
-	      turn(5000);
-	    }
+  if (state == go) {
+  stop();
+  state = turning;
+  } else if (state == turning) {
+  turn(5000);
+  }
 	    
-	    led_write(LED_RED, 1);
-	    led_write(LED_GREEN, 0);
-	  } else {
+  led_write(LED_RED, 1);
+  led_write(LED_GREEN, 0);
+  } else {
 
-	    float dist = (float)sum / readings; 
+  float dist = (float)sum / readings; 
 
-	    if (dist < 500.0) {
-	      if (state == go) {
-		stop(); 
-		state = turning;
-	      }else if (state == turning) {
-		turn(5000);
-	      }
+  if (dist < 500.0) {
+  if (state == go) {
+  stop(); 
+  state = turning;
+  }else if (state == turning) {
+  turn(5000);
+  }
 	      
 	    
-	      led_write(LED_RED, 1);
-	    } else {
+  led_write(LED_RED, 1);
+  } else {
 
-	      if (state == go) { 
-		forward(5000);
-	      } else if (state == turning) {
-		state = go; 
-	      }
-	    }
+  if (state == go) { 
+  forward(5000);
+  } else if (state == turning) {
+  state = go; 
+  }
+  }
 	    
-	  }
-	  chThdSleepMilliseconds(100);
-	}
-	*/
+  }
+  chThdSleepMilliseconds(100);
+  }
+*/
 }
