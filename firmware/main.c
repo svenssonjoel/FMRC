@@ -72,9 +72,7 @@ int uart_get_char(void) {
   int n = 0;
   uint8_t c;
 
-  while ( n <= 0 ) {
-    n = sdReadTimeout(&SD1, &c, 1, 10);
-  }
+  n = sdReadTimeout(&SD1, &c, 1, 10);
 
   if (n == 1) {
     return c;
@@ -88,6 +86,8 @@ int uart_inputline(char *buffer, int size) {
   for (n = 0; n < size - 1; n++) {
 
     c = uart_get_char();
+    if (c == -1) return c;
+
     switch (c) {
     case 127: /* fall through to below */
     case '\b': /* backspace character received */
@@ -129,19 +129,19 @@ int main(void) {
 	palSetPadMode(GPIOA, 10, PAL_MODE_ALTERNATE(7));
 
 	
-	sduObjectInit(&SDU1);
-	sduStart(&SDU1, &serusbcfg);
+	//sduObjectInit(&SDU1);
+	//sduStart(&SDU1, &serusbcfg);
 
 	/*
 	 * Activates the USB driver and then the USB bus pull-up on D+.
 	 * Note, a delay is inserted in order to not have to disconnect the cable
 	 * after a reset.
 	 */
-	usbDisconnectBus(serusbcfg.usbp);
-	chThdSleepMilliseconds(1500);
-	usbStart(serusbcfg.usbp, &usbcfg);
-	usbConnectBus(serusbcfg.usbp);
-	chThdSleepMilliseconds(500);
+	//usbDisconnectBus(serusbcfg.usbp);
+	//chThdSleepMilliseconds(1500);
+	//usbStart(serusbcfg.usbp, &usbcfg);
+	//usbConnectBus(serusbcfg.usbp);
+	//chThdSleepMilliseconds(500);
         
 
 	//neato_lidar_init();
@@ -155,11 +155,12 @@ int main(void) {
 	 */
 	while (true) {
 
-	  int num = 0;  
+	  int num = 0;
+	  int timeout = 0;
 
 	  char buffer[256];
 	  memset(buffer, 0, 256);
-	  uart_inputline(buffer,256);
+	  timeout = uart_inputline(buffer,256);
 	  
   
 	  float ang = 0;
@@ -167,10 +168,14 @@ int main(void) {
 
 	  int r = 0;
 
-	  
-	  r = sscanf(buffer, "%f ; %f\n", &ang, &mag);
-
-	  chprintf((BaseSequentialStream *)&SDU1,"angmag: %d %d\n\r",(int)(10000*ang), (int)(10000*mag));
+	  if (timeout != -1) { 
+	    r = sscanf(buffer, "%f ; %f\n", &ang, &mag);
+	  } else {
+	    ang = 0;
+	    mag = 0;
+	  }
+	    
+	  //chprintf((BaseSequentialStream *)&SDU1,"angmag: %d %d\n\r",(int)(10000*ang), (int)(10000*mag));
 
 	  
 	  float duty_l;
