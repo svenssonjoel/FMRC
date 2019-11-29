@@ -1498,18 +1498,6 @@ $EndComp
 Text Notes -1300 -1300 0    50   ~ 0
 I = V/R = 20/100000 = 0.0002A = 0.2mA  (Ohms law)\np = I * V = 0.0002 * 20 = 0.004W  (Power rule)\n\nSo Rpgood needs to handle 4mW\n
 $Comp
-L Device:L L3
-U 1 1 5DCEECFF
-P 6050 4200
-F 0 "L3" H 6103 4246 50  0000 L CNN
-F 1 "4,7uH" H 6103 4155 50  0000 L CNN
-F 2 "Inductor_SMD:L_Vishay_IHLP-2525" H 6050 4200 50  0001 C CNN
-F 3 "https://www.vishay.com/docs/34104/ihlp-2525cz-01.pdf" H 6050 4200 50  0001 C CNN
-F 4 " 541-1010-1-ND " H 6050 4200 50  0001 C CNN "OrderN"
-	1    6050 4200
-	0    -1   -1   0   
-$EndComp
-$Comp
 L Device:R_Small R17
 U 1 1 5DCEFD9A
 P 3700 4300
@@ -4705,5 +4693,19 @@ F 3 "https://www.nichicon.co.jp/english/products/pdfs/e-uma.pdf" H 6850 4300 50 
 F 4 " 493-10439-1-ND " H 6850 4300 50  0001 C CNN "OrderN"
 	1    6850 4300
 	1    0    0    -1  
+$EndComp
+Text Notes 4250 7400 0    50   ~ 0
+(FB) For the fixed output version, connect this pin to VOUT directly.
+$Comp
+L Device:L L3
+U 1 1 5DCEECFF
+P 6050 4200
+F 0 "L3" H 6103 4246 50  0000 L CNN
+F 1 "4,7uH" H 6103 4155 50  0000 L CNN
+F 2 "Inductor_SMD:L_Vishay_IHLP-2525" H 6050 4200 50  0001 C CNN
+F 3 "https://www.vishay.com/docs/34104/ihlp-2525cz-01.pdf" H 6050 4200 50  0001 C CNN
+F 4 " 541-1010-1-ND " H 6050 4200 50  0001 C CNN "OrderN"
+	1    6050 4200
+	0    -1   -1   0   
 $EndComp
 $EndSCHEMATC
