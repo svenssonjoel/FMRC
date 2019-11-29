@@ -1484,18 +1484,6 @@ AE 5C D9 CB CB AB 7B F7 EE C2 44 B8 50 B6 79 79 79 55 AD 5A 75 CE 9C 39 3A F3 54
 EndData
 $EndBitmap
 $Comp
-L Device:C_Small C36
-U 1 1 5DCEAC35
-P 6400 4300
-F 0 "C36" H 6492 4346 50  0000 L CNN
-F 1 "47uF" H 6492 4255 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 6400 4300 50  0001 C CNN
-F 3 "https://www.nichicon.co.jp/english/products/pdfs/e-uma.pdf" H 6400 4300 50  0001 C CNN
-F 4 " 493-10439-1-ND " H 6400 4300 50  0001 C CNN "OrderN"
-	1    6400 4300
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:D_Schottky D5
 U 1 1 5DCECA38
 P 5350 4350
@@ -1608,14 +1596,10 @@ Wire Wire Line
 	5500 4200 5900 4200
 Connection ~ 5500 4200
 Wire Wire Line
-	6200 4200 6400 4200
-Wire Wire Line
 	5350 4500 5350 4700
 Wire Wire Line
 	5350 4700 4750 4700
 Connection ~ 4750 4700
-Wire Wire Line
-	6400 4400 6400 4700
 Wire Wire Line
 	6400 4700 5350 4700
 Connection ~ 5350 4700
@@ -1630,9 +1614,6 @@ F 3 "" H 6400 3600 50  0001 C CNN
 	1    6400 3600
 	1    0    0    -1  
 $EndComp
-Connection ~ 6400 4200
-Wire Wire Line
-	6400 3700 6400 4200
 Wire Wire Line
 	6400 3700 5200 3700
 Wire Wire Line
@@ -1702,13 +1683,13 @@ $EndComp
 $Comp
 L Device:C_Small C30
 U 1 1 5DD2EDA2
-P 6800 4300
-F 0 "C30" H 6892 4346 50  0000 L CNN
-F 1 "10uF" H 6892 4255 50  0000 L CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric" H 6800 4300 50  0001 C CNN
-F 3 "~" H 6800 4300 50  0001 C CNN
-F 4 "1276-6736-1-ND " H 6800 4300 50  0001 C CNN "OrderN"
-	1    6800 4300
+P 7250 4300
+F 0 "C30" H 7342 4346 50  0000 L CNN
+F 1 "10uF" H 7342 4255 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 7250 4300 50  0001 C CNN
+F 3 "~" H 7250 4300 50  0001 C CNN
+F 4 "1276-6736-1-ND " H 7250 4300 50  0001 C CNN "OrderN"
+	1    7250 4300
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1752,11 +1733,6 @@ Wire Wire Line
 	9300 4700 8750 4700
 Wire Wire Line
 	3500 4250 3500 4700
-Wire Wire Line
-	6400 4200 6800 4200
-Wire Wire Line
-	6400 4400 6800 4400
-Connection ~ 6400 4400
 $Bitmap
 Pos 5200 6550
 Scale 1.000000
@@ -4688,4 +4664,46 @@ EC D0 40 3B 92 02 00 00 00 1E C3 43 A0 00 00 00 20 19 91 14 00 00 00 92 11 49 01
 C9 15 86 00 00 00 00 49 45 4E 44 AE 42 60 82 
 EndData
 $EndBitmap
+Connection ~ 6400 4400
+Wire Wire Line
+	6400 3700 6400 4200
+Connection ~ 6400 4200
+Wire Wire Line
+	6400 4400 6400 4700
+Wire Wire Line
+	6200 4200 6400 4200
+$Comp
+L Device:C_Small C36
+U 1 1 5DCEAC35
+P 6400 4300
+F 0 "C36" H 6492 4346 50  0000 L CNN
+F 1 "47uF" H 6492 4255 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 6400 4300 50  0001 C CNN
+F 3 "https://www.nichicon.co.jp/english/products/pdfs/e-uma.pdf" H 6400 4300 50  0001 C CNN
+F 4 " 493-10439-1-ND " H 6400 4300 50  0001 C CNN "OrderN"
+	1    6400 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6850 4400 7250 4400
+Wire Wire Line
+	6400 4400 6850 4400
+Connection ~ 6850 4400
+Wire Wire Line
+	6850 4200 7250 4200
+Wire Wire Line
+	6400 4200 6850 4200
+Connection ~ 6850 4200
+$Comp
+L Device:C_Small C32
+U 1 1 5DE12A3D
+P 6850 4300
+F 0 "C32" H 6942 4346 50  0000 L CNN
+F 1 "47uF" H 6942 4255 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 6850 4300 50  0001 C CNN
+F 3 "https://www.nichicon.co.jp/english/products/pdfs/e-uma.pdf" H 6850 4300 50  0001 C CNN
+F 4 " 493-10439-1-ND " H 6850 4300 50  0001 C CNN "OrderN"
+	1    6850 4300
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
