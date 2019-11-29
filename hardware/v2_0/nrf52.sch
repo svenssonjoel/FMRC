@@ -219,7 +219,7 @@ AR Path="/5CF677C5" Ref="U8"  Part="1"
 AR Path="/5CF66F52/5CF677C5" Ref="U8"  Part="1" 
 F 0 "U8" H 5900 5067 50  0000 C CNN
 F 1 "BMD-340-A-R" H 5900 4976 50  0000 C CNN
-F 2 "crf1:RIGADO_BMD-340-A-R" H 5850 3200 50  0001 L BNN
+F 2 "v2_0:RIGADO_BMD-340-A-R" H 5850 3200 50  0001 L BNN
 F 3 "Rigado, Inc." H 5850 3200 50  0001 L BNN
 F 4 "https://www.digikey.com/product-detail/en/rigado-inc/BMD-340-A-R/1604-1026-1-ND/8638940?utm_source=snapeda&utm_medium=aggregator&utm_campaign=symbol" H 5850 3200 50  0001 L BNN "Field4"
 F 5 "1604-1026-1-ND" H 5850 3200 50  0001 L BNN "Field5"
