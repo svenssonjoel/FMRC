@@ -4673,7 +4673,7 @@ Wire Wire Line
 Wire Wire Line
 	6200 4200 6400 4200
 $Comp
-L Device:C_Small C36
+L Device:CP_Small C36
 U 1 1 5DCEAC35
 P 6400 4300
 F 0 "C36" H 6492 4346 50  0000 L CNN
@@ -4695,7 +4695,7 @@ Wire Wire Line
 	6400 4200 6850 4200
 Connection ~ 6850 4200
 $Comp
-L Device:C_Small C32
+L Device:CP_Small C32
 U 1 1 5DE12A3D
 P 6850 4300
 F 0 "C32" H 6942 4346 50  0000 L CNN

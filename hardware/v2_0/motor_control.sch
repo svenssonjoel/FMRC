@@ -1874,8 +1874,6 @@ F 5 "493-11829-1-ND " H 5050 3350 50  0001 C CNN "OrderN"
 	1    5050 3350
 	1    0    0    -1  
 $EndComp
-Text GLabel 5550 3100 2    50   Input ~ 0
-VIN
 $Comp
 L power:GND #PWR0141
 U 1 1 5DDFFD64
@@ -1918,4 +1916,6 @@ Wire Wire Line
 Connection ~ 5400 3550
 Wire Wire Line
 	5400 3550 5050 3550
+Text GLabel 5550 3100 2    60   Input ~ 0
+V_IN
 $EndSCHEMATC
