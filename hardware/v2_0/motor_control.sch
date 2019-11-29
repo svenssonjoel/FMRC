@@ -25,18 +25,6 @@ nFAULT = 0 when overheated.\n        = 1 during normal function.
 Text Notes 10000 3150 0    50   ~ 0
 Pulled low on fault. \nI think this is an "open drain". \nIs a wired or an option ? 
 $Comp
-L Device:Q_NMOS_GSD Q1
-U 1 1 5DD2C2CE
-P 2200 2350
-F 0 "Q1" H 2404 2396 50  0000 L CNN
-F 1 "Q_NMOS_GSD" H 2404 2305 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 2400 2450 50  0001 C CNN
-F 3 "http://www.onsemi.com/pub/Collateral/NTR3C21NZ-D.PDF" H 2200 2350 50  0001 C CNN
-F 4 "NTR3C21NZT1GOSCT-ND" H 2200 2350 50  0001 C CNN "OrderN"
-	1    2200 2350
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:D_Schottky D6
 U 1 1 5DD2E4E5
 P 2300 1700
@@ -86,18 +74,6 @@ F 3 "http://www.ti.com/lit/ds/symlink/drv8848.pdf" H 1950 5750 50  0001 C CNN
 F 4 "296-47770-1-ND " H 3100 4400 50  0001 C CNN "OrderN"
 	1    3100 4400
 	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C_Small C22
-U 1 1 5DD98EFB
-P 3950 3750
-F 0 "C22" V 3721 3750 50  0000 C CNN
-F 1 "2.2u" V 3812 3750 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 3950 3750 50  0001 C CNN
-F 3 "~" H 3950 3750 50  0001 C CNN
-F 4 " 490-10731-1-ND " H 3950 3750 50  0001 C CNN "OrderN"
-	1    3950 3750
-	-1   0    0    1   
 $EndComp
 Wire Wire Line
 	3700 4000 3800 4000
@@ -409,18 +385,6 @@ $EndComp
 Connection ~ 7400 5200
 Wire Wire Line
 	8150 4050 8500 4050
-$Comp
-L Connector:Screw_Terminal_01x02 J8
-U 1 1 5DE065CE
-P 8650 4250
-F 0 "J8" H 8730 4242 50  0000 L CNN
-F 1 "DRV1_MTR1" H 8730 4151 50  0000 L CNN
-F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal" H 8650 4250 50  0001 C CNN
-F 3 "~" H 8650 4250 50  0001 C CNN
-F 4 " ED2561-ND" H 8650 4250 50  0001 C CNN "OrderN"
-	1    8650 4250
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6700 4750 6350 4750
 Wire Wire Line
@@ -600,18 +564,6 @@ Wire Wire Line
 	4550 1900 4550 2000
 Wire Wire Line
 	4950 1800 5250 1800
-$Comp
-L Device:C_Small C18
-U 1 1 5DD443FA
-P 3250 3550
-F 0 "C18" H 3342 3596 50  0000 L CNN
-F 1 "10uF" H 3342 3505 50  0000 L CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric" H 3250 3550 50  0001 C CNN
-F 3 "~" H 3250 3550 50  0001 C CNN
-F 4 "1276-6736-1-ND " H 3250 3550 50  0001 C CNN "OrderN"
-	1    3250 3550
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	3000 3550 3100 3550
 Wire Wire Line
@@ -1918,4 +1870,52 @@ Wire Wire Line
 	5400 3550 5050 3550
 Text GLabel 5550 3100 2    60   Input ~ 0
 V_IN
+$Comp
+L Device:C_Small C18
+U 1 1 5DD443FA
+P 3250 3550
+F 0 "C18" H 3342 3596 50  0000 L CNN
+F 1 "10uF" H 3342 3505 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 3250 3550 50  0001 C CNN
+F 3 "~" H 3250 3550 50  0001 C CNN
+F 4 "1276-6736-1-ND " H 3250 3550 50  0001 C CNN "OrderN"
+	1    3250 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C_Small C22
+U 1 1 5DD98EFB
+P 3950 3750
+F 0 "C22" V 3721 3750 50  0000 C CNN
+F 1 "2.2u" V 3812 3750 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 3950 3750 50  0001 C CNN
+F 3 "~" H 3950 3750 50  0001 C CNN
+F 4 " 490-10731-1-ND " H 3950 3750 50  0001 C CNN "OrderN"
+	1    3950 3750
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J8
+U 1 1 5DE065CE
+P 8650 4250
+F 0 "J8" H 8730 4242 50  0000 L CNN
+F 1 "DRV1_MTR1" H 8730 4151 50  0000 L CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal" H 8650 4250 50  0001 C CNN
+F 3 "~" H 8650 4250 50  0001 C CNN
+F 4 " ED2561-ND" H 8650 4250 50  0001 C CNN "OrderN"
+	1    8650 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_NMOS_GSD Q1
+U 1 1 5DD2C2CE
+P 2200 2350
+F 0 "Q1" H 2404 2396 50  0000 L CNN
+F 1 "Q_NMOS_GSD" H 2404 2305 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 2400 2450 50  0001 C CNN
+F 3 "http://www.onsemi.com/pub/Collateral/NTR3C21NZ-D.PDF" H 2200 2350 50  0001 C CNN
+F 4 "NTR3C21NZT1GOSCT-ND" H 2200 2350 50  0001 C CNN "OrderN"
+	1    2200 2350
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
