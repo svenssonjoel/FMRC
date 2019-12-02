@@ -43,6 +43,22 @@ telnet localhost 4444
 
 Work on version 2.0 is in progress. 
 
+[FMRC V2 PART 13: More routing -- finishing off at the DRV8848 area](https://youtu.be/Vftj-5NWg6g )
+
+[FMRC V2 PART 12: Starting to route in the DRV8848 area](https://youtu.be/RzzjTzkN7RY)
+
+[FMRC V2 PART 11: More PCB routing](https://youtu.be/tmIGIp5ANTw)
+
+[FMRC V2 PART 10: Started routing](https://youtu.be/_2mg14zOH1I)
+
+[FMRC V2 PART 9: Tightening up the placement of components](https://youtu.be/uJEVWuKENiA)
+
+[FMRC V2 PART 8: Roughly sorting components](https://youtu.be/DiCStZvnE-I)
+
+[FMRC V2 PART 7: placing components focusing on the DC-DC area](https://youtu.be/_qIdTwvhaeo)
+
+[FMRC V2 PART 6: Boot modes and Boot-loader that allows USB flashing](https://youtu.be/w9wKbaCBO-c)
+
 [FMRC V2 PART 5: Adding an audio jack and doing some spice simulation in KiCAD](https://youtu.be/Df5hQqESk7Q)
 
 [FMRC V2 PART 4: Servo outputs may be nice to have and finishing off in preparation for routing](https://youtu.be/peYSSjiu5AY)
