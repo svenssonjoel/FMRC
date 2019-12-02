@@ -1807,4 +1807,6 @@ F 4 " 490-10731-1-ND " H 6900 3650 50  0001 C CNN "OrderN"
 	1    6900 3650
 	1    0    0    -1  
 $EndComp
+Text Label 9000 4950 2    50   ~ 0
+UART5_RX
 $EndSCHEMATC
