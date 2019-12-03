@@ -43,6 +43,8 @@ telnet localhost 4444
 
 Work on version 2.0 is in progress. 
 
+[FMRC V2 PART 14: First draft of completely routed PCB](https://youtu.be/DmLaImre3FM)
+
 [FMRC V2 PART 13: More routing -- finishing off at the DRV8848 area](https://youtu.be/Vftj-5NWg6g )
 
 [FMRC V2 PART 12: Starting to route in the DRV8848 area](https://youtu.be/RzzjTzkN7RY)
