@@ -143,7 +143,7 @@ int main(void) {
   //usbConnectBus(serusbcfg.usbp);
   //chThdSleepMilliseconds(500);
         
-  //neato_lidar_init();
+  neato_lidar_init();
 
   //createReplThread((BaseSequentialStream *)&SDU1);
 
@@ -152,6 +152,8 @@ int main(void) {
   /*
    *  Main thread activity...
    */
+
+  
   while (true) {
 
     int num = 0;
@@ -160,7 +162,6 @@ int main(void) {
     char buffer[256];
     memset(buffer, 0, 256);
     timeout = uart_inputline(buffer,256);
-	  
   
     float ang = 0;
     float mag = 0;

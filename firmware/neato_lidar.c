@@ -107,13 +107,12 @@ static int read_packet(neato_lidar_packet_t *p) {
 
   uint8_t bytes[22];
   int num_read = 0;
-  bool start_found = false;
   uint8_t c;
   int i = 0; 
 
   // Polling serial link for start of packet.
   
-  while (!start_found)  {
+  while (true)  {
     num_read = sdReadTimeout(&LIDAR_SERIAL_DRIVER, &c,1, 100);
     if (num_read == 0) return 0;
     if (c == 0xFA) {
